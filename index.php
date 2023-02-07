@@ -58,7 +58,15 @@ include_once('query/login-registration-page/login-query.php');
 
     <?php include("templates/footer-elements.php"); ?>
 
+    <script>
+        $(document).ready(function() {
+            if (window.location.href.indexOf("?page=") !== -1) {
+            } else{
+                $(".navbar-header").css("background-color", "#800000");
 
+            }
+        });
+    </script>
 
 
 

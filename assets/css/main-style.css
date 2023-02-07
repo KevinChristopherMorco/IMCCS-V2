@@ -198,8 +198,14 @@ p {
   z-index: 5;
   -webkit-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
-  background-color: var(--primary-button-color) !important;
+  background-color: #F47A2A;
 }
+
+.code-login:hover {
+  color: #fff;
+  background-color: var(--primary-button-color) !important;
+
+  }
 
 .btn-custom-secondary {
   display: inline-block;
