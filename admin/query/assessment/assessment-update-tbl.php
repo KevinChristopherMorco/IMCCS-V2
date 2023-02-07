@@ -5,6 +5,8 @@ if (isset($_POST['assessment_id'])) {
     date_default_timezone_set('Asia/Manila');
     $assessment_id =  mysqli_real_escape_string($mysqli, $_POST['assessment_id']);
     $title =  mysqli_real_escape_string($mysqli, $_POST['title']);
+    $type =  mysqli_real_escape_string($mysqli, $_POST['type']);
+
     $description =  mysqli_real_escape_string($mysqli, $_POST['description']);
     $difficulty =  mysqli_real_escape_string($mysqli, $_POST['difficulty']);
     $estimatedTime =  mysqli_real_escape_string($mysqli, $_POST['estimated_time']);
@@ -48,9 +50,9 @@ if (isset($_POST['assessment_id'])) {
         echo "Error: " . $sql . "" . mysqli_error($mysqli);
     }
 */
-    if ($stmt = $mysqli->prepare("UPDATE assessment_tbl set  title=?, description=?, difficulty=?, estimated_time=?, unit_time=?, passing_rate=?, deadline=?, question_img=? , status=? , retake=? , updated_at=? WHERE assessment_id=?")) {
+    if ($stmt = $mysqli->prepare("UPDATE assessment_tbl set  title=?, type=?, description=?, difficulty=?, estimated_time=?, unit_time=?, passing_rate=?, deadline=?, question_img=? , status=? , retake=? , updated_at=? WHERE assessment_id=?")) {
 
-        $stmt->bind_param("sssisssssssi", $title, $description, $difficulty, $estimatedTime, $unit_time, $rate, $deadline, $questionImg, $status, $retake, $timestamp, $assessment_id);
+        $stmt->bind_param("ssssisssssssi", $title, $type, $description, $difficulty, $estimatedTime, $unit_time, $rate, $deadline, $questionImg, $status, $retake, $timestamp, $assessment_id);
         $stmt->execute();
 
         $dir = "../../assets/img/";

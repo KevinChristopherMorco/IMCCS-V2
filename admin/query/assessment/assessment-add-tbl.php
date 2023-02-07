@@ -4,6 +4,7 @@
 
 $title =   mysqli_real_escape_string($mysqli, $_POST['title']);
 $description =  mysqli_real_escape_string($mysqli, $_POST['description']);
+$type =  mysqli_real_escape_string($mysqli, $_POST['type']);
 $difficulty =  mysqli_real_escape_string($mysqli, $_POST['difficulty']);
 $estimated_time =  mysqli_real_escape_string($mysqli, $_POST['estimated_time']);
 $deadline =  mysqli_real_escape_string($mysqli, $_POST['deadline']);
@@ -40,9 +41,9 @@ if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
 }*/
 
 
-if ($stmt = $mysqli->prepare("INSERT INTO assessment_tbl(title, description, difficulty, estimated_time, unit_time, passing_rate, deadline,  question_img, status, retake, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+if ($stmt = $mysqli->prepare("INSERT INTO assessment_tbl(title,type, description, difficulty, estimated_time, unit_time, passing_rate, deadline,  question_img, status, retake, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
-    $stmt->bind_param("sssssssssss", $title, $description, $difficulty, $estimated_time, $unit_time, $rate, $deadline, $pic, $status, $retake, $timestamp);
+    $stmt->bind_param("ssssssssssss", $title,$type, $description, $difficulty, $estimated_time, $unit_time, $rate, $deadline, $pic, $status, $retake, $timestamp);
     $stmt->execute();
 
     $dir = "../../assets/img/";

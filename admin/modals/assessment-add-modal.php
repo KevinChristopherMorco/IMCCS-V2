@@ -29,6 +29,23 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label class="col-2 col-form-label">Assessment Type</label>
+                            <div class="col-10">
+                                <div class="input-group has-validation">
+                                    <select class="form-select" name="assessment-add-type" id="assessment-add-type">
+                                        <option value="" selected disabled>Select an Option</option>
+                                        <option value="Junior High School">Junior High Level</option>
+                                        <option value="Senior High School">Senior High Level</option>
+                                        <option value="College">College Level</option>
+                                        <option value="Professional">Professional Level</option>
+                                    </select>
+                                    <div class="invalid-feedback feedback-assessment-type">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label class="col-2 col-form-label">Difficulty</label>
                             <div class="col-10">
                                 <div class="input-group has-validation">

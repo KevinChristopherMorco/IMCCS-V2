@@ -143,6 +143,11 @@ $(document).ready(function () {
                 $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
             }
 
+            if ($('.form-add-assessment #assessment-add-type')[0].selectedIndex <= 0) {
+                $('.form-add-assessment #assessment-add-type').addClass('is-invalid')
+                $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
+            }
+
             if ($(".form-add-assessment input").hasClass('is-invalid') || $(".form-add-assessment .tox-edit-area__iframe").hasClass('is-invalid') || $(".form-add-assessment select").hasClass('is-invalid')) {
                 event.preventDefault();
                 invalidInput()
@@ -152,6 +157,8 @@ $(document).ready(function () {
                 var img = $('input[name=assessment-add-pic]').val();
                 var title = $("#assessment-add-title").val();
                 var description = $("#assessment-add-description").val();
+                var type = $("#assessment-add-type").val();
+
                 var difficulty = $("#assessment-add-difficulty").val();
                 var estimated_time = $("#assessment-add-estimate-time").val();
                 var deadline = $("#assessment-add-deadline").val();
@@ -164,6 +171,8 @@ $(document).ready(function () {
                 var formData = new FormData();
                 formData.append('title', title);
                 formData.append('description', description);
+                formData.append('type', type);
+
                 formData.append('difficulty', difficulty);
                 formData.append('estimated_time', estimated_time);
                 formData.append('deadline', deadline);
@@ -323,6 +332,10 @@ $('#form-update-assessment').submit(function (event) {
         $('#assessment-update-difficulty').addClass('is-invalid')
         $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
     }
+    if ($('#assessment-update-type')[0].selectedIndex <= 0) {
+        $('#assessment-update-type').addClass('is-invalid')
+        $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
+    }
 
     if ($(".form-update-assessment input").hasClass('is-invalid') || $(".form-update-assessment .tox-edit-area__iframe").hasClass('is-invalid') || $(".form-update-assessment select").hasClass('is-invalid')) {
         event.preventDefault();
@@ -333,6 +346,7 @@ $('#form-update-assessment').submit(function (event) {
 
         var update_img = $('input[name=assessment-update-pic]').val();
         var title = $('#assessment-update-title').val();
+        var type = $('#assessment-update-type').val();
         var description = tinymce.get('assessment-update-description').getContent();
         var difficulty = $('#assessment-update-difficulty').val();
         var estimate = $('#assessment-update-estimate-time').val();
@@ -348,6 +362,8 @@ $('#form-update-assessment').submit(function (event) {
         formData.append('assessment_id', assessment_id);
 
         formData.append('title', title);
+        formData.append('type', type);
+
         formData.append('description', description);
         formData.append('difficulty', difficulty);
         formData.append('estimated_time', estimate);
@@ -1183,6 +1199,15 @@ $('.form-add-assessment #assessment-add-difficulty').on('change', function () {
     }
 });
 
+$('.form-add-assessment #assessment-add-type').on('change', function () {
+    if ($('.form-add-assessment #assessment-add-type').val().length != "") {
+        $('.form-add-assessment #assessment-add-type').addClass('is-valid');
+        $('.form-add-assessment #assessment-add-type').removeClass('is-invalid');
+
+    }
+});
+
+
 $('.form-add-assessment #assessment-add-deadline').on('change', function () {
     if ($('.form-add-assessment #assessment-add-deadline').val().length != "") {
         $('.form-add-assessment #assessment-add-deadline').addClass('is-valid');
@@ -1277,6 +1302,14 @@ $('.form-update-assessment #assessment-update-difficulty').on('change', function
     if ($('.form-update-assessment #assessment-update-difficulty').val().length != "") {
         $('.form-update-assessment #assessment-update-difficulty').addClass('is-valid');
         $('.form-update-assessment #assessment-update-difficulty').removeClass('is-invalid');
+
+    }
+});
+
+$('.form-update-assessment #assessment-update-type').on('change', function () {
+    if ($('.form-update-assessment #assessment-update-type').val().length != "") {
+        $('.form-update-assessment #assessment-update-type').addClass('is-valid');
+        $('.form-update-assessment #assessment-update-type').removeClass('is-invalid');
 
     }
 });
