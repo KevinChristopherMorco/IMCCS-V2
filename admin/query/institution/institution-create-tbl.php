@@ -7,13 +7,18 @@ function generateUniqueString($length = 10) {
 
     // add a random string to the unique identifier
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
     for ($i = 0; $i < $length; $i++) {
-        $uniqueString .= $characters[mt_rand(0, strlen($characters) - 1)];
+        $randomString .= $characters[mt_rand(0, strlen($characters) - 1)];
     }
 
-    return "CN-" . substr($uniqueString, 0, 255 - 5);
+    // format the string
+    $currentMinuteAndSecond = date('i-s');
+    $uniqueString = substr($uniqueString, -4) . "-" . substr($uniqueString, -6, 2) . "-" . substr($uniqueString, -2) . substr($randomString, 0, 4) . "-" . $currentMinuteAndSecond;
+    return "CN-" . $uniqueString;
 }
 $generatedString = generateUniqueString(10);
+
 $name =  mysqli_real_escape_string($mysqli,  ucwords(strtolower($_POST['name'])));
 $street_name =  mysqli_real_escape_string($mysqli, ucwords($_POST['street_name']));
 $barangay =  mysqli_real_escape_string($mysqli, ucwords($_POST['barangay']));
