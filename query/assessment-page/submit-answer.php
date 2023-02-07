@@ -1,11 +1,7 @@
-<?php include_once('../../database/config.php');
-
-?>
-
-
+<?php include_once('../../database/config.php'); ?>
 
 <?php
-if (isset($_POST['institution_id'])) {
+if (isset($_POST['user_id'])) {
     mysqli_autocommit($mysqli, FALSE);
     $user_id =  mysqli_real_escape_string($mysqli, $_POST['user_id']);
     $assessment_id =  mysqli_real_escape_string($mysqli, $_POST['assessment_id']);
@@ -18,7 +14,7 @@ if (isset($_POST['institution_id'])) {
     $answers = json_decode($_REQUEST['answer'], true);
 
     $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM assessment_chosen WHERE user_id = ?  AND assessment_id = ?");
-    $checkAssessmentChosen->bind_param('ii', $user_id, $assessment_id);
+    $checkAssessmentChosen->bind_param('si', $user_id, $assessment_id);
     $checkAssessmentChosen->execute();
     $checkAssessmentChosen->store_result();
     $rowcount = $checkAssessmentChosen->num_rows;
@@ -68,7 +64,7 @@ if (isset($_POST['institution_id'])) {
 
     foreach ($answers  as $key => $value) {
         $question_id = $_POST['question_id'][$key];
-        // $pointValue  = $_POST['point'][$key];
+       // $pointValue  = $_POST['point'][$key];
 
         $pointValue  = $value['point'];
 
@@ -84,7 +80,7 @@ if (isset($_POST['institution_id'])) {
             }
         }
         $insert1 = $mysqli->prepare("INSERT INTO answer_tbl(user_id,institution_id, assessment_id,question_id,point,question_answer) VALUES (?, ?, ?, ?, ?, ?)");
-        $insert1->bind_param("isssss", $user_id, $institution_id, $assessment_id, $question_id, $pointValue, $answer);
+        $insert1->bind_param("ssssss", $user_id, $institution_id, $assessment_id, $question_id, $pointValue, $answer);
         $insert1->execute();
     }
     $ans = number_format($score / $returnCountOver['point'] * 100);
@@ -98,8 +94,12 @@ if (isset($_POST['institution_id'])) {
     }
 
 
+    $insert2 = $mysqli->prepare("INSERT INTO assessment_chosen(user_id,assessment_id,institution_id) VALUES (?, ?, ?)");
+    $insert2->bind_param("sii", $user_id, $assessment_id, $institution_id);
+    $insert2->execute();
+
     $insert3 = $mysqli->prepare("INSERT INTO assessment_score(user_id,institution_id,assessment_id,assessment_score, verdict) VALUES (?, ?, ?, ?, ?)");
-    $insert3->bind_param("iiiis", $user_id, $institution_id, $assessment_id, $score, $verdict);
+    $insert3->bind_param("siiis",  $user_id, $institution_id, $assessment_id, $score, $verdict);
     $insert3->execute();
 
 
@@ -107,13 +107,22 @@ if (isset($_POST['institution_id'])) {
 
 
     if ($date_deadline < $date_submit) {
-        // echo json_encode(array("exceed"));
-        echo 'exceed';
+       // echo json_encode(array("exceed"));
+       echo 'exceed';
         $mysqli->rollback();
     } else {
+        if ($rowcount == 0) {
+            if ($insert1 && $insert2) {
+               // echo json_encode(array("NotTaken"));
+               echo 'NotTaken';
+                $mysqli->commit();
+            }
+        } else if ($rowcount > 0) {
+            //echo json_encode(array("Taken"));
+            echo 'Taken';
 
-        echo 'NotTaken';
-        $mysqli->commit();
+            $mysqli->rollback();
+        }
     }
 }
 mysqli_query($mysqli, "SET AUTOCOMMIT=1");

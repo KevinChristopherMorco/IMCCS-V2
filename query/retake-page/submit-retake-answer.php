@@ -18,7 +18,7 @@ if (isset($_POST['user_id'])) {
 
 
     $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM assessment_chosen WHERE user_id = ?  AND assessment_id = ?");
-    $checkAssessmentChosen->bind_param('ii', $user_id, $assessment_id);
+    $checkAssessmentChosen->bind_param('si', $user_id, $assessment_id);
     $checkAssessmentChosen->execute();
     $checkAssessmentChosen->store_result();
     $rowcount = $checkAssessmentChosen->num_rows;
@@ -113,11 +113,11 @@ if (isset($_POST['user_id'])) {
     }
 
     $insert2 = $mysqli->prepare("INSERT INTO retake_chosen_tbl(code,user_id,institution_id,assessment_id) VALUES (?, ?, ?, ?)");
-    $insert2->bind_param("siii", $code, $user_id, $institution_id, $assessment_id);
+    $insert2->bind_param("ssii", $code, $user_id, $institution_id, $assessment_id);
     $insert2->execute();
 
     $insert3 = $mysqli->prepare("INSERT INTO retake_score_tbl(code,user_id,institution_id,assessment_id,retake_score, verdict) VALUES (?, ?, ?, ?, ?, ?)");
-    $insert3->bind_param("siiiis", $code, $user_id, $institution_id, $assessment_id, $score , $verdict);
+    $insert3->bind_param("ssiiis", $code, $user_id, $institution_id, $assessment_id, $score , $verdict);
     $insert3->execute();
 
 

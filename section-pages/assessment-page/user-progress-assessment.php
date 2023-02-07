@@ -40,11 +40,10 @@ if (isset($_GET['assessment_id'])) {
     curl_close($curl);
 
     if ($date != NULL) {
-        $returnDateSubmit = date("Y-m-d H:i:s", strtotime($date));
+        $returnDateSubmit = date("Y-m-d H:i:s",strtotime($date));
+
     }
 }
-
-
 
 ?>
 
@@ -67,6 +66,8 @@ if (isset($_GET['assessment_id'])) {
             <?php $returnDateRow = $selDateRow->fetch_assoc() ?>
             <input type="hidden" name="date_id" id="date-id" value="<?php echo $returnDateRow['deadline']; ?>">
             <input type="hidden" name="date_submit" id="date-submit" value="<?php echo $returnDateSubmit ?>">
+            <input type="hidden" name="user-email" id="user-email" value="<?php echo $_SESSION['email'] ?>">
+            <input type="hidden" name="first-name" id="first-name" value="<?php echo $_SESSION['fname'] ?>">
             <input type="hidden" name="assessment-title" id="assessment-title" value="<?php echo $returnDateRow['title'] ?>">
 
 
@@ -141,8 +142,7 @@ if (isset($_GET['assessment_id'])) {
                                         <label class="px-4">Answer:</label>
                                         <div class="invalid-feedback"></div>
                                     </div> <?php } ?>
-                                <input type="text" name="user_id" id="user-id" value="<?php echo $_SESSION['user_id']?>">
-
+                                <input type="hidden" name="user_id" id="user-id" value="<?php echo $user_id ?>">
                                 <input type="hidden" name="assessment_id" id="assessment-id" value="<?php echo $row['assessment_id']; ?>">
                                 <input type="hidden" name="question_id" id="question-id" value="<?php echo $row['question_id']; ?>">
                                 <input type="hidden" name="institution_id" id="institution-id" value="<?php echo $_SESSION['institution_id']; ?>">
