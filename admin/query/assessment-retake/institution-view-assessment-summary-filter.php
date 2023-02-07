@@ -368,7 +368,7 @@ if ($returnSummaryAssessmentRow->num_rows != 0) { ?>
     WHERE question.type = 'Identification Question'
     AND question.question_id = $questionId
     AND answer.institution_id = $institution_id
-    GROUP BY answer.question_id, answer.question_answer ";
+    GROUP BY answer.question_id, BINARY answer.question_answer ";
                             $resultAnswers = $mysqli->query($queryAnswers);
 
                             // Initialize the chart labels and data arrays
