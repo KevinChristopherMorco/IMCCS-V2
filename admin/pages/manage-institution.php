@@ -43,7 +43,7 @@
                             ?>
                                 <tr class="table-institution-data">
                                     <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
-                                    <td class="name"><?php echo $row['name'] ?></td>
+                                    <td><a href="javascript:void(0)" class="institution-link" data-id="<?php echo $row['institution_id'] ?>" data-name="<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a></td>
                                     <td><?php echo $row['municipality_city'] ?></td>
                                     <td><?php echo $row['province'] ?></td>
 
@@ -113,11 +113,11 @@
                         type: "GET",
                         data: {
                             user_id: id,
-                            fname: name
+                            name: name
                         },
 
                         success: function(data) {
-                            window.location = 'home-admin.php?subpage=view-institution-scores&user_id=' + id + '&fname=' + name
+                            window.location = 'home-admin.php?subpage=view-institution-assessment-summary&institution_id=' + id + '&name=' + name
                         },
                         error: function(xhr, status, error, data) {
 

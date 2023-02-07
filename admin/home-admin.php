@@ -95,6 +95,8 @@ if (!isset($_SESSION['loggedin'])) {
             include("pages/retake/view-user-retake-scores.php");
         }else if ($subpage == "view-retake-summary") {
             include("pages/retake/view-retake-summary.php");
+        }else if ($subpage == "view-institution-assessment-summary") {
+            include("pages/assessment/view-institution-assessment-summary.php");
         } else if ($subpage == "admin-personal-info") {
             include("pages/account-setting/admin-personal-info.php");
         } else if ($subpage == "admin-change-password") {

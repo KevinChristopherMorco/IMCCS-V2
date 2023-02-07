@@ -14,7 +14,7 @@ if (isset($_GET['user_id'])) {
 */
 
     $checkAssessment = $mysqli->prepare("SELECT assessment_id, user_id from assessment_chosen WHERE user_id=? AND assessment_id=?");
-    $checkAssessment->bind_param('ii', $user_id, $assessment_id);
+    $checkAssessment->bind_param('si', $user_id, $assessment_id);
     $checkAssessment->execute();
     $returnCheckAssessment = $checkAssessment->get_result();
 

@@ -85,7 +85,6 @@ if ($rowcount > 0) {
                             <input type="hidden" name="assessment-id" id="assessment-id" value="<?php echo $row['assessment_id'] ?>">
                             <input type="hidden" name="date-deadline" id="date-deadline" value="<?php echo $returnDateDeadline ?>">
                             <input type="hidden" name="date-submit" id="date-submit" value="<?php echo $returnDateSubmit ?>">
-                            <input type="hidden" name="user-email" id="user-email" value="<?php echo $_SESSION['email'] ?>">
                             <div class="btn-topic-assessment-container">
                                 <input type="submit" class="ch-topic-assessment-btn" value="Take Assessment">
                             </div>
