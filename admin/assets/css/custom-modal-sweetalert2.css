@@ -1,0 +1,71 @@
+.form-control {
+    border-radius: 15px 15px 15px 15px;
+}
+
+.modal-cancel {
+    border-radius: 10px !important;
+    background-color: #fff !important;
+    border: 2px solid #CCCCCC !important;
+    color: black !important;
+}
+
+.modal-cancel:hover {
+    background-color: #e7e7e7 !important;
+
+}
+
+.modal-edit {
+    border-radius: 10px !important;
+    background-color: #FEAD00 !important;
+    border: 2px solid #FEAD00 !important;
+    color: white !important;
+
+}
+
+.swal2-cancel {
+    border-radius: 10px !important;
+    background-color: #fff !important;
+    border: 2px solid #CCCCCC !important;
+    color: black !important;
+}
+
+.swal2-cancel:hover {
+    background-color: #e7e7e7 !important;
+}
+
+.swal2-confirm {
+    border-radius: 10px !important;
+    border: 2px solid #1885F2 !important;
+    background-color: #1885F2 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+
+}
+
+.edit-primary-button {
+    border: 2px solid #FEAD00 !important;
+    border-radius: 10px !important;
+    background-color: #FEAD00 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+
+.delete-primary-button {
+    border: 2px solid red !important;
+    border-radius: 10px !important;
+    background-color: red !important;
+    color: #fff !important;
+    box-shadow: none !important;
+
+}
+
+/*FORM */
+form label{
+    font-weight: bolder;
+    font-size: 14px !important;
+  }
+  
+  .input-group .form-control {
+    margin: 0px !important;
+  }
+  

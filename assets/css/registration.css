@@ -1,0 +1,187 @@
+/* REGISTRATION MODAL */
+.form-control {
+    margin-bottom: 10px;
+  }
+
+  .invalid {
+    border-color: red;
+  }
+
+  .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    padding: 6px 12px;
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  .btn-toggle-type input {
+    display: none;
+  }
+
+
+
+  .tab p {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+  }
+
+  .step {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin: 0 2px;
+    color: white;
+    background: maroon;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.25;
+    position: relative;
+  }
+
+  .valid-feedback,
+  .invalid-feedback {
+    margin-bottom: 10px;
+  }
+  .password-message-container{
+text-align: center !important;
+  }
+  .password-message {
+    background-color: #FEE3AA;
+    border-radius: 20px;
+  }
+
+  .password-message p {
+    font-size: 12px;
+  }
+
+  .valid {
+    color: green;
+  }
+
+  .valid:before {
+    position: relative;
+    content: "\f058";
+    margin-right: 10px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+
+
+  }
+
+  /* Add a red text color and an "x" when the requirements are wrong */
+  .invalid {
+    color: red;
+  }
+
+  .invalid:before {
+    position: relative;
+    content: "\f057";
+    margin-right: 10px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+
+
+
+  .cc-selector input {
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .cc-selector-2 input {
+    position: absolute;
+    z-index: 999;
+  }
+
+  .faculty {
+    background-image: url("../../assets/images/form/faculty-button.png");
+  }
+
+  .student {
+    background-image: url("../../assets/images/form/student-button.png");
+  }
+
+  .personnel {
+    background-image: url("../../assets/images/form/personnel-button.png");
+  }
+
+  .cc-selector-2 input:active+.user-card-cc,
+  .cc-selector input:active+.user-card-cc {
+    opacity: .9;
+  }
+
+  .cc-selector-2 input:checked+.user-card-cc,
+  .cc-selector input:checked+.user-card-cc {
+    -webkit-filter: none;
+    -moz-filter: none;
+    filter: none;
+  }
+
+  .user-card-cc {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 400px;
+    height: 400px;
+    -webkit-transition: all 100ms ease-in;
+    -moz-transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+    -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+    filter: brightness(1.8) grayscale(1) opacity(.7);
+  }
+
+  .user-card-cc:hover {
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    filter: brightness(1.2) grayscale(.5) opacity(.9);
+  }
+
+  .input-password-group {
+    position: relative;
+  }
+
+  .eye-viewer {
+    z-index: 9999;
+    position: absolute;
+    top: 30%;
+    right: 10px;
+    cursor: pointer;
+
+  }
+
+  .eye-viewer:hover {
+    color: maroon;
+  }
+
+
+
+  .user-add-gender option {
+    height: 50px;
+    overflow: auto;
+  }
+
+  .customGender {
+    width: 90%;
+    position: relative;
+    top: -46px;
+    padding: .330rem .75rem;
+    border: transparent;
+    background-color: #F7E8E3;
+  }
+  .institution-list h4 {
+    margin: 0 0 25px;
+  }
+  .institution-list p {
+    margin: 15px 0 15px;
+    font-size: 18px;
+    color: #000;
+  }
+
+  /* REGISTRATION MODAL END*/

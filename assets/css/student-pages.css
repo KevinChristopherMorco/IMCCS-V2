@@ -1,0 +1,195 @@
+/*CUSTOM SWEET ALERTS*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.swal2-cancel {
+  border-radius: 10px !important;
+  background-color: #fff !important;
+  border: 2px solid #CCCCCC !important;
+  color: black !important;
+}
+
+.swal2-cancel:hover {
+  background-color: #e7e7e7 !important;
+}
+
+.swal2-confirm {
+  border-radius: 10px !important;
+  border: 2px solid #800000 !important;
+  background-color: #800000 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+
+}
+
+/* CUSTOM SWEET ALERTS END */
+
+#preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  z-index: 999;
+
+}
+
+.loader-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+}
+
+#preloader img {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#preloader p {
+  position: absolute;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bolder;
+  top: 25%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+
+}
+
+/* WELCOME STUDENT PAGE */
+body:not(.modal-open) {
+  padding-right: 0px !important;
+  /* IMPORTANT AS IT PREVENTS BACKGROUND JUMP WHEN MODAL IS OPENED */
+}
+
+.get-started,
+.my-chosen-topic,
+.my-chosen-assessment {
+  margin-top: 100px;
+}
+
+.get-started .intro {
+  background-color: #F2F3F7;
+  padding: 100px 100px 100px 100px;
+  width: 100%;
+}
+
+.lead {
+  color: black;
+}
+
+.chosen-title {
+  font-size: 30px;
+  font-weight: bolder;
+  color: #000;
+}
+
+.chosen-empty {
+  font-size: 26px;
+  font-weight: bolder;
+  color: #000;
+}
+
+.my-chosen-topic .chosen-topic-title,
+.my-chosen-assessment .chosen-assessment-title {
+  padding-left: 100px;
+}
+
+
+.my-chosen-content {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 5rem
+}
+
+.my-chosen-content .row {
+  background-color: #F2F2F2;
+  padding: 2rem 5rem 2rem 5rem;
+}
+
+.my-chosen-topic .topic-assessment-card,
+.my-chosen-assessment .topic-assessment-card {
+  width: 350px;
+}
+
+.nav-tabs .nav-link {
+  color: gray !important;
+  font-weight: bolder;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #F2F2F2 !important;
+  color: #000 !important;
+  font-weight: bolder;
+}
+
+/* PAGINATION*/
+.pager div {
+  float: right;
+  padding: 6px;
+}
+
+.pager i {
+  font-size: 5px;
+}
+
+.pager div.disabled {
+  opacity: 0.25;
+}
+
+.pager .pageNumbers {
+  margin: -5.7px;
+}
+
+.pager .pageNumbers a {
+  display: inline-block;
+  padding: 0 10px;
+  color: gray;
+  font-size: 15px;
+  background-color: #fff;
+
+}
+
+.pager .pageNumbers a.active {
+  background-color: #800000;
+  color: #fff;
+  font-size: 15px;
+}
+
+.pager {
+  overflow: hidden;
+}
+
+.paginate-no-scroll .items div {
+  height: 250px;
+}
+
+.pagination {
+  color: #800000;
+  background-color: #fff;
+  border: 1px solid #E1E6EA;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+.pagination i {
+  font-size: 10px;
+
+}
+
+.pagination:hover {
+  background-color: #800000;
+  color: #fff;
+  opacity: 1
+}
+
+/*END PAGINATION*/
+
+/* WELCOME STUDENT PAGE END */

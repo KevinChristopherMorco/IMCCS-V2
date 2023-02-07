@@ -1,0 +1,185 @@
+/* CONTENT THEMES */
+.aqua-theme section:nth-of-type(odd) {
+    background-color: #009FCA;
+  }
+
+  .aqua-theme section:nth-of-type(even) {
+    background-color: #f8f9fa;
+  }
+
+  .aqua-theme section:nth-of-type(odd) * {
+    color: #fff;
+  }
+
+  .aqua-theme section:nth-of-type(even) * {
+    color: #000;
+  }
+
+  .aqua-theme .content-picture-column .col-6:nth-child(odd) {
+    order: 1;
+  }
+
+  .aqua-theme .content-picture-column .col-6:nth-child(even) {
+    order: 2;
+  }
+
+  .aqua-theme .content-picture-column {
+    background: linear-gradient(90deg, rgba(67, 204, 171, 1) 30%, rgba(135, 223, 202, 1) 83%);
+    padding: 1rem 1rem 1rem 1rem;
+    box-shadow: 0 2px 2px #000;
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    border-radius: 10px;
+  }
+
+  .aqua-theme .content-picture-column img {
+    box-shadow: 0 2px 2px #000;
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    border-radius: 20px;
+  }
+
+  .aqua-theme .content-picture-column p {
+    color: #fff;
+  }
+
+  .aqua-theme .content-picture-column h1,
+  .aqua-theme .content-picture-column h2,
+  .aqua-theme .content-picture-column h3,
+  .aqua-theme .content-picture-column h4,
+  .aqua-theme .content-picture-column h5,
+  .aqua-theme .content-picture-column h6 {
+    color: #fff;
+  }
+
+
+
+  .orange-theme section:nth-of-type(odd) {
+    background-color: #DC5C35;
+  }
+
+  .orange-theme section:nth-of-type(even) {
+    background-color: #f8f9fa;
+  }
+
+  .orange-theme section:nth-of-type(odd) * {
+    color: #fff;
+  }
+
+
+  .orange-theme section:nth-of-type(even) * {
+    color: #000;
+  }
+
+  .orange-theme .content-picture-column .col-6:nth-child(odd) {
+    order: 1;
+  }
+
+  .orange-theme .content-picture-column .col-6:nth-child(even) {
+    order: 2;
+  }
+
+  .orange-theme .content-picture-column {
+    background: linear-gradient(90deg, rgba(220, 92, 53, 1) 54%, rgba(226, 128, 99, 1) 85%);
+    padding: 1rem 1rem 1rem 1rem;
+    box-shadow: 0 2px 2px #000;
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    border-radius: 10px;
+  }
+
+  .orange-theme .content-picture-column img {
+    box-shadow: 0 2px 2px #000;
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    border-radius: 20px;
+  }
+
+  .orange-theme .content-picture-column p {
+    color: #fff;
+  }
+
+  .orange-theme .content-picture-column h1,
+  .orange-theme .content-picture-column h2,
+  .orange-theme .content-picture-column h3,
+  .orange-theme .content-picture-column h4,
+  .orange-theme .content-picture-column h5,
+  .orange-theme .content-picture-column h6 {
+    color: #fff;
+  }
+
+
+
+
+
+  .green-theme section:nth-of-type(odd) {
+    background-color: #0E5142;
+  }
+
+  .green-theme section:nth-of-type(even) {
+    background-color: #f8f9fa;
+  }
+
+  .green-theme section:nth-of-type(odd) * {
+    color: #fff;
+  }
+
+  .green-theme section:nth-of-type(even) * {
+    color: #000;
+  }
+
+  .green-theme .content-picture-column .col-6:nth-child(odd) {
+    order: 1;
+  }
+
+  .green-theme .content-picture-column .col-6:nth-child(even) {
+    order: 2;
+  }
+
+  .green-theme .content-picture-column {
+    background: linear-gradient(90deg, rgba(14, 81, 66, 1) 50%, rgba(33, 134, 111, 1) 78%);
+    padding: 1rem 1rem 1rem 1rem;
+    box-shadow: 0 2px 2px #000;
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    border-radius: 10px;
+  }
+
+  .green-theme .content-picture-column img {
+    box-shadow: 0 2px 2px #000;
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    border-radius: 20px;
+  }
+
+  .green-theme .content-picture-column p {
+    color: #fff;
+  }
+
+  .green-theme .content-picture-column h1,
+  .green-theme .content-picture-column h2,
+  .green-theme .content-picture-column h3,
+  .green-theme .content-picture-column h4,
+  .green-theme .content-picture-column h5,
+  .green-theme .content-picture-column h6 {
+    color: #fff;
+  }
+
+
+  .green-theme .video-preview {
+    margin: 5rem;
+    background: linear-gradient(90deg, rgba(14, 81, 66, 1) 50%, rgba(33, 134, 111, 1) 78%);
+    height: 300px;
+    width: 600px;
+    position: relative;
+    left: 25%;
+  }
+
+  .green-theme .video-container {
+    position: absolute;
+    bottom: -50px;
+    left: 25%;
+    right: 0;
+  }
+
+  /* CONTENT THEMES END */
