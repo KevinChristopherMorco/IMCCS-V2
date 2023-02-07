@@ -2,17 +2,34 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content modal-xl">
             <div class="modal-header modal-xl">
-                <h3 class="modal-title">Add Educational Institution </h3>
+                <h3 class="modal-title">Add Institution</h3>
             </div>
             <div class="modal-body">
                 <form class="form-add-institution" id="form-add-institution" action="javascript:void(0)" name="form1" method="post">
                     <div class="container">
                         <div class="row mb-3">
-                            <label class="col-2 col-form-label">School Name</label>
+                            <label class="col-2 col-form-label">Institution Name</label>
                             <div class="col-10">
                                 <div class="input-group has-validation">
                                     <input type="text" class="form-control" name="institution-add-name" id="institution-add-name" value="">
                                     <div class="invalid-feedback feedback-institution-name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-2 col-form-label">Institution Type</label>
+                            <div class="col-10">
+                                <div class="input-group has-validation">
+                                    <select class="form-select" name="institution-add-type" id="institution-add-type">
+                                        <option value="" selected disabled>Select an Option</option>
+                                        <option value="Junior High School">Junior High School</option>
+                                        <option value="Senior High School">Senior High School</option>
+                                        <option value="College">College</option>
+                                        <option value="Professional Level">Professional Level</option>
+                                    </select>
+                                    <div class="invalid-feedback feedback-institution-type">
                                     </div>
                                 </div>
                             </div>

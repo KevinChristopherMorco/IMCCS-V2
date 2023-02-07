@@ -2,14 +2,14 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content modal-xl">
             <div class="modal-header modal-xl">
-                <h3 class="modal-title">Update Institutional Information</h3>
+                <h3 class="modal-title">Update Institution Information</h3>
             </div>
             <div class="modal-body">
             <form action="javascript:void(0)" class="form-update-institution" id="form-update-institution" name="form-update-institution" enctype="multipart/form-data" method="post" novalidate>
                 <div class="container">
                     <input type="hidden" id="institution-id">
                         <div class="row mb-3">
-                            <label class="col-2 col-form-label">School Name</label>
+                            <label class="col-2 col-form-label">Institution Name</label>
                             <div class="col-10">
                                 <div class="input-group has-validation">
                                     <input type="text" class="form-control" name="institution-update-name" id="institution-update-name" value="">
@@ -20,11 +20,17 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-2 col-form-label">Code</label>
+                            <label class="col-2 col-form-label">Institution Type</label>
                             <div class="col-10">
                                 <div class="input-group has-validation">
-                                    <input type="text" class="form-control" name="institution-update-code" id="institution-update-code" value="">
-                                    <div class="invalid-feedback feedback-institution-code">
+                                    <select class="form-select" name="institution-update-type" id="institution-update-type">
+                                        <option value="" selected disabled>Select an Option</option>
+                                        <option value="Junior High School">Junior High School</option>
+                                        <option value="Senior High School">Senior High School</option>
+                                        <option value="College">College</option>
+                                        <option value="Professional Level">Professional Level</option>
+                                    </select>
+                                    <div class="invalid-feedback feedback-institution-type">
                                     </div>
                                 </div>
                             </div>

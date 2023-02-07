@@ -20,6 +20,7 @@ function generateUniqueString($length = 10) {
 $generatedString = generateUniqueString(10);
 
 $name =  mysqli_real_escape_string($mysqli,  ucwords(strtolower($_POST['name'])));
+$type =  mysqli_real_escape_string($mysqli,  ucwords(strtolower($_POST['type'])));
 $street_name =  mysqli_real_escape_string($mysqli, ucwords($_POST['street_name']));
 $barangay =  mysqli_real_escape_string($mysqli, ucwords($_POST['barangay']));
 $municipality =   mysqli_real_escape_string($mysqli, ucwords($_POST['municipality_city']));
@@ -40,9 +41,9 @@ if (mysqli_query($mysqli, $sql)) {
 }
 */
 
-if ($stmt = $mysqli->prepare("INSERT INTO institution_tbl (code, name, street_name, barangay, municipality_city, province, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+if ($stmt = $mysqli->prepare("INSERT INTO institution_tbl (code, name,type, street_name, barangay, municipality_city, province, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
-    $stmt->bind_param("ssssssss", $generatedString,$name,$street_name,$barangay,$municipality,$province,$status,$timestamp);
+    $stmt->bind_param("sssssssss", $generatedString,$name,$type,$street_name,$barangay,$municipality,$province,$status,$timestamp);
     $stmt->execute();
     echo json_encode(array("Institution Added"));
 

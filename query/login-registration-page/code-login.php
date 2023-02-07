@@ -33,6 +33,8 @@ if (isset($_POST['code-login'])) {
        // header("location:index.php?page=login");
        $_SESSION['loggedin'] = true;
        $_SESSION['name'] = $row['name'];
+       $_SESSION['type'] = $row['type'];
+
        $_SESSION['user_id'] = $generatedString;
 
        $_SESSION['institution_id'] = $row['institution_id'];

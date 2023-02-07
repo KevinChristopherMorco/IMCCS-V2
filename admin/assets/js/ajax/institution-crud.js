@@ -54,6 +54,7 @@ $(document).ready(function () {
 
 
             var name = $("#institution-add-name").val();
+            var type = $("#institution-add-type").val();
             var street = $("#institution-add-street").val();
             var barangay = $("#institution-add-barangay").val();
             var municipality_city = $("#institution-add-municipality-city").val();
@@ -69,9 +70,14 @@ $(document).ready(function () {
                     checkEmptyInput.addClass('is-invalid')
                     $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
                 }
+
+                if ($('.form-add-institution #institution-add-type')[0].selectedIndex <= 0) {
+                    $('.form-add-institution #institution-add-type').addClass('is-invalid')
+                    $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
+                }
             });
 
-            if ($(".form-add-institution input").hasClass('is-invalid')) {
+            if ($(".form-add-institution input").hasClass('is-invalid') || $(".form-add-institution select").hasClass('is-invalid')) {
                 event.preventDefault();
                 invalidInput()
             } else {
@@ -82,6 +88,7 @@ $(document).ready(function () {
                     url: 'query/institution/institution-create-tbl.php',
                     data: {
                         name: name,
+                        type:type,
                         street_name: street,
                         barangay: barangay,
                         municipality_city: municipality_city,
@@ -102,6 +109,8 @@ $(document).ready(function () {
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr);
+                        console.error(error);
+
                     }
                 });
             }
@@ -111,7 +120,12 @@ $(document).ready(function () {
 })
 
 
-
+$('.form-add-institution #institution-add-type').on('change', function () {
+    if ($('.form-add-institution #institution-add-type').val().length != "") {
+        $('.form-add-institution #institution-add-type').addClass('is-valid');
+        $('.form-add-institution #institution-add-type').removeClass('is-invalid');
+    }
+});
 
 
 $(document).ready(function () {
@@ -168,15 +182,21 @@ $('#form-update-institution').submit(function (event) {
             checkEmptyInput.addClass('is-invalid')
             $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
         }
+
+        if ($('.form-update-institution #institution-update-type')[0].selectedIndex <= 0) {
+            $('.form-update-institution #institution-update-type').addClass('is-invalid')
+            $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
+        }
     });
 
-    if ($(".form-update-institution input").hasClass('is-invalid')) {
+    if ($(".form-update-institution input").hasClass('is-invalid') || $(".form-update-institution select").hasClass('is-invalid')) {
         event.preventDefault();
         invalidInput()
     } else {
         var id = $("#institution-id").val();
         var name = $("#institution-update-name").val();
-        var code = $("#institution-update-code").val();
+        var type = $("#institution-update-type").val();
+
         var street = $("#institution-update-street").val();
         var barangay = $("#institution-update-barangay").val();
         var municipality_city = $("#institution-update-municipality-city").val();
@@ -205,7 +225,7 @@ $('#form-update-institution').submit(function (event) {
                     data: {
                         institution_id: id,
                         name: name,
-                        code: code,
+                        type: type,
                         street_name: street,
                         barangay: barangay,
                         municipality_city: municipality_city,
@@ -236,7 +256,13 @@ $('#form-update-institution').submit(function (event) {
     }
 
 });
+$('.form-update-institution #institution-update-type').on('change', function () {
+    if ($('.form-update-institution #institution-update-type').val().length != "") {
+        $('.form-update-institution #institution-update-type').addClass('is-valid');
+        $('.form-update-institution #institution-update-type').removeClass('is-invalid');
 
+    }
+});
 
 
 $(document).ready(function () {

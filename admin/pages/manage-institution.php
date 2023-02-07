@@ -13,7 +13,7 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1>Manage Educational Institution</h1>
+                                <h1>Manage Institution</h1>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="javascript:void(0)" class="btn btn-custom flex-end add" style="width:170px;" title="add" data-toggle="tooltip"><i class="fa-solid fa-circle-plus"></i>Add Institution</a>
@@ -27,8 +27,7 @@
 
                                 <th><input type="checkbox" class="checkbox-all" /></th>
                                 <th>Name<i class="fa fa-sort"></i></th>
-                                <th>Municipality <i class="fa fa-sort"></i></th>
-                                <th>Province <i class="fa fa-sort"></i></th>
+                                <th>Control Code <i class="fa fa-sort"></i></th>
                                 <th>Status <i class="fa fa-sort"></i></th>
                                 <th>Actions</th>
                             </tr>
@@ -44,8 +43,7 @@
                                 <tr class="table-institution-data">
                                     <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
                                     <td><a href="javascript:void(0)" class="institution-link" data-id="<?php echo $row['institution_id'] ?>" data-name="<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a></td>
-                                    <td><?php echo $row['municipality_city'] ?></td>
-                                    <td><?php echo $row['province'] ?></td>
+                                    <td><?php echo $row['code'] ?></td>
 
                                     <td> <span class="status"><?php echo $row['status'] ?><span></td>
 

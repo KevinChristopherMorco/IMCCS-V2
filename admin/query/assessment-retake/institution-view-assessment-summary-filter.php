@@ -287,7 +287,7 @@ if ($returnSummaryAssessmentRow->num_rows != 0) { ?>
                                 <?php
                                 $answers = array();
                                 //retrieve answers from database
-                                $query = "SELECT *, answer.question_id, BINARY answer.assessment_answer, COUNT(assessment_answer) as total
+                                $query = "SELECT *, answer.question_id,answer.assessment_answer, COUNT(assessment_answer) as total
                                         FROM assessment_question_tbl question
                                         JOIN assessment_answer_tbl answer ON question.question_id = answer.question_id AND question.assessment_id = '$assessment_id'
                                         WHERE question.type = 'Identification Question'
@@ -835,7 +835,7 @@ LEFT JOIN ( SELECT COUNT(*) as total_wrong, answer.question_id,assessment_questi
                                 $questionId = $question['question_id'];
 
                                 // Select the answers for the current question
-                                $queryAnswers = "SELECT *, answer.question_id, BINARY answer.question_answer, COUNT(question_answer) as total
+                                $queryAnswers = "SELECT *, answer.question_id,answer.question_answer, COUNT(question_answer) as total
     FROM assessment_question_tbl question
     JOIN retake_answer_tbl answer ON question.question_id = answer.question_id AND question.assessment_id = '$assessment_id'
     WHERE question.type = 'Identification Question'

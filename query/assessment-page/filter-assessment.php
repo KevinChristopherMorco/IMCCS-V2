@@ -30,10 +30,15 @@ if ($date != NULL) {
     $returnDateSubmit = date("Y-m-d H:i:s", strtotime($date));
 }
 
+$type = $_SESSION['type']; //
 
+if ($type == "Junior High School") {
 
-$query = " SELECT * FROM assessment_tbl assessment WHERE NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id AND chosen.user_id = '" . $_SESSION['user_id'] . "')";
+$query = " SELECT * FROM assessment_tbl assessment WHERE assessment.type = 'Junior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
+} else if ($type == "Senior High School") {
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.type = 'Senior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
 
+}
 
 
 /*

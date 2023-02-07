@@ -4,7 +4,8 @@
 if (isset($_POST['institution_id'])) {
     $institution_id =  mysqli_real_escape_string($mysqli, $_POST['institution_id']);
     $name =  mysqli_real_escape_string($mysqli, $_POST['name']);
-    $code =  mysqli_real_escape_string($mysqli, $_POST['code']);
+    $type =  mysqli_real_escape_string($mysqli, $_POST['type']);
+
     $street_name =  mysqli_real_escape_string($mysqli, $_POST['street_name']);
     $barangay =  mysqli_real_escape_string($mysqli, $_POST['barangay']);
     $municipality =   mysqli_real_escape_string($mysqli, $_POST['municipality_city']);
@@ -27,9 +28,9 @@ if (isset($_POST['institution_id'])) {
         echo "Error: " . $sql . "" . mysqli_error($mysqli);
     }
 */
-    if ($stmt = $mysqli->prepare("UPDATE institution_tbl set  name=?, code=?, street_name=?, barangay=?, municipality_city=?, province=?,status=?,updated_at=? WHERE institution_id=?")) {
+    if ($stmt = $mysqli->prepare("UPDATE institution_tbl set  name=?, type=?, street_name=?, barangay=?, municipality_city=?, province=?,status=?,updated_at=? WHERE institution_id=?")) {
 
-        $stmt->bind_param("ssssssssi", $name,$code,$street_name,$barangay,$municipality,$province,$status,$timestamp,$institution_id);
+        $stmt->bind_param("ssssssssi", $name, $type,$street_name,$barangay,$municipality,$province,$status,$timestamp,$institution_id);
         $stmt->execute();
         echo json_encode(array("Institution Added"));
 
