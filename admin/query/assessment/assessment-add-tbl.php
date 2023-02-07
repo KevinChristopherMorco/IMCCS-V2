@@ -41,7 +41,7 @@ if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
 }*/
 
 
-if ($stmt = $mysqli->prepare("INSERT INTO assessment_tbl(title,type, description, difficulty, estimated_time, unit_time, passing_rate, deadline,  question_img, status, retake, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+if ($stmt = $mysqli->prepare("INSERT INTO assessment_tbl(title,level_type, description, difficulty, estimated_time, unit_time, passing_rate, deadline,  question_img, status, retake, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
     $stmt->bind_param("ssssssssssss", $title,$type, $description, $difficulty, $estimated_time, $unit_time, $rate, $deadline, $pic, $status, $retake, $timestamp);
     $stmt->execute();

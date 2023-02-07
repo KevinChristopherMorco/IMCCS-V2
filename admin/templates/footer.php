@@ -8,6 +8,7 @@
     <script src="assets/js/ajax/assesment-question-crud.js"></script>
     <script src="assets/js/ajax/lesson-crud.js"></script>
     <script src="assets/js/ajax/faq-crud.js"></script>
+    <script src="assets/js/ajax/feedback-crud.js"></script>
 
 
 

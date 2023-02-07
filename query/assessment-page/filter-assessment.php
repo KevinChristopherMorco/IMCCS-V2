@@ -34,9 +34,13 @@ $type = $_SESSION['type']; //
 
 if ($type == "Junior High School") {
 
-$query = " SELECT * FROM assessment_tbl assessment WHERE assessment.type = 'Junior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
+$query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Junior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
 } else if ($type == "Senior High School") {
-    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.type = 'Senior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Senior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
+}else if ($type == "College") {
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'College' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
+}else{
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Professional' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
 
 }
 

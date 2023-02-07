@@ -50,7 +50,7 @@ if (isset($_POST['assessment_id'])) {
         echo "Error: " . $sql . "" . mysqli_error($mysqli);
     }
 */
-    if ($stmt = $mysqli->prepare("UPDATE assessment_tbl set  title=?, type=?, description=?, difficulty=?, estimated_time=?, unit_time=?, passing_rate=?, deadline=?, question_img=? , status=? , retake=? , updated_at=? WHERE assessment_id=?")) {
+    if ($stmt = $mysqli->prepare("UPDATE assessment_tbl set  title=?, level_type=?, description=?, difficulty=?, estimated_time=?, unit_time=?, passing_rate=?, deadline=?, question_img=? , status=? , retake=? , updated_at=? WHERE assessment_id=?")) {
 
         $stmt->bind_param("ssssisssssssi", $title, $type, $description, $difficulty, $estimatedTime, $unit_time, $rate, $deadline, $questionImg, $status, $retake, $timestamp, $assessment_id);
         $stmt->execute();
