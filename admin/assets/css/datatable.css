@@ -62,7 +62,8 @@ table.table td a.delete-assessment,
 table.table td a.delete-lesson,
 table.table td a.delete-subtopic,
 table.table td a.delete-question,
-table.table td a.delete-faq {
+table.table td a.delete-faq,
+table.table td a.delete-feedback {
   display: block;
   color: #fff;
 

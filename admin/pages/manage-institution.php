@@ -35,7 +35,7 @@
                         <tbody>
                             <?php
 
-                            $sql = "select * from institution_tbl";
+                            $sql = "SELECT * from institution_tbl ORDER BY name ASC";
                             $result = mysqli_query($mysqli, $sql);
 
                             while ($row = mysqli_fetch_assoc($result)) {
