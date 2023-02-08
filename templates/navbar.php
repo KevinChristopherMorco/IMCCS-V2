@@ -86,7 +86,7 @@
                                  </li>
                              </ul>
                              <div class="navbar-btn d-none d-sm-inline-block">
-                             <a class="btn-custom-secondary sign-out" href="logout.php">Logout</a>
+                             <a class="btn-custom-secondary sign-out" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
 
 
                              </div>
@@ -97,6 +97,7 @@
 
                      <div class="navbar-btn d-none d-sm-inline-block">
                          <a href="index.php?page=login" class="btn-custom-secondary login-btn">
+                         <i class="fa-sharp fa-solid fa-right-to-bracket"></i>
                              Sign In
                          </a>
                          <!--

@@ -66,8 +66,6 @@ if (isset($_GET['assessment_id'])) {
             <?php $returnDateRow = $selDateRow->fetch_assoc() ?>
             <input type="hidden" name="date_id" id="date-id" value="<?php echo $returnDateRow['deadline']; ?>">
             <input type="hidden" name="date_submit" id="date-submit" value="<?php echo $returnDateSubmit ?>">
-            <input type="hidden" name="user-email" id="user-email" value="<?php echo $_SESSION['email'] ?>">
-            <input type="hidden" name="first-name" id="first-name" value="<?php echo $_SESSION['fname'] ?>">
             <input type="hidden" name="assessment-title" id="assessment-title" value="<?php echo $returnDateRow['title'] ?>">
 
 

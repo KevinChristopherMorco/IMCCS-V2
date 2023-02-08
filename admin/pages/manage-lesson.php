@@ -41,8 +41,8 @@
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" class="checkbox-all" /></th>
-                                        <th>ID <i class="fa fa-sort"></i></th>
                                         <th>Title <i class="fa fa-sort"></i></th>
+                                        <th>Topic Level <i class="fa fa-sort"></i></th>
                                         <th>Description <i class="fa fa-sort"></i></th>
                                         <th>Actions</th>
                                     </tr>
@@ -57,8 +57,9 @@
                                     ?>
                                         <tr class="table-topic-data">
                                             <td><input type="checkbox" class="checkbox-delete" /></td>
-                                            <td><?php echo $row['lesson_id'] ?></td>
                                             <td><?php echo $row['title'] ?></td>
+                                            <td><?php echo $row['difficulty'] ?></td>
+
                                             <td><?php echo $row['description'] ?></td>
 
 

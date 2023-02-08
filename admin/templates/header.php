@@ -57,7 +57,7 @@
         selector: '.form-add-lesson textarea',
         plugins: 'image code table advtable fullscreen',
         width: "1200",
-        height: "800",
+        height: "300",
         fullscreen_native: true,
         setup: function(ed) {
             ed.on('keyup', function(e) {
@@ -81,7 +81,7 @@
         selector: '.form-update-lesson textarea',
         plugins: 'image code table advtable fullscreen',
         width: "1200",
-        height: "800",
+        height: "300",
         fullscreen_native: true,
         setup: function(eds) {
             eds.on('keyup', function(e) {
@@ -107,7 +107,7 @@
         selector: '.form-add-assessment textarea',
         plugins: 'image code table advtable fullscreen',
         width: "1200",
-        height: "800",
+        height: "300",
         fullscreen_native: true,
         setup: function(eds) {
             eds.on('keyup', function(e) {
@@ -133,7 +133,7 @@
         selector: '.form-update-assessment textarea',
         plugins: 'image code table advtable fullscreen',
         width: "1200",
-        height: "800",
+        height: "300",
         fullscreen_native: true,
         setup: function(eds) {
             eds.on('keyup', function(e) {

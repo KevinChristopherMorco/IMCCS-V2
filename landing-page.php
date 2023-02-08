@@ -1,3 +1,40 @@
+<!-- Modal -->
+<div class="modal landing-page-modal fade" id="myModalss" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">IMCCS form</h5>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0)" id="user-registration">
+                    <h5 class="mb-4">Please provide the correct details:</h5>
+                    <input type="text" class="form-control" id="user-bdate" placeholder="Choose your birthdate" onfocus="(this.type='date')">
+                    <select class="form-select" id="user-add-genders">
+                        <option selected disabled>Select your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Bisexual">Bisexual</option>
+                        <option value="Asexual">Asexual</option>
+                        <option value="Transgender Male">Transgender Male</option>
+                        <option value="Transgender Female">Transgender Female</option>
+                    </select>
+                    <input type="hidden" class="form-control" id="user-idsession" value=<?php echo $_SESSION['user_id']; ?>>
+
+            </div>
+            <div class="modal-footer">
+                <!--
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    -->
+                <input type="submit" id="submit" name="save" value="Done" class="btn btn-submit">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="landing-page" id="landing-page">
 <?php
 include_once('query/login-registration-page/login-query.php');
 
@@ -81,49 +118,8 @@ include('templates/footer.php');
     <?php } ?>
 </script>
 
-<!-- Modal -->
-<div class="modal fade" id="myModalss" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">IMCCS form</h5>
-            </div>
-            <div class="modal-body">
-                <form action="javascript:void(0)" id="user-registration">
-                    <h5 class="mb-4">Please provide the correct details:</h5>
-                    <input type="text" class="form-control" id="user-bdate" placeholder="Choose your birthdate" onfocus="(this.type='date')">
-                    <select class="form-select" id="user-add-genders">
-                        <option selected disabled>Select your gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Gay">Gay</option>
-                        <option value="Lesbian">Lesbian</option>
-                        <option value="Bisexual">Bisexual</option>
-                        <option value="Asexual">Asexual</option>
-                        <option value="Transgender Male">Transgender Male</option>
-                        <option value="Transgender Female">Transgender Female</option>
-                    </select>
-                    <input type="hidden" class="form-control" id="user-idsession" value=<?php echo $_SESSION['user_id']; ?>>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="submit" id="submit" name="save" value="Done" class="btn btn-submit">
-            </div>
-            </form>
-        </div>
-    </div>
 </div>
-
-<script>
-    /*
-    window.onload = function() {
-        $('#myModalss').modal("show");
-
-    };
-    */
-</script>
-
 <script>
     var date = new Date(2020, 11, 31);
     var dd = String(date.getDate()).padStart(2, '0');
@@ -152,6 +148,7 @@ include('templates/footer.php');
                     gender: gender
                 },
                 success: function(data) {
+                    $('#myModalss').modal("hide");
 
                     var datas = data;
                     trimData = datas.trim();
@@ -205,9 +202,13 @@ include('templates/footer.php');
 
                 if (response == 'ID Exists') {
                     $('#myModalss').modal("hide");
+                    $("#landing-page").css("filter", "none");
+                    $(".navbar-header").css("filter", "none");
 
 
                 } else {
+                    $("#landing-page").css("filter", "blur(5px)");
+                    $(".navbar-header").css("filter", "blur(5px)");
 
                     $('#myModalss').modal("show");
 

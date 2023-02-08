@@ -42,7 +42,6 @@
                                         <th><input type="checkbox" class="checkbox-all" /></th>
                                         <th>Assessment Title <i class="fa fa-sort"></i></th>
                                         <th>Difficulty <i class="fa fa-sort"></i></th>
-                                        <th>Time Estimate <i class="fa fa-sort"></i></th>
                                         <th>Deadline<i class="fa fa-sort"></i></th>
                                         <th>Actions</th>
                                     </tr>
@@ -56,9 +55,8 @@
                                     ?>
                                         <tr class="table-assessment-data">
                                             <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
-                                            <td><a href="javascript:void(0)" data-id="<?php echo $row['assessment_id']; ?>" data-title="<?php echo $row['title']; ?>" class="assessment-link"><?php echo $row['title'] ?></a></td>
+                                            <td><?php echo $row['title'] ?></td>
                                             <td><?php echo $row['difficulty'] ?></td>
-                                            <td><?php echo $row['estimated_time'] ?> <?php echo $row['unit_time'] ?></td>
                                             <td><?php echo date("F j, Y g:i a", strtotime($row['deadline'])) ?></td>
 
 

@@ -1,8 +1,11 @@
 <?php $query = "SELECT usertype, count(*) as number FROM user_tbl GROUP BY usertype";
 $result = mysqli_query($mysqli, $query);   ?>
 
-<?php $gender_query = "SELECT gender, count(*) as gender_number FROM student_faculty_profile_tbl GROUP BY gender";
+<?php $gender_query = "SELECT gender, count(*) as gender_number FROM user_profile GROUP BY gender";
 $gender_result = mysqli_query($mysqli, $gender_query);   ?>
+
+<?php $gender_query = "SELECT age, count(*) as age_number FROM user_profile GROUP BY age";
+$age_result = mysqli_query($mysqli, $gender_query);   ?>
 
 <?php $pass_query = "SELECT verdict, count(*) as pass_rate FROM assessment_score GROUP BY verdict ORDER BY verdict DESC";
 $pass_result = mysqli_query($mysqli, $pass_query);   ?>
@@ -158,12 +161,21 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
           </div>
 
           <div class="row">
+          <div class="col-6 mb-4">
+              <canvas id="piechart_gender" style="width:100%;max-width:600px"></canvas>
+            </div>
+            <div class="col-6 mb-4">
+              <canvas id="piechart_age" style="width:100%;max-width:600px"></canvas>
+            </div>
+
+            <div class="col-12 mb-4">
+              <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+            </div>
+            <!--
             <div class="col-6 mb-4">
               <canvas id="piechart_user" style="width:100%;max-width:600px"></canvas>
             </div>
-            <div class="col-6 mb-4">
-              <canvas id="piechart_gender" style="width:100%;max-width:600px"></canvas>
-            </div>
+
             <div class="col-6 mb-4">
               <canvas id="piechart_institution" style="width:100%;max-width:600px"></canvas>
             </div>
@@ -178,7 +190,7 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
 
             <div class="col-12 mb-4">
               <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
-            </div>
+            </div> -->
           </div>
         </div>
         <script>
@@ -302,6 +314,77 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
                 title: {
                   display: true,
                   text: "Percentage of User Gender"
+                }
+              }
+            });
+          <?php   } ?>
+        </script>
+
+<script>
+          <?php
+          $chartLabel = [];
+          $chartData = [];
+          $barColors = [];
+
+          while ($rows = mysqli_fetch_array($age_result)) {
+
+            $chartLabel[] = $rows['age'];
+            $chartData[] = $rows['age_number'];
+            /*
+
+            if ($rows['gender'] === 'Male') {
+              $barColors[] = "#009FCA";
+            } else if ($rows['gender'] === 'Female') {
+              $barColors[] = "#F766AE";
+            } else {
+              $randomColor = '#'.dechex(mt_rand(0x000000, 0xFFFFFF));
+              $barColors[] = $randomColor;
+            }
+            */
+
+            $randomColor = '#'.dechex(mt_rand(0x000000, 0xFFFFFF));
+            $barColors[] = $randomColor;
+          }
+          $returnChatLabels = json_encode($chartLabel);
+          $returnChatData = json_encode($chartData);
+          $returnBarColors = json_encode($barColors);
+
+          ?>
+
+          <?php if (empty($chartLabel) && empty($chartData)) { ?>
+            var chartLabel = ["No Data"];
+            var chartData = [0];
+            new Chart("piechart_age", {
+              type: "pie",
+              data: {
+                labels: chartLabel,
+                datasets: [{
+                  backgroundColor: ['#F2F2F2'],
+                  data: chartData
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: "Percentage of User Age"
+                }
+              }
+            });
+          <?php   } else { ?>
+
+            new Chart("piechart_age", {
+              type: "pie",
+              data: {
+                labels: <?php echo $returnChatLabels ?>,
+                datasets: [{
+                  backgroundColor: <?php echo $returnBarColors ?>,
+                  data: <?php echo $returnChatData ?>
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: "Percentage of User Age"
                 }
               }
             });
