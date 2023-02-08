@@ -17,7 +17,7 @@ include_once('query/login-registration-page/login-query.php');
     <title>IMCCS</title>
     <!-- ====== Header Elements ====== -->
     <?php
-    include_once('templates/header.php');
+    include('templates/header.php');
     ?>
     <!-- ====== Header Header Elements End ====== -->
 </head>
@@ -122,6 +122,7 @@ include_once('query/login-registration-page/login-query.php');
             }
         })
     </script>
+
 
 
 </body>

@@ -1,6 +1,5 @@
 <?php
 include_once('query/login-registration-page/login-query.php');
-include_once('templates/header.php');
 
 ?>
 <!-- ====== Header Navigation Bar ====== -->
@@ -37,7 +36,6 @@ include("section-pages/start-page.php");
 ?>
 
 <?php
-include("templates/footer-elements.php");
 include('templates/footer.php');
 ?>
 
@@ -74,7 +72,7 @@ include('templates/footer.php');
 </SCript>
 
 <script>
-        $('.home-item').show()
+    $('.home-item').show()
 
 
     <?php @$page = $_GET['page']; ?>
@@ -83,6 +81,143 @@ include('templates/footer.php');
     <?php } ?>
 </script>
 
+<!-- Modal -->
+<div class="modal fade" id="myModalss" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">IMCCS form</h5>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0)" id="user-registration">
+                    <h5 class="mb-4">Please provide the correct details:</h5>
+                    <input type="text" class="form-control" id="user-bdate" placeholder="Choose your birthdate" onfocus="(this.type='date')">
+                    <select class="form-select" id="user-add-genders">
+                        <option selected disabled>Select your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Bisexual">Bisexual</option>
+                        <option value="Asexual">Asexual</option>
+                        <option value="Transgender Male">Transgender Male</option>
+                        <option value="Transgender Female">Transgender Female</option>
+                    </select>
+                    <input type="hidden" class="form-control" id="user-idsession" value=<?php echo $_SESSION['user_id']; ?>>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" id="submit" name="save" value="Done" class="btn btn-submit">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*
+    window.onload = function() {
+        $('#myModalss').modal("show");
+
+    };
+    */
+</script>
+
+<script>
+    var date = new Date(2020, 11, 31);
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = date.getFullYear();
+    var today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("user-bdate").setAttribute("max", today);
+</script>
+
+<script>
+    $("#user-registration").on("submit", function(event) {
+        var id = $('#user-idsession').val();
+        var bdate = $('#user-bdate').val();
+        var gender = $('#user-add-genders').val();
+        console.log(gender)
+        if ($("#user-registration input").hasClass('is-invalid')) {
+            event.preventDefault();
+            invalidInput()
+        } else {
+            $.ajax({
+                type: "POST",
+                url: 'query/login-registration-page/new-registration.php',
+                data: {
+                    id: id,
+                    bdate: bdate,
+                    gender: gender
+                },
+                success: function(data) {
+
+                    var datas = data;
+                    trimData = datas.trim();
+
+                    console.log(trimData)
+                    if (trimData === 'Registered') {
+                        Swal.fire({
+                                title: 'Welcome to IMCCS',
+                                text: 'You can now browse topics and assessments',
+                                icon: 'success',
+                                confirmButtonColor: '#800000',
+                                confirmButtonText: 'Get Started'
+                            })
+                            .then((willRefresh) => {
+                                if (willRefresh) {
+                                    location.reload();
+                                }
+                            });
+                    } else {
+                        Swal.fire({
+                            title: 'Please input an institution code',
+                            text: 'Please input an institution code',
+                            icon: 'error',
+                            confirmButtonColor: '#800000',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr);
+                    console.error(error);
+                }
+            });
+        }
+    })
+</script>
+
+<script>
+    $(document).ready(function() {
+        var id = $('#user-idsession').val();
+        $.ajax({
+            url: 'query/input-validation/validate-check-id.php',
+            type: 'post',
+            data: {
+                id: id
+            },
+            dataType: "json",
+
+            success: function(response) {
+                console.log(response)
+
+                if (response == 'ID Exists') {
+                    $('#myModalss').modal("hide");
+
+
+                } else {
+
+                    $('#myModalss').modal("show");
+
+                }
+
+
+            }
+        });
+    });
+</script>
 
 </body>
 
