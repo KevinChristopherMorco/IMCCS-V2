@@ -74,10 +74,12 @@ include('templates/footer.php');
 </SCript>
 
 <script>
+        $('.home-item').show()
+
+
     <?php @$page = $_GET['page']; ?>
     <?php if ($page == "forgot-password") { ?>
         $('.home-item').hide()
-
     <?php } ?>
 </script>
 

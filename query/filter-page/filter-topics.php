@@ -76,7 +76,7 @@ if ($rowcount > 0) {
 
             success: function(data) {
 
-                window.location = 'home-student.php?page=user-preview-topic&topic=' + title;
+                window.location = 'home-page.php?page=user-preview-topic&topic=' + title;
 
             },
             error: function(xhr, status, error) {

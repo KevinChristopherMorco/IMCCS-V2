@@ -105,10 +105,10 @@ if (!isset($_SESSION['loggedin'])) {
         }
     }
     ?>
-<?php
-//INCLUDE HELP LINK MODAL
- include_once('section-pages/help-pages/test-help.php');
-?>
+    <?php
+    //INCLUDE HELP LINK MODAL
+    include_once('section-pages/help-pages/test-help.php');
+    ?>
 
 
     <?php
@@ -181,20 +181,20 @@ if (!isset($_SESSION['loggedin'])) {
 
             if ($help != '') {
                 if ($page == "user-home"  && $help == "help-user") { ?>
-                    window.location = 'home-student.php?page=user-home&help=help-user';
+                    window.location = 'home-page.php?page=user-home&help=help-user';
             <?php     } else {
                     include("assets/404/404.html");
                 }
             }
             ?>
-            // window.location = 'home-student.php?page=user-home&help=help-user';
+            // window.location = 'home-page.php?page=user-home&help=help-user';
 
             <?php
             @$page = $_GET['page'];
 
             if ($page == "user-home") { ?>
                 $('#welcome-help').modal("show");
-                // window.location.href = 'home-student.php?help=help-user';
+                // window.location.href = 'home-page.php?help=help-user';
             <?php  } else if ($page == "user-browse-topics") { ?>
                 $('#topic-help').modal("show");
 
@@ -224,6 +224,18 @@ if (!isset($_SESSION['loggedin'])) {
                 $('#myVideo')[0].paused ? $('#myVideo')[0].play() : $('#myVideo')[0].pause();
             });
         });
+
+    </script>
+
+    <script>
+        <?php
+        $currentPage = basename($_SERVER['PHP_SELF']);
+
+        if ($currentPage === 'home-page.php') { ?>
+            $('.home-item').hide()
+            $('.home-item2').show()
+
+        <?php } ?>
     </script>
 </body>
 

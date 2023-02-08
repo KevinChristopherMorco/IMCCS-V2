@@ -745,7 +745,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="home-student.php?page=user-browse-topics" class="logo d-flex align-items-center">
+        <a href="home-page.php?page=user-browse-topics" class="logo d-flex align-items-center">
             <img src="assets/images/website-main-logo/IMCCS-black.png" alt="">
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -765,17 +765,17 @@
             <div class="navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="ud-menu" href="home-student.php?page=user-update-profile-password&subpage=personal-info" data-id="<?php echo $_SESSION['user_id'] ?>">Personal Information</a>
+                        <a class="ud-menu" href="home-page.php?page=user-update-profile-password&subpage=personal-info" data-id="<?php echo $_SESSION['user_id'] ?>">Personal Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="ud-menu" href="home-student.php?page=user-update-profile-password&subpage=change-password">Change Password</a>
+                        <a class="ud-menu" href="home-page.php?page=user-update-profile-password&subpage=change-password">Change Password</a>
                     </li>
 
                     <div class="user-btn">
                         <h5 class="mt-4 mb-2"><i class="fa-solid fa-circle-user"></i>
                             <?php echo $_SESSION["username"] ?></h5>
                         <li class="nav-item">
-                            <a href="home-student.php?page=user-update-profile-password&subpage=personal-info" class="btn-custom-secondary sign-in login-btn">
+                            <a href="home-page.php?page=user-update-profile-password&subpage=personal-info" class="btn-custom-secondary sign-in login-btn">
                                 <i class="fa-solid fa-gear"></i>
                                 Account Settings
                             </a>
@@ -842,7 +842,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link student-update" href="home-student.php?page=user-update-profile-password&subpage=personal-info" data-id="<?php echo $_SESSION['user_id'] ?>">
+            <a class="nav-link student-update" href="home-page.php?page=user-update-profile-password&subpage=personal-info" data-id="<?php echo $_SESSION['user_id'] ?>">
                 <i class="fa-solid fa-id-card"></i>
                 <span>Personal Information</span>
             </a>
@@ -850,7 +850,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link student-update" href="home-student.php?page=user-update-profile-password&subpage=change-password">
+            <a class="nav-link student-update" href="home-page.php?page=user-update-profile-password&subpage=change-password">
                 <i class="fa-solid fa-lock"></i>
                 <span>Change Password</span>
             </a>

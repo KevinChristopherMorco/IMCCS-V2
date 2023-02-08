@@ -12,13 +12,13 @@
                 </div>
 
                 <div class="code-login-inputs" style="margin-top: 2rem;">
-                    <form action="index.php" method="POST">
+                    <form action="javascript:void(0)" id="code-login-form" method="POST">
                         <div class="row">
                             <div class="col-sm-12 col-lg-6">
-                                <input class="form-control" type="text" name="code" placeholder="Enter Institution Code" style="border-color:gray">
+                                <input class="form-control" type="text" name="code" id="code" placeholder="Enter Institution Code" style="border-color:gray">
                             </div>
                             <div class="col-sm-12 col-lg-2">
-                                <input type="submit" name="code-login" value="Login" class="btn code-login">
+                                <input type="submit" name="code-login" value="Get Started" class="btn code-login">
                             </div>
                         </div>
                     </form>
@@ -33,3 +33,4 @@
 
     </div>
 </section>
+

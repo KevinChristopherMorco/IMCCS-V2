@@ -115,7 +115,7 @@ $countRetakeRow = $selRetakeRow->num_rows;
                     <div class="text-center mt-4">
                     <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt=""> Looks like you haven't started any topics yet!</p>
                         <p class="chosen-suggestion mt-2">Choose now from our topic catalog!</p>
-                        <a href="home-student.php?page=user-browse-topics" class="btn btn-custom-primary mt-4" style="border-radius: 20px;">Browse Topics</a>
+                        <a href="home-page.php?page=user-browse-topics" class="btn btn-custom-primary mt-4" style="border-radius: 20px;">Browse Topics</a>
                     </div>
                 <?php } ?>
             </div>
@@ -262,7 +262,7 @@ $countRetakeRow = $selRetakeRow->num_rows;
                     <div class="text-center mt-4">
                         <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt=""> Looks like you haven't taken any assessments yet</p>
                         <p class="chosen-suggestion mt-2">Choose now from our assessments page!</p>
-                        <a href="home-student.php?page=user-browse-assessment" class="btn btn-custom-primary mt-4" style="border-radius: 20px;">Browse Assessments</a>
+                        <a href="home-page.php?page=user-browse-assessment" class="btn btn-custom-primary mt-4" style="border-radius: 20px;">Browse Assessments</a>
                     </div>
                 <?php } ?>
             </div>

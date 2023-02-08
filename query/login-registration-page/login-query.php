@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['institution_id'] = $row['institution_id'];
                 $_SESSION['email'] = $row['email'];
 
-                header("location:home-student.php?page=user-home");
+                header("location:home-page.php?page=user-home");
             } else if (password_verify($password, $row["password"]) && $row["usertype"] == "Faculty") {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_id'] = $row['user_id'];
@@ -35,7 +35,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['institution_id'] = $row['institution_id'];
                 $_SESSION['email'] = $row['email'];
 
-                header("location:home-student.php?page=user-home");
+                header("location:home-page.php?page=user-home");
             }else if (password_verify($password, $row["password"]) && $row["usertype"] == "Personnel") {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_id'] = $row['user_id'];
@@ -45,7 +45,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['institution_id'] = $row['institution_id'];
                 $_SESSION['email'] = $row['email'];
 
-                header("location:home-student.php?page=user-home");
+                header("location:home-page.php?page=user-home");
             }else if(password_verify($password, $row["password"]) && $row["usertype"] == "Admin"){
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_id'] = $row['user_id'];

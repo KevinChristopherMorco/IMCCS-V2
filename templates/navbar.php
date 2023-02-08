@@ -3,7 +3,7 @@
          <div class="row">
              <div class="col-lg-12">
                  <nav class="navbar navbar-expand-lg">
-                     <a class="navbar-brand" href="index.php">
+                     <a class="navbar-brand" id="navbar-brand">
                          <img src="assets/images/website-main-logo/IMCCS-white.png" width="100px" height="50px" alt="Logo" />
                      </a>
                      <button class="navbar-toggler">
@@ -17,19 +17,19 @@
                              <!--
                              <ul class="navbar-nav me-auto">
                                  <li class="nav-item">
-                                     <a class="ud-menu" href="home-student.php?page=user-home">Home</a>
+                                     <a class="ud-menu" href="home-page.php?page=user-home">Home</a>
                                  </li>
                                  <li class="nav-item">
-                                     <a class="ud-menu" href="home-student.php?page=user-browse-topics">IMCCS Topics</a>
+                                     <a class="ud-menu" href="home-page.php?page=user-browse-topics">IMCCS Topics</a>
                                  </li>
                                  <li class="nav-item">
-                                     <a class="ud-menu" href="home-student.php?page=user-browse-assessment">Assessments</a>
+                                     <a class="ud-menu" href="home-page.php?page=user-browse-assessment">Assessments</a>
                                  </li>
                                  <div class="user-btn">
                                      <h5 class="mt-4 mb-2"><i class="fa-solid fa-circle-user"></i>
                                         <?php echo $_SESSION["username"] ?></h5>
                                      <li class="nav-item">
-                                         <a href="home-student.php?page=user-update-profile-password&subpage=personal-info" class="btn-custom-secondary sign-in login-btn">
+                                         <a href="home-page.php?page=user-update-profile-password&subpage=personal-info" class="btn-custom-secondary sign-in login-btn">
                                              <i class="fa-solid fa-gear"></i>
                                              Account Settings
                                          </a>
@@ -45,7 +45,7 @@
                              </ul>
                          -->
 
-                             <ul id="nav" class="navbar-nav mx-auto home-item">
+                             <ul id="nav" class="navbar-nav mx-auto home-item" style="display:none">
 
                                  <li class="nav-item">
                                      <a class="ud-menu-scroll" href="#home">Home</a>
@@ -65,20 +65,31 @@
                                  <li class="nav-item">
                                      <a class="ud-menu-scroll" href="#contact">Contact</a>
                                  </li>
+
+                                 <!--
                                  <li class="nav-item">
-                                     <a class="sign-out" href="logout.php">Logout</a>
+                                     <a class="ud-menu" href="home-page.php?page=user-browse-topics">IMCCS Topics</a>
                                  </li>
 
                                  <li class="nav-item">
-                                     <a class="ud-menu" href="home-student.php?page=user-browse-topics">IMCCS Topics</a>
+                                     <a class="ud-menu" href="home-page.php?page=user-browse-assessment">Assessments</a>
                                  </li>
-
-                                 <li class="nav-item">
-                                     <a class="ud-menu" href="home-student.php?page=user-browse-assessment">Assessments</a>
-                                 </li>
-
+                         -->
                              </ul>
 
+                             <ul id="nav2" class="navbar-nav mx-auto home-item2" style="display:none">
+                             <li class="nav-item">
+                             <a class="ud-menu" href="home-page.php?page=user-browse-topics">IMCCS Topics</a>
+                                 </li>
+                                 <li class="nav-item">
+                                 <a class="ud-menu" href="home-page.php?page=user-browse-assessment">Assessments</a>
+                                 </li>
+                             </ul>
+                             <div class="navbar-btn d-none d-sm-inline-block">
+                             <a class="btn-custom-secondary sign-out" href="logout.php">Logout</a>
+
+
+                             </div>
 
                          <?php else : ?>
 
@@ -103,3 +114,15 @@
          </div>
      </div>
  </header>
+
+ <?php
+
+if (!isset($_SESSION['loggedin'])) {
+    $_SESSION['loggedin'] = false;
+  }
+    if ($_SESSION['loggedin']) {
+        echo '<script>document.getElementById("navbar-brand").href = "index.php?page=landing-page";</script>';
+    } else {
+        echo '<script>document.getElementById("navbar-brand").href = "index.php";</script>';
+    }
+    ?>

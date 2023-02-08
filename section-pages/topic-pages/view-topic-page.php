@@ -67,7 +67,7 @@ $returnTopicQuery = $topicQuery->num_rows;
                 <p>Topic Finished</p>
                 <div id="text">You have already completed this topic, <br> Do you want to continue? </br></div>
                 <div class="overlay-button">
-                    <a href="home-student.php?page=user-browse-topics" class="btn btn-secondary">Go to topic catalog</a>
+                    <a href="home-page.php?page=user-browse-topics" class="btn btn-secondary">Go to topic catalog</a>
                     <button class="btn btn-success" onclick="off()">Continue</button>
                 </div>
             </div>

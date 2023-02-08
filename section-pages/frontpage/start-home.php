@@ -1,18 +1,24 @@
 <section class="hero" id="home">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
-                        <h1 class="hero-title">
-                            IMCCS: A Cyber Security Awareness Application for Educational Institutions
-                        </h1>
-                    </div>
-                    <div class="hero-image wow fadeInUp" data-wow-delay=".25s">
-                        <img src="assets/images/hero/imccs-front.png"  alt="hero-image" />
-                        <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-1" />
-                        <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-2" />
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
+                    <h1 class="hero-title">
+                        IMCCS: A Cyber Security Awareness Application for Educational Institutions
+                    </h1>
+                </div>
+                <div class="hero-image wow fadeInUp" data-wow-delay=".25s">
+                    <img src="assets/images/hero/imccs-front.png" alt="hero-image" />
+                    <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-1" />
+                    <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-2" />
+                </div>
+
+                <div class="text-center">
+                    <a href="home-page.php?page=user-browse-assessment" name="code-login" class="btn code-login  mt-4" style="padding: 10px 18px ;width: 200px !important;"> Browse Assessments </a>
+                    <a href="home-page.php?page=user-browse-topics" name="code-login" class="btn mt-4" style="padding: 10px 18px ;width: 200px !important;  color:white"> <i class="fa-solid fa-chalkboard"></i>  Browse Topics </a>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>

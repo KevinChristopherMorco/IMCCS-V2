@@ -1,8 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.26/sweetalert2.all.min.js"></script>
-<?php include_once('database/config.php'); ?>
+<?php include('database/config.php'); ?>
+
 <?php session_start() ?>
 <?php
-include_once('query/login-registration-page/code-login.php');
 include_once('query/login-registration-page/login-query.php');
 ?>
 <!DOCTYPE html>
@@ -60,14 +60,68 @@ include_once('query/login-registration-page/login-query.php');
 
     <script>
         $(document).ready(function() {
-            if (window.location.href.indexOf("?page=") !== -1) {
-            } else{
+            if (window.location.href.indexOf("?page=") !== -1) {} else {
                 $(".navbar-header").css("background-color", "#800000");
 
             }
         });
     </script>
 
+
+
+    <script>
+        $("#code-login-form").on("submit", function(event) {
+
+            var code = $('#code').val();
+
+
+            if ($("#code-login-form input").hasClass('is-invalid')) {
+                event.preventDefault();
+                invalidInput()
+            } else {
+
+
+                $.ajax({
+                    type: "POST",
+                    url: 'query/login-registration-page/code-login.php',
+                    data: {
+                        code: code
+                    },
+                    success: function(data) {
+
+                        var datas = data;
+                        trimData = datas.trim();
+
+                        console.log(trimData)
+                        if (trimData === 'Code Exist') {
+                            window.location.href = 'index.php?page=landing-page'
+                        } else if (trimData === 'Code Not Exist') {
+                            Swal.fire({
+                                title: 'Institution code does not exist',
+                                text: 'Please input a valid institution code, or contact the administrator for further details',
+                                icon: 'warning',
+                                confirmButtonColor: '#800000',
+                                confirmButtonText: 'OK'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Please input an institution code',
+                                text: 'Please input an institution code',
+                                icon: 'error',
+                                confirmButtonColor: '#800000',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                        console.error(error);
+                    }
+                });
+            }
+        })
+    </script>
 
 
 </body>

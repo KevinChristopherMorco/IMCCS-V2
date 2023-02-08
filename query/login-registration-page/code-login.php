@@ -1,3 +1,5 @@
+<?php include('../../database/config.php'); ?>
+<?php session_start() ?>
 
 <?php
 
@@ -16,7 +18,7 @@ function generateUniqueString($length = 10) {
 $generatedString = generateUniqueString(10);
 
 
-if (isset($_POST['code-login'])) {
+if (isset($_POST['code'])) {
 
     $code = $_POST['code'];
 
@@ -38,11 +40,15 @@ if (isset($_POST['code-login'])) {
        $_SESSION['user_id'] = $generatedString;
 
        $_SESSION['institution_id'] = $row['institution_id'];
+       echo 'Code Exist';
+       /*
 
        header("location:index.php?page=landing-page");
+       */
         }
     } else {
-        header("location:index.php");
+        echo 'Code Not Exist';
+
     }
     $sql->close();
 }

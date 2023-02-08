@@ -186,11 +186,11 @@ if ($rowcount > 0) {
 
                         } else if (data == 'Retake') {
 
-                            window.location = 'home-student.php?page=user-retake-assessment&assessment_id=' + assessment_id;
+                            window.location = 'home-page.php?page=user-retake-assessment&assessment_id=' + assessment_id;
 
 
                         } else {
-                            window.location = 'home-student.php?page=user-progress-assessment&assessment_id=' + assessment_id;
+                            window.location = 'home-page.php?page=user-progress-assessment&assessment_id=' + assessment_id;
 
                         }
                     },

@@ -829,7 +829,7 @@ $('.view-chosen-lesson').submit(function (event) {
 
         success: function (data) {
 
-            window.location = 'home-student.php?page=user-progress-topic&title=' + title;
+            window.location = 'home-page.php?page=user-progress-topic&title=' + title;
 
         },
         error: function (xhr, status, error) {
@@ -854,7 +854,7 @@ $('.view-chosen-assessment').submit(function (event) {
         },
 
         success: function () {
-            window.location = 'home-student.php?page=result&assessment_id=' + assessment_id;
+            window.location = 'home-page.php?page=result&assessment_id=' + assessment_id;
         },
         error: function (xhr, status, error) {
 
@@ -878,7 +878,7 @@ $('.view-retake-assessment').submit(function (event) {
         },
 
         success: function (data) {
-            window.location = 'home-student.php?page=user-view-retakes&assessment_id=' + assessment_id;
+            window.location = 'home-page.php?page=user-view-retakes&assessment_id=' + assessment_id;
         },
         error: function (xhr, status, error) {
 
@@ -903,7 +903,7 @@ $('.view-retake-result-assessment').submit(function (event) {
         },
 
         success: function (data) {
-            window.location = 'home-student.php?page=retake-result&code=' + code + ' &assessment_id=' + assessment_id;
+            window.location = 'home-page.php?page=retake-result&code=' + code + ' &assessment_id=' + assessment_id;
         },
         error: function (xhr, status, error) {
 
@@ -1328,7 +1328,7 @@ $('#assessment-exam').submit(function (event) {
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             }).then(function () {
-                                window.location = 'home-student.php?page=result&assessment_id=' + assessment_id;
+                                window.location = 'home-page.php?page=result&assessment_id=' + assessment_id;
                             })
                         } else{
                             Swal.fire({
@@ -1338,7 +1338,7 @@ $('#assessment-exam').submit(function (event) {
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             }).then(function () {
-                                window.location = 'home-student.php?page=result&assessment_id=' + assessment_id;
+                                window.location = 'home-page.php?page=result&assessment_id=' + assessment_id;
                             })
 
                         }
@@ -1544,7 +1544,7 @@ $('#retake-assessment-exam').submit(function (event) {
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             }).then(function () {
-                                window.location = 'home-student.php?page=retake-result&assessment_id=' + assessment_id + 't&code=' + code;
+                                window.location = 'home-page.php?page=retake-result&assessment_id=' + assessment_id + 't&code=' + code;
                             })
                         }
                         else{
@@ -1555,7 +1555,7 @@ $('#retake-assessment-exam').submit(function (event) {
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             }).then(function () {
-                                window.location = 'home-student.php?page=retake-result&assessment_id=' + assessment_id + 't&code=' + code;
+                                window.location = 'home-page.php?page=retake-result&assessment_id=' + assessment_id + 't&code=' + code;
                             })
 
                         }
@@ -1569,7 +1569,7 @@ $('#retake-assessment-exam').submit(function (event) {
                             confirmButtonColor: '#800000',
                             confirmButtonText: 'OK'
                         }).then(function () {
-                            window.location = 'home-student.php?page=retake-result&assessment_id=' + assessment_id;
+                            window.location = 'home-page.php?page=retake-result&assessment_id=' + assessment_id;
                         })
 */
 
@@ -2101,7 +2101,7 @@ $('#insert-chosen').submit(function () {
 
 
 
-    window.location = 'home-student.php?page=user-progress-topic&title=' + title;
+    window.location = 'home-page.php?page=user-progress-topic&title=' + title;
 
 });
 
