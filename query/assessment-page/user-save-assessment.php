@@ -4,6 +4,8 @@
 if (isset($_GET['user_id'])) {
 
     $user_id =  mysqli_real_escape_string($mysqli, $_GET['user_id']);
+    $institution_id =  mysqli_real_escape_string($mysqli, $_GET['institution_id']);
+
     $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
     $date_deadline =  mysqli_real_escape_string($mysqli, $_GET['date_deadline']);
     $date_submit =  mysqli_real_escape_string($mysqli, $_GET['date_submit']);
@@ -13,8 +15,8 @@ if (isset($_GET['user_id'])) {
     $checkAssessmentRetake = mysqli_query($mysqli, "SELECT * from assessment_tbl WHERE retake = 'Yes' AND assessment_id='$assessment_id'");
 */
 
-    $checkAssessment = $mysqli->prepare("SELECT assessment_id, user_id from assessment_chosen WHERE user_id=? AND assessment_id=?");
-    $checkAssessment->bind_param('si', $user_id, $assessment_id);
+    $checkAssessment = $mysqli->prepare("SELECT assessment_id, user_id, institution_id from assessment_chosen WHERE user_id=? AND assessment_id=? AND institution_id=?");
+    $checkAssessment->bind_param('sii', $user_id, $assessment_id, $institution_id);
     $checkAssessment->execute();
     $returnCheckAssessment = $checkAssessment->get_result();
 

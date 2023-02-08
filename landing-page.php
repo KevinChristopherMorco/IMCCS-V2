@@ -23,6 +23,7 @@
                     </select>
 
                     <input type="hidden" class="form-control" id="user-idsession" value=<?php echo $_SESSION['user_id']; ?>>
+                    <input type="hidden" class="form-control" id="user-institution-id" value=<?php echo $_SESSION['institution_id']; ?>>
 
             </div>
             <div class="modal-footer">
@@ -151,6 +152,8 @@
         var id = $('#user-idsession').val();
         var bdate = $('#user-bdate').val();
         var gender = $('#user-add-genders').val();
+        var institution_id = $('#user-institution-id').val();
+
         console.log(gender)
         if ($("#user-registration input").hasClass('is-invalid') || $("#user-registration select").hasClass('is-invalid')) {
             event.preventDefault();
@@ -162,7 +165,8 @@
                 data: {
                     id: id,
                     bdate: bdate,
-                    gender: gender
+                    gender: gender,
+                    institution_id:institution_id
                 },
                 success: function(data) {
                     $('#myModalss').modal("hide");
@@ -206,11 +210,15 @@
 <script>
     $(document).ready(function() {
         var id = $('#user-idsession').val();
+        var institution_id = $('#user-institution-id').val();
+
         $.ajax({
             url: 'query/input-validation/validate-check-id.php',
             type: 'post',
             data: {
-                id: id
+                id: id,
+                institution_id: institution_id
+
             },
             dataType: "json",
 

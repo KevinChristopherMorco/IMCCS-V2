@@ -70,10 +70,22 @@ include_once('query/login-registration-page/login-query.php');
 
 
     <script>
+        var visitorId;
+        // Initialize the agent at application startup.
+        var fpPromise = import('https://fpjscdn.net/v3/Snaga4qAZRcoqxtY0oc6')
+            .then(FingerprintJS => FingerprintJS.load())
+
+        // Get the visitor identifier when you need it.
+        fpPromise
+            .then(fp => fp.get())
+            .then(result => {
+                // This is the visitor identifier:
+                     visitorId = result.visitorId
+            })
         $("#code-login-form").on("submit", function(event) {
 
             var code = $('#code').val();
-
+            console.log(visitorId)
 
             if ($("#code-login-form input").hasClass('is-invalid')) {
                 event.preventDefault();
@@ -85,7 +97,8 @@ include_once('query/login-registration-page/login-query.php');
                     type: "POST",
                     url: 'query/login-registration-page/code-login.php',
                     data: {
-                        code: code
+                        code: code,
+                        visitorId:visitorId
                     },
                     success: function(data) {
 

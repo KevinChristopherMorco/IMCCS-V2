@@ -13,8 +13,8 @@ if (isset($_POST['user_id'])) {
     $assessmentTitle =  mysqli_real_escape_string($mysqli, $_POST['assessment_title']);
     $answers = json_decode($_REQUEST['answer'], true);
 
-    $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM assessment_chosen WHERE user_id = ?  AND assessment_id = ?");
-    $checkAssessmentChosen->bind_param('si', $user_id, $assessment_id);
+    $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM assessment_chosen WHERE user_id = ?  AND assessment_id = ? AND institution_id = ?");
+    $checkAssessmentChosen->bind_param('sii', $user_id, $assessment_id, $institution_id);
     $checkAssessmentChosen->execute();
     $checkAssessmentChosen->store_result();
     $rowcount = $checkAssessmentChosen->num_rows;

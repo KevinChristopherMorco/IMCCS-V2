@@ -34,14 +34,13 @@ $type = $_SESSION['type']; //
 
 if ($type == "Junior High School") {
 
-$query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Junior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Junior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id AND  chosen.user_id = '" . $_SESSION['user_id'] . "' AND  chosen.institution_id = '" . $_SESSION['institution_id'] . "')";
 } else if ($type == "Senior High School") {
-    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Senior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
-}else if ($type == "College") {
-    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'College' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
-}else{
-    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Professional' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "')";
-
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Senior High School' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "' AND  chosen.institution_id = '" . $_SESSION['institution_id'] . "')";
+} else if ($type == "College") {
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'College' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "' AND  chosen.institution_id = '" . $_SESSION['institution_id'] . "')";
+} else {
+    $query = " SELECT * FROM assessment_tbl assessment WHERE assessment.level_type = 'Professional' AND NOT EXISTS (SELECT 1 FROM assessment_chosen chosen WHERE assessment.assessment_id = chosen.assessment_id  AND  chosen.user_id = '" . $_SESSION['user_id'] . "' AND  chosen.institution_id = '" . $_SESSION['institution_id'] . "')";
 }
 
 
@@ -95,6 +94,8 @@ if ($rowcount > 0) {
 
                         <form id="insert-chosen-assessment" class="insert-chosen-assessment" method="GET">
                             <input type="hidden" name="" id="user-id" value="<?php echo $_SESSION['user_id'] ?>">
+                            <input type="hidden" name="user-institution-id" id="user-institution-id" value="<?php echo $_SESSION['institution_id'] ?>">
+
                             <input type="hidden" name="assessment-id" id="assessment-id" value="<?php echo $row['assessment_id'] ?>">
                             <input type="hidden" name="date-deadline" id="date-deadline" value="<?php echo $returnDateDeadline ?>">
                             <input type="hidden" name="date-submit" id="date-submit" value="<?php echo $returnDateSubmit ?>">
@@ -118,17 +119,12 @@ if ($rowcount > 0) {
     $('.insert-chosen-assessment').submit(function(event) {
         event.preventDefault();
 
-
         var user_id = $('#user-id').val();
         var date_deadline = $('#date-deadline').val();
         var date_submit = $('#date-submit').val();
-
+        var institution_id = $('#user-institution-id').val();
         var assessment_id = $(this).closest('form').find('input[name=assessment-id]').val();
         var date_deadline = $(this).closest('form').find('input[name=date-deadline]').val();
-
-
-
-
 
         Swal.fire({
             title: 'Do you want to choose this Assessment?',
@@ -149,16 +145,15 @@ if ($rowcount > 0) {
                     url: "query/assessment-page/user-save-assessment.php",
                     data: {
                         user_id: user_id,
+                        institution_id: institution_id,
                         assessment_id: assessment_id,
                         date_deadline: date_deadline,
-                        date_submit,
-                        date_submit
-
-
+                        date_submit: date_submit
                     },
                     dataType: 'json',
 
                     success: function(data) {
+                        console.log(data)
                         if (data == 'You have already taken this topic') {
                             Swal.fire({
                                 title: 'You have already taken this Assessment!',
@@ -195,7 +190,8 @@ if ($rowcount > 0) {
                         }
                     },
                     error: function(xhr, status, error) {
-
+                        console.log(error)
+                        console.log(xhr)
 
                     }
                 });

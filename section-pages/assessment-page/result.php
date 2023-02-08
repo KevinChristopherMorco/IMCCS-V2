@@ -12,6 +12,8 @@
 if (isset($_SESSION['user_id'])) {
 
     $user_id =  mysqli_real_escape_string($mysqli, $_SESSION['user_id']);
+    $institution_id =  mysqli_real_escape_string($mysqli, $_SESSION['institution_id']);
+
     $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
 
     $queryChosenAssessment = $mysqli->prepare("SELECT * FROM assessment_tbl WHERE assessment_id= ?");
@@ -41,14 +43,14 @@ if (isset($_SESSION['user_id'])) {
 
     <?php
 
-    $queryScore = $mysqli->prepare("SELECT *  FROM assessment_score WHERE user_id= ? AND assessment_id = ? ");
-    $queryScore->bind_param('ii', $user_id, $assessment_id);
+    $queryScore = $mysqli->prepare("SELECT *  FROM assessment_score WHERE user_id= ? AND assessment_id = ? AND institution_id = ? ");
+    $queryScore->bind_param('iii', $user_id, $assessment_id,$institution_id);
     $queryScore->execute();
     $resultScore = $queryScore->get_result();
     $returnScore = $resultScore->fetch_assoc();
 
-    $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM answer_tbl WHERE assessment_id = ? AND user_id = ? ");
-    $selOver->bind_param('ii', $assessment_id, $user_id);
+    $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM answer_tbl WHERE assessment_id = ? AND user_id = ? AND institution_id = ?");
+    $selOver->bind_param('iii', $assessment_id, $user_id, $institution_id );
     $selOver->execute();
     $resultOver = $selOver->get_result();
     $returnCountOver = $resultOver->fetch_assoc();

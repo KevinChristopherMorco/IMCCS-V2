@@ -2,6 +2,7 @@
 <?php session_start() ?>
 
 <?php
+/*
 
 function generateUniqueString($length = 10) {
     // start with a unique identifier
@@ -16,11 +17,14 @@ function generateUniqueString($length = 10) {
     return substr($uniqueString, 0, 255);
 }
 $generatedString = generateUniqueString(10);
+*/
+
 
 
 if (isset($_POST['code'])) {
 
     $code = $_POST['code'];
+    $visitorID = $_POST['visitorId'];
 
 
     $sql = $mysqli->prepare("SELECT * FROM institution_tbl  WHERE code = ?");
@@ -37,7 +41,7 @@ if (isset($_POST['code'])) {
        $_SESSION['name'] = $row['name'];
        $_SESSION['type'] = $row['type'];
 
-       $_SESSION['user_id'] = $generatedString;
+       $_SESSION['user_id'] = $visitorID;
 
        $_SESSION['institution_id'] = $row['institution_id'];
        echo 'Code Exist';
