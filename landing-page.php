@@ -9,6 +9,7 @@
                 <form action="javascript:void(0)" id="user-registration">
                     <h5 class="mb-4">Please provide the correct details:</h5>
                     <input type="text" class="form-control" id="user-bdate" placeholder="Choose your birthdate" onfocus="(this.type='date')">
+
                     <select class="form-select" id="user-add-genders">
                         <option selected disabled>Select your gender</option>
                         <option value="Male">Male</option>
@@ -20,6 +21,7 @@
                         <option value="Transgender Male">Transgender Male</option>
                         <option value="Transgender Female">Transgender Female</option>
                     </select>
+
                     <input type="hidden" class="form-control" id="user-idsession" value=<?php echo $_SESSION['user_id']; ?>>
 
             </div>
@@ -27,6 +29,7 @@
                 <!--
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     -->
+                <a href="logout.php"  class="btn btn-secondary">Go back</a>
                 <input type="submit" id="submit" name="save" value="Done" class="btn btn-submit">
             </div>
             </form>
@@ -35,27 +38,27 @@
 </div>
 
 <div class="landing-page" id="landing-page">
-<?php
-include_once('query/login-registration-page/login-query.php');
+    <?php
+    include_once('query/login-registration-page/login-query.php');
 
-?>
-<!-- ====== Header Navigation Bar ====== -->
-<?php
-include_once('templates/navbar.php');
-?>
-<?php
-include_once('modal/register-student.php');
-?>
-<?php
-include_once('modal/register-institution.html');
-?>
-<!-- PHP CODE USED FOR LOADING DYNAMICALLY PAGES WITHOUT RELOADING THE WHOLE ROUTE-->
+    ?>
+    <!-- ====== Header Navigation Bar ====== -->
+    <?php
+    include_once('templates/navbar.php');
+    ?>
+    <?php
+    include_once('modal/register-student.php');
+    ?>
+    <?php
+    include_once('modal/register-institution.html');
+    ?>
+    <!-- PHP CODE USED FOR LOADING DYNAMICALLY PAGES WITHOUT RELOADING THE WHOLE ROUTE-->
 
-<?php
-@$page = $_GET['page'];
-include("section-pages/start-page.php");
+    <?php
+    @$page = $_GET['page'];
+    include("section-pages/start-page.php");
 
-/*
+    /*
 
     if ($page != '') {
         if ($page == "login") {
@@ -70,53 +73,53 @@ include("section-pages/start-page.php");
         include('templates/footer.php');
     }
     */
-?>
+    ?>
 
-<?php
-include('templates/footer.php');
-?>
+    <?php
+    include('templates/footer.php');
+    ?>
 
 
-<SCript>
-    $(document).ready(function() {
-        $('#check').click(function() {
-            $(this).is(':checked') ? $('#user-add-password').attr('type', 'text') : $('#user-add-password').attr('type', 'password');
+    <SCript>
+        $(document).ready(function() {
+            $('#check').click(function() {
+                $(this).is(':checked') ? $('#user-add-password').attr('type', 'text') : $('#user-add-password').attr('type', 'password');
+            });
         });
-    });
 
-    var togglePassword = document.querySelector("#toggle-password");
-    var toggleConfirmPassword = document.querySelector("#toggle-confirm-password");
-    var password = document.querySelector("#user-add-password");
-    var confirmPassword = document.querySelector("#user-add-confirmpassword");
+        var togglePassword = document.querySelector("#toggle-password");
+        var toggleConfirmPassword = document.querySelector("#toggle-confirm-password");
+        var password = document.querySelector("#user-add-password");
+        var confirmPassword = document.querySelector("#user-add-confirmpassword");
 
-    togglePassword.addEventListener("click", function() {
-        // toggle the type attribute
-        var type = password.getAttribute("type") === "password" ? "text" : "password";
-        password.setAttribute("type", type);
+        togglePassword.addEventListener("click", function() {
+            // toggle the type attribute
+            var type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
 
-        // toggle the icon
-        this.classList.toggle("fa-eye");
-    });
+            // toggle the icon
+            this.classList.toggle("fa-eye");
+        });
 
-    toggleConfirmPassword.addEventListener("click", function() {
-        // toggle the type attribute
-        var type = confirmPassword.getAttribute("type") === "password" ? "text" : "password";
-        confirmPassword.setAttribute("type", type);
+        toggleConfirmPassword.addEventListener("click", function() {
+            // toggle the type attribute
+            var type = confirmPassword.getAttribute("type") === "password" ? "text" : "password";
+            confirmPassword.setAttribute("type", type);
 
-        // toggle the icon
-        this.classList.toggle("fa-eye");
-    });
-</SCript>
+            // toggle the icon
+            this.classList.toggle("fa-eye");
+        });
+    </SCript>
 
-<script>
-    $('.home-item').show()
+    <script>
+        $('.home-item').show()
 
 
-    <?php @$page = $_GET['page']; ?>
-    <?php if ($page == "forgot-password") { ?>
-        $('.home-item').hide()
-    <?php } ?>
-</script>
+        <?php @$page = $_GET['page']; ?>
+        <?php if ($page == "forgot-password") { ?>
+            $('.home-item').hide()
+        <?php } ?>
+    </script>
 
 
 </div>
@@ -131,11 +134,25 @@ include('templates/footer.php');
 
 <script>
     $("#user-registration").on("submit", function(event) {
+        $("#user-registration input").each(function(e) {
+
+            var checkEmptyInput = $(this);
+            if (checkEmptyInput.val() == "") {
+                checkEmptyInput.addClass('is-invalid')
+                $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
+            }
+
+            if ($('#user-registration #user-add-genders')[0].selectedIndex <= 0) {
+                $('#user-registration #user-add-genders').addClass('is-invalid')
+                $('.invalid-feedback').html('<i class="fa-solid fa-triangle-exclamation"></i> This field cannot be empty');
+            }
+
+        });
         var id = $('#user-idsession').val();
         var bdate = $('#user-bdate').val();
         var gender = $('#user-add-genders').val();
         console.log(gender)
-        if ($("#user-registration input").hasClass('is-invalid')) {
+        if ($("#user-registration input").hasClass('is-invalid') || $("#user-registration select").hasClass('is-invalid')) {
             event.preventDefault();
             invalidInput()
         } else {
@@ -204,12 +221,9 @@ include('templates/footer.php');
                     $('#myModalss').modal("hide");
                     $("#landing-page").css("filter", "none");
                     $(".navbar-header").css("filter", "none");
-
-
                 } else {
                     $("#landing-page").css("filter", "blur(5px)");
                     $(".navbar-header").css("filter", "blur(5px)");
-
                     $('#myModalss').modal("show");
 
                 }
@@ -217,6 +231,22 @@ include('templates/footer.php');
 
             }
         });
+    });
+
+    $('#user-registration #user-add-genders').on('change', function() {
+        if ($('#user-registration #user-add-genders').val().length != "") {
+            $('#user-registration #user-add-genders').addClass('is-valid');
+            $('#user-registration #user-add-genders').removeClass('is-invalid');
+
+        }
+    });
+
+    $('#user-registration #user-bdate').on('change', function() {
+        if ($('#user-registration #user-bdate').val().length != "") {
+            $('#user-registration #user-bdate').addClass('is-valid');
+            $('#user-registration #user-bdate').removeClass('is-invalid');
+
+        }
     });
 </script>
 

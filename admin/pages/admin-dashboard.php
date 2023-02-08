@@ -59,7 +59,7 @@ while ($row = mysqli_fetch_array($assessmentTakerNoResult)) {
 
 <?php
 
-$assessmentRegisterQuery = "SELECT MONTHNAME(created_at) as month_name, COUNT(user_id) as register FROM user_tbl GROUP BY MONTH(created_at)";
+$assessmentRegisterQuery = "SELECT MONTHNAME(created_at) as month_name, COUNT(user_id) as register FROM user_profile GROUP BY MONTH(created_at)";
 $count_register = mysqli_query($mysqli, $assessmentRegisterQuery);
 
 
