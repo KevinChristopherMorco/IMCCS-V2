@@ -68,8 +68,10 @@ include_once('query/login-registration-page/login-query.php');
     </script>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/clientjs@0.1.11/dist/client.min.js"></script>
 
     <script>
+        /*
         var visitorId;
         // Initialize the agent at application startup.
         var fpPromise = import('https://fpjscdn.net/v3/Snaga4qAZRcoqxtY0oc6')
@@ -82,10 +84,20 @@ include_once('query/login-registration-page/login-query.php');
                 // This is the visitor identifier:
                      visitorId = result.visitorId
             })
+            */
+
+        var browserFingerprint = localStorage.getItem("browserFingerprint");
+        if (!browserFingerprint) {
+            var client = new ClientJS();
+            browserFingerprint = client.getFingerprint();
+            localStorage.setItem("browserFingerprint", browserFingerprint);
+        }
+
+        console.log("Browser fingerprint: " + browserFingerprint);
         $("#code-login-form").on("submit", function(event) {
 
             var code = $('#code').val();
-            console.log(visitorId)
+            console.log(browserFingerprint)
 
             if ($("#code-login-form input").hasClass('is-invalid')) {
                 event.preventDefault();
@@ -98,7 +110,7 @@ include_once('query/login-registration-page/login-query.php');
                     url: 'query/login-registration-page/code-login.php',
                     data: {
                         code: code,
-                        visitorId:visitorId
+                        visitorId: browserFingerprint
                     },
                     success: function(data) {
 
@@ -136,7 +148,40 @@ include_once('query/login-registration-page/login-query.php');
         })
     </script>
 
+    <script>
+        /*
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+var uniqueID = getCookie("unique_id");
+if (!uniqueID) {
+  uniqueID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  setCookie("unique_id", uniqueID, 365);
+}
+
+console.log("Unique ID: " + uniqueID);
+*/
+    </script>
 
 </body>
 
