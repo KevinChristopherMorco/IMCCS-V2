@@ -48,7 +48,7 @@ while ($returnSubTopics = $subTopicResults->fetch_assoc()) {
     $('.topic-content').each(function() {
         $('.btnPrevious:first').hide();
         $('.btnNext:last').hide();
-        $('.btnFinish:last').show();
+       // $('.btnFinish:last').show();
 
     });
 </script>

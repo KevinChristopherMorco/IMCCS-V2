@@ -71,29 +71,12 @@ include_once('query/login-registration-page/login-query.php');
     <script src="https://cdn.jsdelivr.net/npm/clientjs@0.1.11/dist/client.min.js"></script>
 
     <script>
-        /*
-        var visitorId;
-        // Initialize the agent at application startup.
-        var fpPromise = import('https://fpjscdn.net/v3/Snaga4qAZRcoqxtY0oc6')
-            .then(FingerprintJS => FingerprintJS.load())
-
-        // Get the visitor identifier when you need it.
-        fpPromise
-            .then(fp => fp.get())
-            .then(result => {
-                // This is the visitor identifier:
-                     visitorId = result.visitorId
-            })
-            */
-
         var browserFingerprint = localStorage.getItem("browserFingerprint");
         if (!browserFingerprint) {
             var client = new ClientJS();
             browserFingerprint = client.getFingerprint();
             localStorage.setItem("browserFingerprint", browserFingerprint);
         }
-
-        console.log("Browser fingerprint: " + browserFingerprint);
         $("#code-login-form").on("submit", function(event) {
 
             var code = $('#code').val();
@@ -128,7 +111,7 @@ include_once('query/login-registration-page/login-query.php');
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             });
-                        }else if (trimData === 'Inactive') {
+                        } else if (trimData === 'Inactive') {
                             Swal.fire({
                                 title: 'This institution is now inactive',
                                 text: 'Contact the administrator for further details',
@@ -154,9 +137,21 @@ include_once('query/login-registration-page/login-query.php');
                 });
             }
         })
-    </script>
+        /*
+        var visitorId;
+        // Initialize the agent at application startup.
+        var fpPromise = import('https://fpjscdn.net/v3/Snaga4qAZRcoqxtY0oc6')
+            .then(FingerprintJS => FingerprintJS.load())
 
-    <script>
+        // Get the visitor identifier when you need it.
+        fpPromise
+            .then(fp => fp.get())
+            .then(result => {
+                // This is the visitor identifier:
+                     visitorId = result.visitorId
+            })
+            */
+
         /*
 function getCookie(cname) {
   var name = cname + "=";
@@ -190,6 +185,7 @@ if (!uniqueID) {
 console.log("Unique ID: " + uniqueID);
 */
     </script>
+
 
 </body>
 
