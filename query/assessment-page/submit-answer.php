@@ -8,8 +8,6 @@ if (isset($_POST['user_id'])) {
     $date_deadline =  mysqli_real_escape_string($mysqli, $_POST['date_deadline']);
     $date_submit =  mysqli_real_escape_string($mysqli, $_POST['date_submit']);
     $institution_id =  mysqli_real_escape_string($mysqli, $_POST['institution_id']);
-    $email =  mysqli_real_escape_string($mysqli, $_POST['email']);
-    $fname =  mysqli_real_escape_string($mysqli, $_POST['fname']);
     $assessmentTitle =  mysqli_real_escape_string($mysqli, $_POST['assessment_title']);
     $answers = json_decode($_REQUEST['answer'], true);
 
