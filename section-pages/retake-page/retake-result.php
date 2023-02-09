@@ -42,23 +42,17 @@ if (isset($_SESSION['user_id'])) {
 
     <?php
     $queryRetake = $mysqli->prepare("SELECT retake_score FROM retake_score_tbl WHERE user_id= ? AND code = ? ");
-    $queryRetake->bind_param('is', $user_id, $code);
+    $queryRetake->bind_param('ss', $user_id, $code);
     $queryRetake->execute();
     $resultRetake = $queryRetake->get_result();
     $retake = $resultRetake->fetch_assoc();
 
     $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM retake_answer_tbl WHERE assessment_id = ? AND user_id = ? AND code = ? ");
-    $selOver->bind_param('iis', $assessment_id, $user_id, $code);
+    $selOver->bind_param('iss', $assessment_id, $user_id, $code);
     $selOver->execute();
     $resultOver = $selOver->get_result();
     $returnCountOver = $resultOver->fetch_assoc();
-
     $ans = number_format($retake['retake_score'] / $returnCountOver['point'] * 100);
-
-
-
-
-
     ?>
 
     <?php
@@ -159,7 +153,7 @@ if (isset($_SESSION['user_id'])) {
         LEFT JOIN assessment_answer_tbl assessment_answer ON question.question_id = assessment_answer.question_id AND answer.question_answer = assessment_answer.assessment_answer
         WHERE question.assessment_id=? AND answer.user_id=? AND answer.code = ?
         ORDER BY question.question_id ASC");
-        $selQuestion->bind_param('iis', $assessment_id, $user_id, $code);
+        $selQuestion->bind_param('iss', $assessment_id, $user_id, $code);
         $selQuestion->execute();
         $selQuestionRow = $selQuestion->get_result();
         while ($row = $selQuestionRow->fetch_assoc()) { ?>

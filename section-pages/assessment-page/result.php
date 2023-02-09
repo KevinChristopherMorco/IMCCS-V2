@@ -44,13 +44,13 @@ if (isset($_SESSION['user_id'])) {
     <?php
 
     $queryScore = $mysqli->prepare("SELECT *  FROM assessment_score WHERE user_id= ? AND assessment_id = ? AND institution_id = ? ");
-    $queryScore->bind_param('iii', $user_id, $assessment_id,$institution_id);
+    $queryScore->bind_param('isi', $user_id, $assessment_id,$institution_id);
     $queryScore->execute();
     $resultScore = $queryScore->get_result();
     $returnScore = $resultScore->fetch_assoc();
 
     $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM answer_tbl WHERE assessment_id = ? AND user_id = ? AND institution_id = ?");
-    $selOver->bind_param('iii', $assessment_id, $user_id, $institution_id );
+    $selOver->bind_param('isi', $assessment_id, $user_id, $institution_id );
     $selOver->execute();
     $resultOver = $selOver->get_result();
     $returnCountOver = $resultOver->fetch_assoc();
@@ -151,7 +151,7 @@ if (isset($_SESSION['user_id'])) {
         LEFT JOIN assessment_answer_tbl assessment_answer ON question.question_id = assessment_answer.question_id AND answer.question_answer = assessment_answer.assessment_answer
         WHERE question.assessment_id=? AND answer.user_id=?
         ORDER BY question.question_id ASC");
-        $selQuestion->bind_param('ii', $assessment_id, $user_id);
+        $selQuestion->bind_param('is', $assessment_id, $user_id);
         $selQuestion->execute();
         $selQuestionRow = $selQuestion->get_result();
 
