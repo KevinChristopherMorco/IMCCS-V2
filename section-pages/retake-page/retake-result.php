@@ -159,7 +159,7 @@ if (isset($_SESSION['user_id'])) {
         LEFT JOIN assessment_answer_tbl assessment_answer ON question.question_id = assessment_answer.question_id AND answer.question_answer = assessment_answer.assessment_answer
         WHERE question.assessment_id=? AND answer.user_id=? AND answer.code = ?
         ORDER BY question.question_id ASC");
-        $selQuestion->bind_param('iis', $assessment_id, $user_id, $code);
+        $selQuestion->bind_param('iss', $assessment_id, $user_id, $code);
         $selQuestion->execute();
         $selQuestionRow = $selQuestion->get_result();
         while ($row = $selQuestionRow->fetch_assoc()) { ?>
