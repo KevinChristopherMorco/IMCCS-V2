@@ -128,6 +128,14 @@ include_once('query/login-registration-page/login-query.php');
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             });
+                        }else if (trimData === 'Inactive') {
+                            Swal.fire({
+                                title: 'This institution is now inactive',
+                                text: 'Contact the administrator for further details',
+                                icon: 'warning',
+                                confirmButtonColor: '#800000',
+                                confirmButtonText: 'OK'
+                            });
                         } else {
                             Swal.fire({
                                 title: 'Please input an institution code',

@@ -35,24 +35,25 @@ if (isset($_POST['code'])) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_array()) {
+            // Get the status
+            $status = $row['status'];
 
-       // header("location:index.php?page=login");
-       $_SESSION['loggedin'] = true;
-       $_SESSION['name'] = $row['name'];
-       $_SESSION['type'] = $row['type'];
+            // Check if the status is inactive
+            if ($status == "Inactive") {
+                echo "Inactive";
+            } else {
+                $_SESSION['loggedin'] = true;
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['type'] = $row['type'];
 
-       $_SESSION['user_id'] = $visitorID;
+                $_SESSION['user_id'] = $visitorID;
 
-       $_SESSION['institution_id'] = $row['institution_id'];
-       echo 'Code Exist';
-       /*
-
-       header("location:index.php?page=landing-page");
-       */
+                $_SESSION['institution_id'] = $row['institution_id'];
+                echo 'Code Exist';
+            }
         }
     } else {
         echo 'Code Not Exist';
-
     }
     $sql->close();
 }
