@@ -2,12 +2,19 @@
 if (isset($_GET['assessment_id'])) {
 
     $user_id =  mysqli_real_escape_string($mysqli, $_SESSION['user_id']);
+    $institution_id =  mysqli_real_escape_string($mysqli, $_SESSION['institution_id']);
     $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
 
     $selQuestion = $mysqli->prepare("SELECT * FROM assessment_question_tbl WHERE assessment_id = ?");
     $selQuestion->bind_param('i', $assessment_id);
     $selQuestion->execute();
     $selQuestionRow = $selQuestion->get_result();
+
+    $selUserControl = $mysqli->prepare("SELECT * FROM user_profile WHERE user_id = ? AND institution_id= ?");
+    $selUserControl->bind_param('ss', $user_id, $institution_id);
+    $selUserControl->execute();
+    $selUserControlResult = $selUserControl->get_result();
+    $selUserControlRow = $selUserControlResult->fetch_assoc();
 
     $selDate = $mysqli->prepare("SELECT * FROM assessment_tbl WHERE assessment_id = ?");
     $selDate->bind_param('i', $assessment_id);
@@ -73,6 +80,7 @@ if (isset($_GET['assessment_id'])) {
             <input type="hidden" name="date_id" id="date-id" value="<?php echo $returnDateRow['deadline']; ?>">
             <input type="hidden" name="date_submit" id="date-submit" value="<?php echo $returnDateSubmit ?>">
             <input type="hidden" name="assessment-title" id="assessment-title" value="<?php echo $returnDateRow['title'] ?>">
+            <input type="hidden" name="user-control-code" id="user-control-code" value="<?php echo $selUserControlRow['user_control_code']; ?>">
 
             <?php while ($row = $selQuestionRow->fetch_assoc()) { ?>
                 <?php $question_id = $row['question_id']; ?>

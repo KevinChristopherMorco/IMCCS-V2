@@ -9,6 +9,8 @@ if (isset($_POST['user_id'])) {
     $date_submit =  mysqli_real_escape_string($mysqli, $_POST['date_submit']);
     $institution_id =  mysqli_real_escape_string($mysqli, $_POST['institution_id']);
     $assessmentTitle =  mysqli_real_escape_string($mysqli, $_POST['assessment_title']);
+    $user_control_code =  mysqli_real_escape_string($mysqli, $_POST['user_control_code']);
+
     $answers = json_decode($_REQUEST['answer'], true);
 
     $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM assessment_chosen WHERE user_id = ?  AND assessment_id = ? AND institution_id = ?");
@@ -77,8 +79,8 @@ if (isset($_POST['user_id'])) {
                 $score += $pointValue * 1;
             }
         }
-        $insert1 = $mysqli->prepare("INSERT INTO answer_tbl(user_id,institution_id, assessment_id,question_id,point,question_answer) VALUES (?, ?, ?, ?, ?, ?)");
-        $insert1->bind_param("ssssss", $user_id, $institution_id, $assessment_id, $question_id, $pointValue, $answer);
+        $insert1 = $mysqli->prepare("INSERT INTO answer_tbl(user_id,user_control_code,institution_id, assessment_id,question_id,point,question_answer) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $insert1->bind_param("sssssss", $user_id, $user_control_code, $institution_id, $assessment_id, $question_id, $pointValue, $answer);
         $insert1->execute();
     }
     $ans = number_format($score / $returnCountOver['point'] * 100);
@@ -92,12 +94,12 @@ if (isset($_POST['user_id'])) {
     }
 
 
-    $insert2 = $mysqli->prepare("INSERT INTO assessment_chosen(user_id,assessment_id,institution_id) VALUES (?, ?, ?)");
-    $insert2->bind_param("sii", $user_id, $assessment_id, $institution_id);
+    $insert2 = $mysqli->prepare("INSERT INTO assessment_chosen(user_id,user_control_code,assessment_id,institution_id) VALUES (?, ?, ?, ?)");
+    $insert2->bind_param("ssii", $user_id, $user_control_code, $assessment_id, $institution_id);
     $insert2->execute();
 
-    $insert3 = $mysqli->prepare("INSERT INTO assessment_score(user_id,institution_id,assessment_id,assessment_score, verdict) VALUES (?, ?, ?, ?, ?)");
-    $insert3->bind_param("siiis",  $user_id, $institution_id, $assessment_id, $score, $verdict);
+    $insert3 = $mysqli->prepare("INSERT INTO assessment_score(user_id,user_control_code,institution_id,assessment_id,assessment_score, verdict) VALUES (?, ?, ?, ?, ?, ?)");
+    $insert3->bind_param("ssiiis",  $user_id,$user_control_code, $institution_id, $assessment_id, $score, $verdict);
     $insert3->execute();
 
 

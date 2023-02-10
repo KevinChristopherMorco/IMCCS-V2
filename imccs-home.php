@@ -1,7 +1,7 @@
 <?php
     include_once('modal/register-user.php');
     ?>
-<div class="landing-page" id="landing-page">
+<div class="imccs-home" id="imccs-home">
     <?php
     include_once('query/login-registration-page/login-query.php');
 
@@ -44,7 +44,7 @@
     ?>
 
 
-    <SCript>
+    <script>
         $(document).ready(function() {
             $('#check').click(function() {
                 $(this).is(':checked') ? $('#user-add-password').attr('type', 'text') : $('#user-add-password').attr('type', 'password');
@@ -73,7 +73,7 @@
             // toggle the icon
             this.classList.toggle("fa-eye");
         });
-    </SCript>
+    </script>
 
     <script>
         $('.home-item').show()
@@ -190,10 +190,10 @@
 
                 if (response == 'ID Exists') {
                     $('#myModalss').modal("hide");
-                    $("#landing-page").css("filter", "none");
+                    $("#imccs-home").css("filter", "none");
                     $(".navbar-header").css("filter", "none");
                 } else {
-                    $("#landing-page").css("filter", "blur(5px)");
+                    $("#imccs-home").css("filter", "blur(5px)");
                     $(".navbar-header").css("filter", "blur(5px)");
                     $('#myModalss').modal("show");
 

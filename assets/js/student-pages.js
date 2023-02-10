@@ -1190,6 +1190,7 @@ $('#assessment-exam').submit(function (event) {
         var email = $('#user-email').val();
         var fname = $('#first-name').val();
         var assessment_title = $('#assessment-title').val();
+        var user_control_code = $('#user-control-code').val();
 
         var date_deadline = $(this).closest('form').find('input[name=date_id]').val();
 
@@ -1275,6 +1276,7 @@ $('#assessment-exam').submit(function (event) {
                         assessment_id: assessment_id,
                         assessment_title: assessment_title,
                         institution_id: institution_id,
+                        user_control_code: user_control_code,
                         point: point,
                         date_deadline: date_deadline,
                         date_submit: date_submit,
@@ -1405,6 +1407,8 @@ $('#retake-assessment-exam').submit(function (event) {
 
         var assessment_id = $('#assessment-id').val();
         var institution_id = $('#institution-id').val();
+        var user_control_code = $('#user-control-code').val();
+
         var date_submit = $('#date-submit').val();
         var email = $('#user-email').val();
         var fname = $('#first-name').val();
@@ -1486,6 +1490,7 @@ $('#retake-assessment-exam').submit(function (event) {
                     url: "query/retake-page/submit-retake-answer.php",
                     data: {
                         user_id: user_id,
+                        user_control_code:user_control_code,
                         code: code,
                         assessment_id: assessment_id,
                         assessment_title, assessment_title,

@@ -41,8 +41,8 @@ include_once('query/login-registration-page/login-query.php');
 
 
     if ($page != '') {
-        if ($page == "landing-page") {
-            include("landing-page.php");
+        if ($page == "imccs-home") {
+            include("imccs-home.php");
         } else if ($page == "login") {
             include("section-pages/login.php");
         } else if ($page == "forgot-password") {
@@ -102,7 +102,7 @@ include_once('query/login-registration-page/login-query.php');
 
                         console.log(trimData)
                         if (trimData === 'Code Exist') {
-                            window.location.href = 'index.php?page=landing-page'
+                            window.location.href = 'index.php?page=imccs-home'
                         } else if (trimData === 'Code Not Exist') {
                             Swal.fire({
                                 title: 'Institution code does not exist',

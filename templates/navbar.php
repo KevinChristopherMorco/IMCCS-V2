@@ -122,7 +122,7 @@ if (!isset($_SESSION['loggedin'])) {
     $_SESSION['loggedin'] = false;
   }
     if ($_SESSION['loggedin']) {
-        echo '<script>document.getElementById("navbar-brand").href = "index.php?page=landing-page";</script>';
+        echo '<script>document.getElementById("navbar-brand").href = "index.php?page=imccs-home";</script>';
     } else {
         echo '<script>document.getElementById("navbar-brand").href = "index.php";</script>';
     }

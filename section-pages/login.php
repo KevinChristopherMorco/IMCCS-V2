@@ -57,9 +57,11 @@
             <a class="forget-pass" href="index.php?page=forgot-password">
                 Forgot Password?
             </a>
+            <!--
             <p class="signup-option">
                 No Existing Account ? <a href="javascript:void(0)" class="sign-in"> Sign Up </a>
             </p>
+            -->
         </div>
     </div>
 </section>
