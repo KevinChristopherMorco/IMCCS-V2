@@ -66,6 +66,10 @@
                                      <a class="ud-menu-scroll" href="#contact">Contact</a>
                                  </li>
 
+                                 <li class="nav-item">
+                                 <a class="ud-menu" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                                 </li>
+
                                  <!--
                                  <li class="nav-item">
                                      <a class="ud-menu" href="home-page.php?page=user-browse-topics">IMCCS Topics</a>
@@ -77,19 +81,19 @@
                          -->
                              </ul>
 
-                             <ul id="nav2" class="navbar-nav mx-auto home-item2" style="display:none">
-                             <li class="nav-item">
-                             <a class="ud-menu" href="home-page.php?page=user-browse-topics">IMCCS Topics</a>
+                             <ul id="nav2" class="navbar-nav home-item2" style="display:none">
+                                 <li class="nav-item">
+                                     <a class="ud-menu" href="home-page.php?page=user-browse-topics">IMCCS Topics</a>
                                  </li>
                                  <li class="nav-item">
-                                 <a class="ud-menu" href="home-page.php?page=user-browse-assessment">Assessments</a>
+                                     <a class="ud-menu" href="home-page.php?page=user-browse-assessment">Assessments</a>
+                                 </li>
+
+                                 <li class="nav-item">
+                                 <a class="ud-menu" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                  </li>
                              </ul>
-                             <div class="navbar-btn d-none d-sm-inline-block">
-                             <a class="btn-custom-secondary sign-out" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
 
-
-                             </div>
 
                          <?php else : ?>
 
@@ -97,7 +101,7 @@
 
                      <div class="navbar-btn d-none d-sm-inline-block">
                          <a href="index.php?page=login" class="btn-custom-secondary login-btn">
-                         <i class="fa-sharp fa-solid fa-right-to-bracket"></i>
+                             <i class="fa-sharp fa-solid fa-right-to-bracket"></i>
                              Sign In
                          </a>
                          <!--
@@ -118,9 +122,9 @@
 
  <?php
 
-if (!isset($_SESSION['loggedin'])) {
-    $_SESSION['loggedin'] = false;
-  }
+    if (!isset($_SESSION['loggedin'])) {
+        $_SESSION['loggedin'] = false;
+    }
     if ($_SESSION['loggedin']) {
         echo '<script>document.getElementById("navbar-brand").href = "index.php?page=imccs-home";</script>';
     } else {

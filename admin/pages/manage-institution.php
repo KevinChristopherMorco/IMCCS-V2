@@ -42,7 +42,7 @@
                             ?>
                                 <tr class="table-institution-data">
                                     <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
-                                    <td><a href="javascript:void(0)" class="institution-link" data-id="<?php echo $row['institution_id'] ?>" data-name="<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a></td>
+                                    <td><a href="javascript:void(0)" class="institution-link" data-id="<?php echo $row['institution_id'] ?>" data-name="<?php echo $row['name'] ?>" data-type="<?php echo $row['type'] ?>"><?php echo $row['name'] ?></a></td>
                                     <td><?php echo $row['code'] ?></td>
 
                                     <td> <span class="status"><?php echo $row['status'] ?><span></td>
@@ -86,6 +86,7 @@
         $('.institution-link').click(function() {
             var id = $(this).data('id');
             var name = $(this).data('name');
+            var type = $(this).data('type');
 
 
 
@@ -111,11 +112,12 @@
                         type: "GET",
                         data: {
                             user_id: id,
-                            name: name
+                            name: name,
+                            type:type
                         },
 
                         success: function(data) {
-                            window.location = 'home-admin.php?subpage=view-institution-assessment-summary&institution_id=' + id + '&name=' + name
+                            window.location = 'home-admin.php?subpage=view-institution-assessment-summary&institution_id=' + id + '&name=' + name + '&type=' + type
                         },
                         error: function(xhr, status, error, data) {
 

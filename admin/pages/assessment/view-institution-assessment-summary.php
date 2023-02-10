@@ -1,6 +1,23 @@
 <?php
 $institution_id =  mysqli_real_escape_string($mysqli, $_GET['institution_id']);
 $name =  mysqli_real_escape_string($mysqli, $_GET['name']);
+$type =  mysqli_real_escape_string($mysqli, $_GET['type']);
+
+$level_type = null;
+
+if($type == 'Senior High School'){
+    $level_type = 'Senior High School';
+} else if ($type == 'Junior High School'){
+    $level_type = 'Junior High School';
+
+} else if ($type == 'College'){
+    $level_type = 'College';
+
+} else{
+    $level_type = 'Professional';
+
+}
+
 ?>
 
 
@@ -78,7 +95,7 @@ $name =  mysqli_real_escape_string($mysqli, $_GET['name']);
 <div class="assessment-statistics jumbotron pb-5" style="background-color: #F4F6F7;">
     <div class="container mb-3">
         <?php
-        $selQuestion = "SELECT * FROM assessment_tbl";
+        $selQuestion = "SELECT * FROM assessment_tbl WHERE level_type = '$level_type'";
         $selQuestionRow = mysqli_query($mysqli, $selQuestion);
         ?>
         <select class="form-select" name="institution-view-summary" id="institution-view-summary">
