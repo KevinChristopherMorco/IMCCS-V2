@@ -26,7 +26,7 @@ $checkInstitution->store_result();
 $returnCheckInstitution = $checkInstitution->num_rows;
 
 
-$checkUsername = $mysqli->prepare("SELECT username from student_faculty_profile_tbl WHERE username=?");
+$checkUsername = $mysqli->prepare("SELECT username from admin_profile_tbl WHERE username=?");
 $checkUsername->bind_param('s', $username);
 $checkUsername->execute();
 $checkUsername->store_result();
@@ -82,11 +82,11 @@ if ($data["is_disposable_email"]["value"] === true) {
             $mysqli->rollback();
         } else {
 
-            $stmt = $mysqli->prepare("INSERT INTO user_tbl (email,password, usertype, created_at) VALUES (?, ?, ?, ?)");
+            $stmt = $mysqli->prepare("INSERT INTO admin_tbl (email,password, usertype, created_at) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $email, $hash, $usertype, $timestamp);
             $stmt->execute();
 
-            $stmt = $mysqli->prepare("INSERT INTO student_faculty_profile_tbl (user_id, fname, lname, gender, institution, grade_level, username, contact_no, created_at) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $mysqli->prepare("INSERT INTO admin_profile_tbl (user_id, fname, lname, gender, institution, grade_level, username, contact_no, created_at) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssss", $fname, $lname, $gender, $institution, $grade_level, $username, $contact, $timestamp);
             $stmt->execute();
             echo json_encode(array("Existing Code"));
@@ -184,15 +184,15 @@ if ($data["is_disposable_email"]["value"] === true) {
 </table>
 </html>';
 
-        $conn = new mySqli('localhost', 'u351518056_capstone', 'H7xpO*D>9d', 'u351518056_capstone');
+        $conn = new mySqli('localhost', 'u351518056_capstoneV2', '*DP=G7@!d3', 'u351518056_capstoneV2');
         if ($conn->connect_error) {
             die('Could not connect to the database.');
         }
 
-        $verifyQuery = $conn->query("SELECT * FROM user_tbl WHERE email = '$email'");
+        $verifyQuery = $conn->query("SELECT * FROM admin_tbl WHERE email = '$email'");
 
         if ($verifyQuery->num_rows) {
-            $codeQuery = $conn->query("UPDATE user_tbl  set  token='$token' WHERE email = '$email'");
+            $codeQuery = $conn->query("UPDATE admin_tbl  set  token='$token' WHERE email = '$email'");
 
             $mail->send();
         }

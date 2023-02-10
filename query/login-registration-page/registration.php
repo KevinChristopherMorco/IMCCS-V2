@@ -33,13 +33,13 @@ if (!empty($_POST)) {
     $returnCheckInstitution = $checkInstitution->num_rows;
 
 
-    $checkUsername = $mysqli->prepare("SELECT username from student_faculty_profile_tbl WHERE username=?");
+    $checkUsername = $mysqli->prepare("SELECT username from admin_profile_tbl WHERE username=?");
     $checkUsername->bind_param('s', $username);
     $checkUsername->execute();
     $checkUsername->store_result();
     $returnCheckUsername = $checkUsername->num_rows;
 
-    $checkEmail = $mysqli->prepare("SELECT email from user_tbl WHERE email= ?");
+    $checkEmail = $mysqli->prepare("SELECT email from admin_tbl WHERE email= ?");
     $checkEmail->bind_param('s', $email);
     $checkEmail->execute();
     $checkEmail->store_result();
@@ -62,11 +62,11 @@ if (!empty($_POST)) {
             $mysqli->rollback();
         } else {
 
-            $stmt = $mysqli->prepare("INSERT INTO user_tbl (email,password, usertype, created_at) VALUES (?, ?, ?, ?)");
+            $stmt = $mysqli->prepare("INSERT INTO admin_tbl (email,password, usertype, created_at) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $email, $hash, $usertype, $timestamp);
             $stmt->execute();
 
-            $stmt = $mysqli->prepare("INSERT INTO student_faculty_profile_tbl (user_id, fname, lname,gender, institution, grade_level, username, contact_no, created_at) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $mysqli->prepare("INSERT INTO admin_profile_tbl (user_id, fname, lname,gender, institution, grade_level, username, contact_no, created_at) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssss", $fname, $lname, $gender, $institution, $grade_level, $username, $contact, $timestamp);
             $stmt->execute();
             echo json_encode(array("Existing Code"));
@@ -83,11 +83,11 @@ if (!empty($_POST)) {
 /*
     $checkInstitution = mysqli_query($mysqli, "SELECT name from institution_tbl WHERE name='$institution'");
 
-    $checkEmail = mysqli_query($mysqli, "SELECT email from user_tbl WHERE email='$email'");
+    $checkEmail = mysqli_query($mysqli, "SELECT email from admin_tbl WHERE email='$email'");
     // Insert some values
-    $insert1 = mysqli_query($mysqli, "INSERT INTO user_tbl (email,password, usertype, created_at)
+    $insert1 = mysqli_query($mysqli, "INSERT INTO admin_tbl (email,password, usertype, created_at)
        VALUES ('$email','$hash','$usertype','$date')");
-    $insert2 = mysqli_query($mysqli, "INSERT INTO student_faculty_profile_tbl (user_id, fname, lname, institution,gender, grade_level, username, contact_no, created_at)
+    $insert2 = mysqli_query($mysqli, "INSERT INTO admin_profile_tbl (user_id, fname, lname, institution,gender, grade_level, username, contact_no, created_at)
        VALUES (LAST_INSERT_ID(),'$fname','$lname','$institution','$gender', '$grade_level', '$username', '$contact' ,'$date')");
 
 

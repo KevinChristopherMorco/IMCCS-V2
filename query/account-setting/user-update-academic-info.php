@@ -9,8 +9,8 @@ if (isset($_POST['user_id'])) {
 
 
 
-    $stmt = $mysqli->prepare("UPDATE user_tbl as user
-INNER JOIN student_faculty_profile_tbl as prfl ON user.user_id = prfl.user_id  set  prfl.institution= ?, prfl.grade_level= ? WHERE user.user_id = ?");
+    $stmt = $mysqli->prepare("UPDATE admin_tbl as user
+INNER JOIN admin_profile_tbl as prfl ON user.user_id = prfl.user_id  set  prfl.institution= ?, prfl.grade_level= ? WHERE user.user_id = ?");
 
     $stmt->bind_param("ssi", $institution, $grade_level,  $user_id);
     $stmt->execute();

@@ -2,12 +2,12 @@
 if (isset($_POST['token'])) {
     $token = $_POST['token'];
 
-   $conn = new mySqli('localhost', 'u351518056_capstone', 'H7xpO*D>9d', 'u351518056_capstone');
+   $conn = new mySqli('localhost', 'u351518056_capstoneV2', '*DP=G7@!d3', 'u351518056_capstoneV2');
     if ($conn->connect_error) {
         die('Could not connect to the database');
     }
 
-    $verifyQuery = $conn->query("SELECT * FROM user_tbl WHERE token = '$token'");
+    $verifyQuery = $conn->query("SELECT * FROM admin_tbl WHERE token = '$token'");
 
     if ($verifyQuery->num_rows == 0) {
         exit();
@@ -17,8 +17,8 @@ if (isset($_POST['token'])) {
     $password =  $_POST['newpassword'];
     $hash = password_hash($password, PASSWORD_BCRYPT);
     /*
-        $changeQuery = $conn->query("UPDATE user_tbl as user
-            INNER JOIN student_faculty_profile_tbl as prfl ON user.user_id = prfl.user_id SET user.password = '$hash' WHERE user.token = '$token'");
+        $changeQuery = $conn->query("UPDATE admin_tbl as user
+            INNER JOIN admin_profile_tbl as prfl ON user.user_id = prfl.user_id SET user.password = '$hash' WHERE user.token = '$token'");
 
         if ($changeQuery) {
             echo '<script type="text/javascript">
@@ -28,7 +28,7 @@ if (isset($_POST['token'])) {
         */
 
 
-    $stmt = $conn->prepare("UPDATE user_tbl as user INNER JOIN student_faculty_profile_tbl as prfl ON user.user_id = prfl.user_id SET user.password = ? WHERE user.token = ?");
+    $stmt = $conn->prepare("UPDATE admin_tbl as user INNER JOIN admin_profile_tbl as prfl ON user.user_id = prfl.user_id SET user.password = ? WHERE user.token = ?");
     $stmt->bind_param("ss", $hash, $token);
     $stmt->execute();
 

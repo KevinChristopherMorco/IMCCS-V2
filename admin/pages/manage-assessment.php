@@ -44,8 +44,8 @@
 
                                     <?php
                                     $sql = "SELECT DISTINCT user.*, prfl.*, answer.*, assessment.*, score.*
-                                    FROM user_tbl user
-                                    INNER JOIN student_faculty_profile_tbl prfl
+                                    FROM admin_tbl user
+                                    INNER JOIN admin_profile_tbl prfl
                                     ON user.user_id=prfl.user_id
                                     INNER JOIN assessment_chosen answer
                                     ON user.user_id = answer.user_id
@@ -65,7 +65,7 @@
                                         $eid = $row2['user_id'];
                                         $aid = $row2['assessment_id'];
 
-                                        $test3 = "SELECT * FROM assessment_tbl assessment INNER JOIN assessment_chosen answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN user_tbl user  ON user.user_id=answer.user_id INNER JOIN assessment_score score WHERE  answer.user_id='$eid' AND assessment.assessment_id='$aid' AND score.verdict = 'Passed'";
+                                        $test3 = "SELECT * FROM assessment_tbl assessment INNER JOIN assessment_chosen answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN admin_tbl user  ON user.user_id=answer.user_id INNER JOIN assessment_score score WHERE  answer.user_id='$eid' AND assessment.assessment_id='$aid' AND score.verdict = 'Passed'";
                                         $test4 = mysqli_query($mysqli, $test3);
                                         $row3 = mysqli_fetch_assoc($test4);
 
@@ -128,8 +128,8 @@
 
                                     <?php
                                     $sqlFail = "SELECT DISTINCT user.*, prfl.*, answer.*, assessment.*, score.*
-                                    FROM user_tbl user
-                                    INNER JOIN student_faculty_profile_tbl prfl
+                                    FROM admin_tbl user
+                                    INNER JOIN admin_profile_tbl prfl
                                     ON user.user_id=prfl.user_id
                                     INNER JOIN assessment_chosen answer
                                     ON user.user_id = answer.user_id
@@ -203,8 +203,8 @@
 
                                     <?php
                                     $sql = "SELECT *
-                                   FROM user_tbl user
-                                   INNER JOIN student_faculty_profile_tbl prfl
+                                   FROM admin_tbl user
+                                   INNER JOIN admin_profile_tbl prfl
                                    ON user.user_id=prfl.user_id
                                    INNER JOIN retake_chosen_tbl answer
                                    ON user.user_id = answer.user_id
@@ -228,7 +228,7 @@
                                         $aid = $row2['assessment_id'];
                                         $code = $row2['code'];
 
-                                        $test3 = "SELECT * FROM assessment_tbl assessment INNER JOIN retake_chosen_tbl answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN user_tbl user  ON user.user_id=answer.user_id INNER JOIN retake_score_tbl score WHERE  answer.user_id='$eid' AND assessment.assessment_id='$aid' AND answer.code='$code' AND score.verdict = 'Passed'";
+                                        $test3 = "SELECT * FROM assessment_tbl assessment INNER JOIN retake_chosen_tbl answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN admin_tbl user  ON user.user_id=answer.user_id INNER JOIN retake_score_tbl score WHERE  answer.user_id='$eid' AND assessment.assessment_id='$aid' AND answer.code='$code' AND score.verdict = 'Passed'";
                                         $test4 = mysqli_query($mysqli, $test3);
                                         $row3 = mysqli_fetch_assoc($test4);
 
@@ -285,8 +285,8 @@
 
                                     <?php
                                     $sql = "SELECT *
-                                   FROM user_tbl user
-                                   INNER JOIN student_faculty_profile_tbl prfl
+                                   FROM admin_tbl user
+                                   INNER JOIN admin_profile_tbl prfl
                                    ON user.user_id=prfl.user_id
                                    INNER JOIN retake_chosen_tbl answer
                                    ON user.user_id = answer.user_id
@@ -310,7 +310,7 @@
                                         $aid = $row2['assessment_id'];
                                         $code = $row2['code'];
 
-                                        $test3 = "SELECT * FROM assessment_tbl assessment INNER JOIN retake_chosen_tbl answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN user_tbl user  ON user.user_id=answer.user_id INNER JOIN retake_score_tbl score WHERE  answer.user_id='$eid' AND assessment.assessment_id='$aid' AND answer.code='$code' AND score.verdict = 'Passed'";
+                                        $test3 = "SELECT * FROM assessment_tbl assessment INNER JOIN retake_chosen_tbl answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN admin_tbl user  ON user.user_id=answer.user_id INNER JOIN retake_score_tbl score WHERE  answer.user_id='$eid' AND assessment.assessment_id='$aid' AND answer.code='$code' AND score.verdict = 'Passed'";
                                         $test4 = mysqli_query($mysqli, $test3);
                                         $row3 = mysqli_fetch_assoc($test4);
 

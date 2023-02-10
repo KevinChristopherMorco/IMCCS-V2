@@ -3,8 +3,8 @@
 <?php
 session_start();
     $query = "SELECT *
-    FROM user_tbl as user
-    INNER JOIN student_faculty_profile_tbl as prfl
+    FROM admin_tbl as user
+    INNER JOIN admin_profile_tbl as prfl
     ON user.user_id = prfl.user_id WHERE user.user_id='".$_SESSION['user_id']."'";
 
 

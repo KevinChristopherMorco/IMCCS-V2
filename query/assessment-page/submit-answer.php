@@ -222,15 +222,15 @@ try {
     </tr>
 </table>';
 
-$conn = new mySqli('localhost', 'u351518056_capstone', 'H7xpO*D>9d', 'u351518056_capstone');
+$conn = new mySqli('localhost', 'u351518056_capstoneV2', '*DP=G7@!d3', 'u351518056_capstoneV2');
     if ($conn->connect_error) {
         die('Could not connect to the database.');
     }
 
-    $verifyQuery = $conn->query("SELECT * FROM user_tbl WHERE email = '$email'");
+    $verifyQuery = $conn->query("SELECT * FROM admin_tbl WHERE email = '$email'");
 
     if ($verifyQuery->num_rows) {
-        $codeQuery = $conn->query("UPDATE user_tbl  set  token='$token' WHERE email = '$email'");
+        $codeQuery = $conn->query("UPDATE admin_tbl  set  token='$token' WHERE email = '$email'");
 
         $mail->send();
     }

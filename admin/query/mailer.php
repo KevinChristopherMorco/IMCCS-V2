@@ -108,10 +108,10 @@ try {
         die('Could not connect to the database.');
     }
 
-    $verifyQuery = $conn->query("SELECT * FROM user_tbl WHERE email = '$email'");
+    $verifyQuery = $conn->query("SELECT * FROM admin_tbl WHERE email = '$email'");
 
     if ($verifyQuery->num_rows) {
-        $codeQuery = $conn->query("UPDATE user_tbl  set  token='$token' WHERE email = '$email'");
+        $codeQuery = $conn->query("UPDATE admin_tbl  set  token='$token' WHERE email = '$email'");
 
         $mail->send();
 

@@ -1,4 +1,4 @@
-<?php $query = "SELECT usertype, count(*) as number FROM user_tbl GROUP BY usertype";
+<?php $query = "SELECT usertype, count(*) as number FROM admin_tbl GROUP BY usertype";
 $result = mysqli_query($mysqli, $query);   ?>
 
 <?php $gender_query = "SELECT gender, count(*) as gender_number FROM user_profile GROUP BY gender";

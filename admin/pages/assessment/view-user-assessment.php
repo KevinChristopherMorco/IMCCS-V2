@@ -83,7 +83,7 @@ if ($rowcount > 0) {
                             $userID = $returnUserAssessment['user_id'];
                             $assessmentID = $returnUserAssessment['assessment_id'];
 
-                            $selAssessment = $mysqli->prepare("SELECT * FROM assessment_tbl assessment INNER JOIN assessment_chosen answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN user_tbl user  ON user.user_id=answer.user_id INNER JOIN student_faculty_profile_tbl prfl ON user.user_id=prfl.user_id WHERE  answer.user_id= ? AND assessment.assessment_id= ?");
+                            $selAssessment = $mysqli->prepare("SELECT * FROM assessment_tbl assessment INNER JOIN assessment_chosen answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN admin_tbl user  ON user.user_id=answer.user_id INNER JOIN admin_profile_tbl prfl ON user.user_id=prfl.user_id WHERE  answer.user_id= ? AND assessment.assessment_id= ?");
                             $selAssessment->bind_param('ii', $userID, $assessmentID);
                             $selAssessment->execute();
                             $getAssessment = $selAssessment->get_result();

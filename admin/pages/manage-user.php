@@ -56,8 +56,8 @@
                                 <tbody>
                                     <?php
                                     $sql = "SELECT *
-                            FROM user_tbl as user
-                            INNER JOIN student_faculty_profile_tbl as prfl
+                            FROM admin_tbl as user
+                            INNER JOIN admin_profile_tbl as prfl
                             ON user.user_id = prfl.user_id WHERE user.usertype = 'Faculty'";
                                     $result = mysqli_query($mysqli, $sql);
 
@@ -104,8 +104,8 @@
                                 <tbody>
                                     <?php
                                     $sql2 = "SELECT *
-                            FROM user_tbl as user
-                            INNER JOIN student_faculty_profile_tbl as prfl
+                            FROM admin_tbl as user
+                            INNER JOIN admin_profile_tbl as prfl
                             ON user.user_id = prfl.user_id WHERE user.usertype = 'Student'";
                                     $result2 = mysqli_query($mysqli, $sql2);
 
@@ -152,8 +152,8 @@
                                 <tbody>
                                     <?php
                                     $sql2 = "SELECT *
-                            FROM user_tbl as user
-                            INNER JOIN student_faculty_profile_tbl as prfl
+                            FROM admin_tbl as user
+                            INNER JOIN admin_profile_tbl as prfl
                             ON user.user_id = prfl.user_id WHERE user.usertype = 'Personnel'";
                                     $result2 = mysqli_query($mysqli, $sql2);
 

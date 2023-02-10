@@ -5,8 +5,8 @@
 $user_id = $_POST['user_id'];
 /*
     $query="SELECT *
-    FROM user_tbl as user
-    INNER JOIN student_faculty_profile_tbl as prfl
+    FROM admin_tbl as user
+    INNER JOIN admin_profile_tbl as prfl
     ON user.user_id = prfl.user_id WHERE user.user_id = $user_id";
 
 
@@ -25,7 +25,7 @@ $user_id = $_POST['user_id'];
     }
  */
 
-$stmt = $mysqli->prepare("SELECT * FROM user_tbl as user INNER JOIN student_faculty_profile_tbl as prfl ON user.user_id = prfl.user_id WHERE user.user_id = ?");
+$stmt = $mysqli->prepare("SELECT * FROM admin_tbl as user INNER JOIN admin_profile_tbl as prfl ON user.user_id = prfl.user_id WHERE user.user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

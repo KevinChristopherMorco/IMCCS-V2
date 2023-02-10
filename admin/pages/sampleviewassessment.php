@@ -161,11 +161,11 @@ if ($rowcount > 0) {
                         $userID = $getRow2['user_id'];
                         $assessmentID = $getRow2['assessment_id'];
 
-                        $view2 = "SELECT * FROM assessment_tbl assessment INNER JOIN assessment_chosen answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN user_tbl user  ON user.user_id=answer.user_id INNER JOIN student_faculty_profile_tbl prfl ON user.user_id=prfl.user_id WHERE  answer.user_id='$userID' AND assessment.assessment_id='$assessmentID'";
+                        $view2 = "SELECT * FROM assessment_tbl assessment INNER JOIN assessment_chosen answer ON assessment.assessment_id=answer.assessment_id  INNER JOIN admin_tbl user  ON user.user_id=answer.user_id INNER JOIN admin_profile_tbl prfl ON user.user_id=prfl.user_id WHERE  answer.user_id='$userID' AND assessment.assessment_id='$assessmentID'";
                         $getView2 = mysqli_query($mysqli, $view2);
                         $getRow3 = mysqli_fetch_assoc($getView2); ?>
 
-                        <?php $queryScore = "SELECT * FROM assessment_question_tbl question INNER JOIN answer_tbl answer ON question.question_id = answer.question_id AND question.assessment_answer = answer.question_answer INNER JOIN user_tbl user ON user.user_id=answer.user_id  WHERE answer.user_id='$userID' AND answer.assessment_id='$assessmentID'";
+                        <?php $queryScore = "SELECT * FROM assessment_question_tbl question INNER JOIN answer_tbl answer ON question.question_id = answer.question_id AND question.assessment_answer = answer.question_answer INNER JOIN admin_tbl user ON user.user_id=answer.user_id  WHERE answer.user_id='$userID' AND answer.assessment_id='$assessmentID'";
 
                         $resultScore = mysqli_query($mysqli, $queryScore);
                         $rowCount = mysqli_num_rows($resultScore);

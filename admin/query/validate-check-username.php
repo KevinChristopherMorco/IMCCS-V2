@@ -5,7 +5,7 @@
 if(isset($_POST['username'])){
    $username = mysqli_real_escape_string($mysqli,$_POST['username']);
 
-   $query = "SELECT COUNT(*) as username_cnt FROM student_faculty_profile_tbl WHERE username = ?";
+   $query = "SELECT COUNT(*) as username_cnt FROM admin_profile_tbl WHERE username = ?";
 
    $stmt = $mysqli->prepare($query);
    $stmt->bind_param('s', $username);

@@ -4,7 +4,7 @@
 
 if(isset($_POST['username'])){
    $username = mysqli_real_escape_string($mysqli,$_POST['username']);
-   $checkUsername = $mysqli->prepare("SELECT count(*) as username_cnt from student_faculty_profile_tbl where username= ?");
+   $checkUsername = $mysqli->prepare("SELECT count(*) as username_cnt from admin_profile_tbl where username= ?");
    $checkUsername->bind_param('s', $username);
    $checkUsername->execute();
    $returnCheckUsername = $checkUsername->get_result();

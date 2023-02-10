@@ -5,7 +5,7 @@
 if (isset($_POST['contact'])) {
    $contact = mysqli_real_escape_string($mysqli, $_POST['contact']);
 
-   $query = "SELECT COUNT(*) as contact_no_cnt FROM student_faculty_profile_tbl WHERE contact_no = ?";
+   $query = "SELECT COUNT(*) as contact_no_cnt FROM admin_profile_tbl WHERE contact_no = ?";
 
    $stmt = $mysqli->prepare($query);
    $stmt->bind_param('s', $contact);

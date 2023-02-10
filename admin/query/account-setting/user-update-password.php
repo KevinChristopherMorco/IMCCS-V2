@@ -9,10 +9,10 @@ if (isset($_POST['user_id'])) {
     $password = mysqli_real_escape_string($mysqli, $_POST['password']);
     $hash = password_hash($password, PASSWORD_BCRYPT);
 
-    $query = "UPDATE user_tbl as user
-INNER JOIN student_faculty_profile_tbl as prfl ON user.user_id = prfl.user_id  set  user.password='" . $hash . "' WHERE user.user_id = '" . $_POST['user_id'] . "'"; // update form data from the database
+    $query = "UPDATE admin_tbl as user
+INNER JOIN admin_profile_tbl as prfl ON user.user_id = prfl.user_id  set  user.password='" . $hash . "' WHERE user.user_id = '" . $_POST['user_id'] . "'"; // update form data from the database
 
-$row="select * FROM user_tbl WHERE user_id = '" . $_POST['user_id'] . "' ";
+$row="select * FROM admin_tbl WHERE user_id = '" . $_POST['user_id'] . "' ";
     $selPasswordRow = mysqli_query($mysqli, $row);
     $rowPassword = mysqli_fetch_assoc($selPasswordRow);
 

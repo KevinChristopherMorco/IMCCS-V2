@@ -8,7 +8,7 @@ if (isset($_POST['login'])) {
     $password =  $_POST['password'];
 
 
-    $sql = $mysqli->prepare("SELECT * FROM user_tbl INNER JOIN student_faculty_profile_tbl as prfl INNER JOIN institution_tbl as institution ON institution.name = prfl.institution WHERE user_tbl.user_id = prfl.user_id AND email = ?");
+    $sql = $mysqli->prepare("SELECT * FROM admin_tbl INNER JOIN admin_profile_tbl as prfl INNER JOIN institution_tbl as institution ON institution.name = prfl.institution WHERE admin_tbl.user_id = prfl.user_id AND email = ?");
     $sql->bind_param('s', $email);
     $sql->execute();
     $result = $sql->get_result();

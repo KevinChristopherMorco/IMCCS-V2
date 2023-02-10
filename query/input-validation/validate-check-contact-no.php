@@ -4,7 +4,7 @@
 
 if (isset($_POST['contact'])) {
    $contact = mysqli_real_escape_string($mysqli, $_POST['contact']);
-   $checkContact = $mysqli->prepare("SELECT count(*) as contact_no_cnt from student_faculty_profile_tbl where contact_no=?");
+   $checkContact = $mysqli->prepare("SELECT count(*) as contact_no_cnt from admin_profile_tbl where contact_no=?");
    $checkContact->bind_param('s', $contact);
    $checkContact->execute();
    $returnCheckContact = $checkContact->get_result();

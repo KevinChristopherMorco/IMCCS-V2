@@ -6,7 +6,7 @@ session_start();
 /*
 foreach ($_POST['student_id'] as $key => $value) {
 
-$sql = "DELETE FROM user_tbl WHERE user_id='" . $value . "'";
+$sql = "DELETE FROM admin_tbl WHERE user_id='" . $value . "'";
 if (mysqli_query($mysqli, $sql)) {
     echo "Record deleted successfully";
 } else {
@@ -16,7 +16,7 @@ if (mysqli_query($mysqli, $sql)) {
 
 foreach ($_POST['student_id'] as $key => $value) {
 
-    if ($stmt = $mysqli->prepare("DELETE FROM user_tbl WHERE user_id = ?")) {
+    if ($stmt = $mysqli->prepare("DELETE FROM admin_tbl WHERE user_id = ?")) {
         $stmt->bind_param("i", $value);
         $stmt->execute();
         echo "Record deleted successfully";

@@ -5,7 +5,7 @@
 if(isset($_POST['email'])){
    $email = mysqli_real_escape_string($mysqli,$_POST['email']);
 
-   $query = "SELECT COUNT(*) as email_cnt FROM user_tbl WHERE email = ?";
+   $query = "SELECT COUNT(*) as email_cnt FROM admin_tbl WHERE email = ?";
 
    $stmt = $mysqli->prepare($query);
    $stmt->bind_param('s', $email);
