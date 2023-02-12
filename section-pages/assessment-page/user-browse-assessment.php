@@ -85,10 +85,25 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
 
                         </div>
                     </div>
+
+                    <div class="container">
+                        <footer class="py-3 my-4">
+                            <form action="javascript:void(0)" class="user-check-assessment" id="user-check-assessment">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" id="assessment-code" class="form-control" placeholder="Enter your assessment code">
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="submit" class="btn btn-warning" value="Check">
+                                    </div>
+                                </div>
+                            </form>
+                        </footer>
+                    </div>
                 </div>
 
                 <div id="retake-catalog" class="tab-pane main-topic-section fade in">
-                <div class="assessment-card-container ">
+                    <div class="assessment-card-container ">
                         <div class="retake-assessment-list row" style="width: 100%;">
 
                         </div>
@@ -96,4 +111,29 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                 </div>
             </div>
         </div>
+
+
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('#user-check-assessment').submit(function(event) {
+            event.preventDefault();
+
+            var assessment_code = $('#assessment-code').val();
+
+            $.ajax({
+                type: 'GET',
+                url: 'query/assessment-page/search-assessment.php',
+                data: {
+                    assessment_code: assessment_code
+                },
+                success: function(result) {
+                    window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;                },
+                error: function() {
+                    $('#result').html('An error occurred while checking the code.');
+                }
+            });
+        });
+    });
+</script>

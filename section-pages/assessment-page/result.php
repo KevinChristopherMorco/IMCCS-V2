@@ -14,10 +14,11 @@ if (isset($_SESSION['user_id'])) {
     $user_id =  mysqli_real_escape_string($mysqli, $_SESSION['user_id']);
     $institution_id =  mysqli_real_escape_string($mysqli, $_SESSION['institution_id']);
 
-    $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
+   // $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
+    $assessment_code =  mysqli_real_escape_string($mysqli, $_GET['assessment_code']);
 
-    $queryChosenAssessment = $mysqli->prepare("SELECT * FROM assessment_tbl WHERE assessment_id= ?");
-    $queryChosenAssessment->bind_param('i', $assessment_id);
+    $queryChosenAssessment = $mysqli->prepare("SELECT * FROM answer_tbl INNER JOIN assessment_tbl ON assessment_tbl.assessment_id = answer_tbl.assessment_id WHERE assessment_code = ?");
+    $queryChosenAssessment->bind_param('s', $assessment_code);
     $queryChosenAssessment->execute();
     $resultChosenAssessment = $queryChosenAssessment->get_result();
     $returnChosenAssessment = $resultChosenAssessment->fetch_assoc();
@@ -43,14 +44,14 @@ if (isset($_SESSION['user_id'])) {
 
     <?php
 
-    $queryScore = $mysqli->prepare("SELECT *  FROM assessment_score WHERE user_id= ? AND assessment_id = ? AND institution_id = ? ");
-    $queryScore->bind_param('ssi', $user_id, $assessment_id,$institution_id);
+    $queryScore = $mysqli->prepare("SELECT *  FROM assessment_score WHERE user_id= ? AND assessment_code = ? AND institution_id = ? ");
+    $queryScore->bind_param('ssi', $user_id, $assessment_code,$institution_id);
     $queryScore->execute();
     $resultScore = $queryScore->get_result();
     $returnScore = $resultScore->fetch_assoc();
 
-    $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM answer_tbl WHERE assessment_id = ? AND user_id = ? AND institution_id = ?");
-    $selOver->bind_param('isi', $assessment_id, $user_id, $institution_id );
+    $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM answer_tbl WHERE assessment_code = ? AND user_id = ? AND institution_id = ?");
+    $selOver->bind_param('ssi', $assessment_code, $user_id, $institution_id );
     $selOver->execute();
     $resultOver = $selOver->get_result();
     $returnCountOver = $resultOver->fetch_assoc();
@@ -149,9 +150,9 @@ if (isset($_SESSION['user_id'])) {
           GROUP BY question_id
         ) AS subquery ON subquery.question_id = question.question_id
         LEFT JOIN assessment_answer_tbl assessment_answer ON question.question_id = assessment_answer.question_id AND answer.question_answer = assessment_answer.assessment_answer
-        WHERE question.assessment_id=? AND answer.user_id=? AND answer.institution_id=?
+        WHERE   answer.user_id=? AND answer.institution_id=?
         ORDER BY question.question_id ASC");
-        $selQuestion->bind_param('iss', $assessment_id, $user_id, $institution_id);
+        $selQuestion->bind_param('ss',  $user_id, $institution_id);
         $selQuestion->execute();
         $selQuestionRow = $selQuestion->get_result();
 

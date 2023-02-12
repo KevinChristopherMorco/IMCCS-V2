@@ -1191,6 +1191,7 @@ $('#assessment-exam').submit(function (event) {
         var fname = $('#first-name').val();
         var assessment_title = $('#assessment-title').val();
         var user_control_code = $('#user-control-code').val();
+        var assessment_code = $('#assessment-code').val();
 
         var date_deadline = $(this).closest('form').find('input[name=date_id]').val();
 
@@ -1277,6 +1278,7 @@ $('#assessment-exam').submit(function (event) {
                         assessment_title: assessment_title,
                         institution_id: institution_id,
                         user_control_code: user_control_code,
+                        assessment_code: assessment_code,
                         point: point,
                         date_deadline: date_deadline,
                         date_submit: date_submit,
@@ -1330,7 +1332,7 @@ $('#assessment-exam').submit(function (event) {
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             }).then(function () {
-                                window.location = 'home-page.php?page=result&assessment_id=' + assessment_id;
+                                window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;
                             })
                         } else{
                             Swal.fire({
@@ -1340,7 +1342,7 @@ $('#assessment-exam').submit(function (event) {
                                 confirmButtonColor: '#800000',
                                 confirmButtonText: 'OK'
                             }).then(function () {
-                                window.location = 'home-page.php?page=result&assessment_id=' + assessment_id;
+                                window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;
                             })
 
                         }

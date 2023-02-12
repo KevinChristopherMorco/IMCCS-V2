@@ -50,6 +50,32 @@ if (isset($_GET['assessment_id'])) {
     if ($date != NULL) {
         $returnDateSubmit = date("Y-m-d H:i:s", strtotime($date));
     }
+
+    function generateCode() {
+        $code = "";
+        $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        $date = new DateTime();
+        $minutes = str_pad(base_convert($date->format('i'), 10, 36), 2, '0', STR_PAD_LEFT);
+        $seconds = str_pad(base_convert($date->format('s'), 10, 36), 2, '0', STR_PAD_LEFT);
+
+        for ($j = 0; $j < 5; $j++) {
+          for ($i = 0; $i < 4; $i++) {
+            $code .= $possible[rand(0, strlen($possible) - 1)];
+          }
+          if ($j === 4) {
+            $code .= $minutes . $seconds;
+          } else {
+            $code .= '-';
+          }
+        }
+
+        return $code;
+      }
+
+      // Generate a unique code
+      $code = generateCode();
+
+      // Log the generated code to the console
 }
 
 ?>
@@ -153,6 +179,7 @@ if (isset($_GET['assessment_id'])) {
                                 <input type="hidden" name="question_id" id="question-id" value="<?php echo $row['question_id']; ?>">
                                 <input type="hidden" name="institution_id" id="institution-id" value="<?php echo $_SESSION['institution_id']; ?>">
                                 <input type="hidden" name="point" id="point" value="<?php echo $row['point']; ?>">
+                                <input type="hidden" name="assessment-code" id="assessment-code" value="<?php echo $code; ?>">
 
 
                             </div>
