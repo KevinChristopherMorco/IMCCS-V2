@@ -92,6 +92,9 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                                 <div class="row">
                                     <div class="col-10">
                                         <input type="text" id="assessment-code" class="form-control" placeholder="Enter your assessment code">
+                                        <input type="hidden" id="check-user-id" class="form-control" value="<?php echo $_SESSION['user_id'] ?>">
+                                        <input type="hidden" id="check-user-institution-id" class="form-control" value="<?php echo $_SESSION['institution_id'] ?>">
+
                                     </div>
                                     <div class="col-2">
                                         <input type="submit" class="btn btn-warning" value="Check">
@@ -121,15 +124,33 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
             event.preventDefault();
 
             var assessment_code = $('#assessment-code').val();
+            var user_id = $('#check-user-id').val();
+            var institution_id = $('#check-user-institution-id').val();
+
 
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: 'query/assessment-page/search-assessment.php',
                 data: {
-                    assessment_code: assessment_code
+                    assessment_code: assessment_code,
+                    user_id: user_id,
+                    institution_id: institution_id
+
                 },
-                success: function(result) {
-                    window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;                },
+                success: function(data) {
+                    console.log(data)
+                    if (data == 'Valid') {
+                        window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;
+                    } else {
+                        Swal.fire({
+                            title: 'Wrong Control Number',
+                            text: "The control number you've entered is incorrect. ",
+                            icon: 'error',
+                            confirmButtonColor: '#800000',
+                            confirmButtonText: 'OK'
+                        })
+                    }
+                },
                 error: function() {
                     $('#result').html('An error occurred while checking the code.');
                 }

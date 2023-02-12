@@ -1,24 +1,25 @@
 <?php
 include_once('../../database/config.php');
 
-if (isset($_POST['code'])) {
-    $code = mysqli_real_escape_string($mysqli, $_POST['code']);
-    $checkCode = $mysqli->prepare("SELECT assessment_code from answer_tbl");
-    $checkCode->bind_param('s', $code);
+if (isset($_POST['assessment_code'])) {
+    $assessment_code = mysqli_real_escape_string($mysqli, $_POST['assessment_code']);
+    $user_id = mysqli_real_escape_string($mysqli, $_POST['user_id']);
+    $institution_id = mysqli_real_escape_string($mysqli, $_POST['institution_id']);
+
+    $checkCode = $mysqli->prepare("SELECT assessment_code, count(*) as count_code  from assessment_chosen WHERE user_id = ? AND institution_id = ? AND assessment_code = ?");
+    $checkCode->bind_param('sss', $user_id, $institution_id, $assessment_code);
     $checkCode->execute();
     $returncheckCode = $checkCode->get_result();
     $row = $returncheckCode->fetch_assoc();
 
-   /* $count = $row['contact_no_cnt'];
+    $count = $row['count_code'];
+
 
     if ($count > 0) {
-       echo json_encode(array("This Number is Already Registered"));
+        echo 'Valid';
     } else {
-       echo json_encode(array("This Number Doesn't Exist"));
-    }*/
+        echo 'Invalid';
+    }
 
     die;
- }
-
-
-?>
+}
