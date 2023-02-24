@@ -14,11 +14,34 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
     </div>
 </section>
 <div class="d-flex justify-content-end mt-4 px-4">
+    <!--
     <form class='searchbox'>
         <input class="form-control assessment searchbar" type="text" placeholder="Search Assessments" name="search">
+    </form>-->
+
+    <form action="javascript:void(0)" class="user-check-assessment" id="user-check-assessment">
+        <div class="row g-0">
+            <div class="col-10">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" id="assessment-code" class="form-control" placeholder="Enter Assessment Code">
+                        <input type="hidden" id="check-user-id" class="form-control" value="<?php echo $_SESSION['user_id'] ?>">
+                        <input type="hidden" id="check-user-institution-id" class="form-control" value="<?php echo $_SESSION['institution_id'] ?>">
+                        <div class="input-group-addon">
+                            <button type="submit" class="btn btn-success" style="margin-right: 5px;"><i class="fa-solid fa-magnifying-glass"></i> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-warning btn-history" type="button">History</button>
+            </div>
+        </div>
     </form>
 
 </div>
+
+
 
 <section class="user-browse-assessment">
     <div class="row">
@@ -86,7 +109,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                         </div>
                     </div>
 
-                    <div class="container">
+                    <!--  <div class="container">
                         <footer class="py-3 my-4">
                             <form action="javascript:void(0)" class="user-check-assessment" id="user-check-assessment">
                                 <div class="row">
@@ -102,7 +125,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                                 </div>
                             </form>
                         </footer>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div id="retake-catalog" class="tab-pane main-topic-section fade in">
@@ -141,6 +164,8 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                     console.log(data)
                     if (data == 'Valid') {
                         window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;
+                    } else if (data == 'Valids') {
+                        window.location = 'home-page.php?page=retake-result&assessment_id=' + 47 + ' &code=' + assessment_code;
                     } else {
                         Swal.fire({
                             title: 'Wrong Control Number',

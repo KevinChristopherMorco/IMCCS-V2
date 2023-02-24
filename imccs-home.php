@@ -1,6 +1,6 @@
 <?php
-    include_once('modal/register-user.php');
-    ?>
+include_once('modal/register-user.php');
+?>
 <div class="imccs-home" id="imccs-home">
     <?php
     include_once('query/login-registration-page/login-query.php');
@@ -16,6 +16,8 @@
     <?php
     include_once('modal/register-institution.html');
     ?>
+
+
     <!-- PHP CODE USED FOR LOADING DYNAMICALLY PAGES WITHOUT RELOADING THE WHOLE ROUTE-->
 
     <?php
@@ -129,7 +131,7 @@
                     id: id,
                     bdate: bdate,
                     gender: gender,
-                    institution_id:institution_id
+                    institution_id: institution_id
                 },
                 success: function(data) {
                     $('#myModalss').modal("hide");

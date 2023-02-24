@@ -126,7 +126,9 @@ if (!isset($_SESSION['loggedin'])) {
     }
     ?>
 
-
+    <?php
+    include('modal/past-result.php');
+    ?>
     <?php include('templates/footer-elements.php') ?>
 
     <script>
@@ -209,6 +211,14 @@ if (!isset($_SESSION['loggedin'])) {
         });
 
 
+        $(document).ready(function() {
+
+            $(document).on('click', '.btn-history', function() {
+                $('#past-result').modal("show");
+            });
+        });
+
+
         $(function() {
             $('#welcome-help').modal({
                 show: false
@@ -224,7 +234,6 @@ if (!isset($_SESSION['loggedin'])) {
                 $('#myVideo')[0].paused ? $('#myVideo')[0].play() : $('#myVideo')[0].pause();
             });
         });
-
     </script>
 
     <script>
