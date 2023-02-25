@@ -58,11 +58,11 @@ if (isset($_GET['assessment_id'])) {
         $minutes = str_pad(base_convert($date->format('i'), 10, 36), 2, '0', STR_PAD_LEFT);
         $seconds = str_pad(base_convert($date->format('s'), 10, 36), 2, '0', STR_PAD_LEFT);
 
-        for ($j = 0; $j < 5; $j++) {
+        for ($j = 0; $j < 4; $j++) {
           for ($i = 0; $i < 4; $i++) {
             $code .= $possible[rand(0, strlen($possible) - 1)];
           }
-          if ($j === 4) {
+          if ($j === 3) {
             $code .= $minutes . $seconds;
           } else {
             $code .= '-';

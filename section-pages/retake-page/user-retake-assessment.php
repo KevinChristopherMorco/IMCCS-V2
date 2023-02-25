@@ -52,8 +52,31 @@ if (isset($_GET['assessment_id'])) {
 
     }
 
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    $code = substr(str_shuffle($chars), 0, 8);
+    function generateCode() {
+        $code = "";
+        $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        $date = new DateTime();
+        $minutes = str_pad(base_convert($date->format('i'), 10, 36), 2, '0', STR_PAD_LEFT);
+        $seconds = str_pad(base_convert($date->format('s'), 10, 36), 2, '0', STR_PAD_LEFT);
+
+        for ($j = 0; $j < 4; $j++) {
+          for ($i = 0; $i < 4; $i++) {
+            $code .= $possible[rand(0, strlen($possible) - 1)];
+          }
+          if ($j === 3) {
+            $code .= $minutes . $seconds;
+          } else {
+            $code .= '-';
+          }
+        }
+
+        return $code;
+      }
+
+      // Generate a unique code
+      $code = generateCode();
+
+      // Log the generated code to the console
 }
 
 ?>
