@@ -165,7 +165,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                     if (data == 'Valid') {
                         window.location = 'home-page.php?page=result&assessment_code=' + assessment_code;
                     } else if (data == 'Valids') {
-                        window.location = 'home-page.php?page=retake-result&assessment_id=' + 47 + ' &code=' + assessment_code;
+                        window.location = 'home-page.php?page=retake-result&code=' + assessment_code;
                     } else {
                         Swal.fire({
                             title: 'Wrong Control Number',

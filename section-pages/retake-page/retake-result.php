@@ -12,11 +12,11 @@
 if (isset($_SESSION['user_id'])) {
 
     $user_id =  mysqli_real_escape_string($mysqli, $_SESSION['user_id']);
-    $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
+  //  $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
     $code =  mysqli_real_escape_string($mysqli, $_GET['code']);
 
-    $queryChosenAssessment = $mysqli->prepare("SELECT * FROM assessment_tbl WHERE assessment_id= ?");
-    $queryChosenAssessment->bind_param('i', $assessment_id);
+    $queryChosenAssessment = $mysqli->prepare("SELECT * FROM retake_answer_tbl INNER JOIN assessment_tbl ON assessment_tbl.assessment_id = retake_answer_tbl.assessment_id WHERE code = ?");
+    $queryChosenAssessment->bind_param('s', $code);
     $queryChosenAssessment->execute();
     $resultChosenAssessment = $queryChosenAssessment->get_result();
     $returnChosenAssessment = $resultChosenAssessment->fetch_assoc();
@@ -47,8 +47,8 @@ if (isset($_SESSION['user_id'])) {
     $resultRetake = $queryRetake->get_result();
     $retake = $resultRetake->fetch_assoc();
 
-    $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM retake_answer_tbl WHERE assessment_id = ? AND user_id = ? AND code = ? ");
-    $selOver->bind_param('iss', $assessment_id, $user_id, $code);
+    $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM retake_answer_tbl WHERE user_id = ? AND code = ? ");
+    $selOver->bind_param('ss', $user_id, $code);
     $selOver->execute();
     $resultOver = $selOver->get_result();
     $returnCountOver = $resultOver->fetch_assoc();
@@ -56,8 +56,8 @@ if (isset($_SESSION['user_id'])) {
     ?>
 
     <?php
-    $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM retake_score_tbl WHERE user_id = ?  AND assessment_id = ? ");
-    $checkAssessmentChosen->bind_param('ii', $user_id, $assessment_id);
+    $checkAssessmentChosen = $mysqli->prepare("SELECT * FROM retake_score_tbl WHERE user_id = ?  AND code = ? ");
+    $checkAssessmentChosen->bind_param('ss', $user_id, $code);
     $checkAssessmentChosen->execute();
     $rowcount = $checkAssessmentChosen->get_result();
     ?>
@@ -151,9 +151,9 @@ if (isset($_SESSION['user_id'])) {
           GROUP BY question_id
         ) AS subquery ON subquery.question_id = question.question_id
         LEFT JOIN assessment_answer_tbl assessment_answer ON question.question_id = assessment_answer.question_id AND answer.question_answer = assessment_answer.assessment_answer
-        WHERE question.assessment_id=? AND answer.user_id=? AND answer.code = ?
+        WHERE answer.user_id=? AND answer.code = ?
         ORDER BY question.question_id ASC");
-        $selQuestion->bind_param('iss', $assessment_id, $user_id, $code);
+        $selQuestion->bind_param('ss', $user_id, $code);
         $selQuestion->execute();
         $selQuestionRow = $selQuestion->get_result();
         while ($row = $selQuestionRow->fetch_assoc()) { ?>
