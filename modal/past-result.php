@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content modal-lg">
             <div class="modal-header modal-lg">
-                <h5 class="modal-title">Past Results</h5>
+                <h5 class="modal-title">Assessment Results History</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -38,10 +38,11 @@
                             <?php } ?>
 
                         <?php
-                    } else {
-                        // Display "no records" message
-                        echo "No records found.";
-                    }
+                    } else { ?>
+                            <div class="text-center mt-4">
+                                <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt="">No Pre Assessment Taken</p>
+                            </div>
+                        <?php   }
 
                         ?>
 
@@ -79,10 +80,11 @@
 
                                     <?php } ?>
                                 <?php
-                            } else {
-                                // Display "no records" message
-                                echo "No records found.";
-                            }
+                            } else { ?>
+                               <div class="text-center mt-4">
+                                <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt="">No Post Assessment Taken</p>
+                            </div>
+                         <?php   }
 
                                 ?>
                                     </tbody>
@@ -112,7 +114,3 @@
         });
     });
 </script>
-
-
-
-
