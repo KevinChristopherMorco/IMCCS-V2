@@ -906,6 +906,15 @@ h5.wrong-answer i {
   color: red;
 }
 
+.pre-assessment-breadcrumb li.active a{
+  color: #000;
+  font-weight: bolder;
+}
+.post-assessment-breadcrumb li.active a{
+  color: #000;
+  font-weight: bolder;
+}
+
 
 /* RESULTS ASSESSMENT END */
 

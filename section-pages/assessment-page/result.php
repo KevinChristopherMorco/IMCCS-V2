@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
     $user_id =  mysqli_real_escape_string($mysqli, $_SESSION['user_id']);
     $institution_id =  mysqli_real_escape_string($mysqli, $_SESSION['institution_id']);
 
-   // $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
+    // $assessment_id =  mysqli_real_escape_string($mysqli, $_GET['assessment_id']);
     $assessment_code =  mysqli_real_escape_string($mysqli, $_GET['assessment_code']);
 
     $queryChosenAssessment = $mysqli->prepare("SELECT * FROM answer_tbl INNER JOIN assessment_tbl ON assessment_tbl.assessment_id = answer_tbl.assessment_id WHERE assessment_code = ?");
@@ -45,13 +45,13 @@ if (isset($_SESSION['user_id'])) {
     <?php
 
     $queryScore = $mysqli->prepare("SELECT *  FROM assessment_score WHERE user_id= ? AND assessment_code = ? AND institution_id = ? ");
-    $queryScore->bind_param('ssi', $user_id, $assessment_code,$institution_id);
+    $queryScore->bind_param('ssi', $user_id, $assessment_code, $institution_id);
     $queryScore->execute();
     $resultScore = $queryScore->get_result();
     $returnScore = $resultScore->fetch_assoc();
 
     $selOver = $mysqli->prepare("SELECT SUM(point) as point  FROM answer_tbl WHERE assessment_code = ? AND user_id = ? AND institution_id = ?");
-    $selOver->bind_param('ssi', $assessment_code, $user_id, $institution_id );
+    $selOver->bind_param('ssi', $assessment_code, $user_id, $institution_id);
     $selOver->execute();
     $resultOver = $selOver->get_result();
     $returnCountOver = $resultOver->fetch_assoc();
@@ -64,6 +64,12 @@ if (isset($_SESSION['user_id'])) {
     <?php if ($ans >= $returnChosenAssessment['passing_rate']) { ?>
 
         <div class="container mb-4">
+            <nav class="pre-assessment-breadcrumb" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb mt-4">
+                    <li class="breadcrumb-item"><a href="home-page.php?page=user-browse-assessment"><i class="fa-solid fa-table-list"></i> Assessment Catalog</a></li>
+                    <li class="breadcrumb-item active"><a href="#"><i class="fa-solid fa-square-poll-vertical"></i> Pre Assessment Result</a></li>
+                </ol>
+            </nav>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="score-container mt-4">
@@ -79,7 +85,7 @@ if (isset($_SESSION['user_id'])) {
                         <h3 class="pt-4 px-4">Remarks</h3>
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-row align-items-center"> <i class="fa-solid fa-rectangle-list rectangle-pass fa-5x pt-4 px-4"></i>
-                                <h5><b>  You Passed! </b> <br> <span class="mt-2"> You are Cyber Secured </span></br></h5>
+                                <h5><b> You Passed! </b> <br> <span class="mt-2"> You are Cyber Secured </span></br></h5>
 
                             </div>
                         </div>
@@ -100,6 +106,12 @@ if (isset($_SESSION['user_id'])) {
     <?php } else { ?>
 
         <div class="container mb-4">
+            <nav class="pre-assessment-breadcrumb" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb mt-4">
+                    <li class="breadcrumb-item"><a href="home-page.php?page=user-browse-assessment"><i class="fa-solid fa-table-list"></i> Assessment Catalog</a></li>
+                    <li class="breadcrumb-item active"><a href="#"><i class="fa-solid fa-square-poll-vertical"></i> Pre Assessment Result</a></li>
+                </ol>
+            </nav>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="score-container mt-4">

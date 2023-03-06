@@ -1,3 +1,22 @@
+<style>
+    table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    thead th {
+        background-color: maroon !important;
+        color: white;
+    }
+
+    thead th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    thead th:last-child {
+        border-top-right-radius: 10px;
+    }
+</style>
 <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="past-result" class="welcome-help">
     <div class="modal-dialog modal-lg">
         <div class="modal-content modal-lg">
@@ -19,8 +38,9 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Code</th>
-                                    <th>Action</th>
+                                    <th>Assessment Code</th>
+                                    <th>Check Result</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,8 +49,13 @@
                                 <tr>
                                     <td><?php echo $row['created_at'] ?></td>
                                     <td><?php echo $row['assessment_code'] ?></td>
+                                    <!--
                                     <td>
-                                        <button type="button" class="btn btn-success copy-btn"><i class="fa-regular fa-clipboard"></i></button>
+                                        <button type="button" class="btn btn-success copy-btn"><i class="fa-regular fa-file-lines"></i></button>
+                                    </td>
+                    -->
+                                    <td>
+                                        <button type="button" class="btn btn-success check-assessment-btn"><i class="fa-regular fa-file-lines"></i></button>
                                     </td>
                                 </tr>
 
@@ -62,8 +87,9 @@
                                     <thead>
                                         <tr>
                                             <th>Date</th>
-                                            <th>Code</th>
-                                            <th>Action</th>
+                                            <th>Assessment Code</th>
+                                            <th>Check Result</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,8 +98,13 @@
                                         <tr>
                                             <td><?php echo $row['date_submitted'] ?></td>
                                             <td><?php echo $row['code'] ?></td>
+                                            <!--
                                             <td>
-                                                <button type="button" class="btn btn-success copy-btn"><i class="fa-regular fa-clipboard"></i></button>
+                                                <button type="button" class="btn btn-success copy-btn"><i class="fa-regular fa-file-lines"></i></button>
+                                            </td>
+                            -->
+                                            <td>
+                                                <button type="button" class="btn btn-success check-retake-btn"><i class="fa-regular fa-file-lines"></i></button>
                                             </td>
                                         </tr>
 
@@ -81,10 +112,10 @@
                                     <?php } ?>
                                 <?php
                             } else { ?>
-                               <div class="text-center mt-4">
-                                <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt="">No Post Assessment Taken</p>
-                            </div>
-                         <?php   }
+                                    <div class="text-center mt-4">
+                                        <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt="">No Post Assessment Taken</p>
+                                    </div>
+                                <?php   }
 
                                 ?>
                                     </tbody>
@@ -111,6 +142,35 @@
             } catch (error) {
                 console.error('Failed to copy text: ', error);
             }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.check-assessment-btn').click(async function() {
+            const button = event.target;
+            const row = button.closest('tr');
+            const cell = row.cells[1];
+            const textToCopy = cell.textContent.trim();
+
+            window.location = 'home-page.php?page=result&assessment_code=' + textToCopy;
+
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.check-retake-btn').click(async function() {
+            const button = event.target;
+            const row = button.closest('tr');
+            const cell = row.cells[1];
+            const textToCopy = cell.textContent.trim();
+
+            window.location = 'home-page.php?page=retake-result&code=' + textToCopy;
+
         });
     });
 </script>

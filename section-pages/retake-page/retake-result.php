@@ -65,6 +65,12 @@ if (isset($_SESSION['user_id'])) {
     <?php if ($ans >= $returnChosenAssessment['passing_rate']) { ?>
 
         <div class="container mb-4">
+        <nav class="post-assessment-breadcrumb" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb mt-4">
+                    <li class="breadcrumb-item"><a href="home-page.php?page=user-browse-assessment"><i class="fa-solid fa-table-list"></i> Assessment Catalog</a></li>
+                    <li class="breadcrumb-item active"><a href="#"><i class="fa-solid fa-square-poll-vertical"></i> Post Assessment Result</a></li>
+                </ol>
+            </nav>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="score-container mt-4">
@@ -101,6 +107,12 @@ if (isset($_SESSION['user_id'])) {
     <?php } else { ?>
 
         <div class="container mb-4">
+        <nav class="post-assessment-breadcrumb" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb mt-4">
+                    <li class="breadcrumb-item"><a href="home-page.php?page=user-browse-assessment"><i class="fa-solid fa-table-list"></i> Assessment Catalog</a></li>
+                    <li class="breadcrumb-item active"><a href="#"><i class="fa-solid fa-square-poll-vertical"></i> Post Assessment Result</a></li>
+                </ol>
+            </nav>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="score-container mt-4">
