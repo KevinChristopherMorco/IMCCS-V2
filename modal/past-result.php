@@ -26,7 +26,7 @@
             </div>
             <div class="modal-body">
 
-                <h4>Pre Assessment</h4>
+                <h5 class="mb-2">Pre Assessment</h5>
                 <?php
                 $sql = "SELECT *
                             FROM assessment_chosen  WHERE institution_id = '" . $_SESSION['institution_id'] . "' AND user_id =  '" . $_SESSION['user_id'] . "' ";
@@ -74,7 +74,7 @@
                             </tbody>
                         </table>
 
-                        <h4>Post Assessment</h4>
+                        <h5 class="mb-2">Post Assessment</h5>
                         <?php
                         $sql = "SELECT *
             FROM retake_chosen_tbl  WHERE institution_id = '" . $_SESSION['institution_id'] . "' AND user_id =  '" . $_SESSION['user_id'] . "' ";
