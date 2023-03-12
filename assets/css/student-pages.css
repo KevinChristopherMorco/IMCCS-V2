@@ -95,7 +95,11 @@ body:not(.modal-open) {
   font-weight: bolder;
   color: #000;
 }
-
+.chosen-empty-result {
+  font-size: 20px;
+  font-weight: bolder;
+  color: #000;
+}
 .my-chosen-topic .chosen-topic-title,
 .my-chosen-assessment .chosen-assessment-title {
   padding-left: 100px;

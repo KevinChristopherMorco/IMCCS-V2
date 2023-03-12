@@ -21,7 +21,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
     </form>
             </div>
             <div class="col-2">
-                <button class="btn btn-warning btn-history" type="button">History</button>
+                <button class="btn btn-success btn-history" type="button">History</button>
             </div>
 </div>
 <!--

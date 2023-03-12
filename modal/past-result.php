@@ -82,8 +82,8 @@
 
                         <?php
                     } else { ?>
-                            <div class="text-center mt-4">
-                                <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt="">No Pre Assessment Taken</p>
+                            <div class="text-center">
+                                <p class="chosen-empty-result"><img src="assets/images/icons/search-gif.gif" width="45" height="45" alt="">No Pre Assessment Taken</p>
                             </div>
                         <?php   }
 
@@ -133,8 +133,8 @@
                                     <?php } ?>
                                 <?php
                             } else { ?>
-                                    <div class="text-center mt-4">
-                                        <p class="chosen-empty"><img src="assets/images/icons/search-gif.gif" width="50" height="50" alt="">No Post Assessment Taken</p>
+                                    <div class="text-center">
+                                        <p class="chosen-empty-result"><img src="assets/images/icons/search-gif.gif" width="45" height="45" alt="">No Post Assessment Taken</p>
                                     </div>
                                 <?php   }
 

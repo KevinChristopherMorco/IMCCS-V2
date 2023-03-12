@@ -63,7 +63,7 @@ if (isset($_GET['assessment_id'])) {
             $code .= $possible[rand(0, strlen($possible) - 1)];
           }
           if ($j === 3) {
-            $code .= $minutes . $seconds;
+            $code .= '-' . $minutes . $seconds;
           } else {
             $code .= '-';
           }

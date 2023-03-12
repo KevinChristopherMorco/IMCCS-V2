@@ -1,23 +1,29 @@
 <?php include_once('../../../database/config.php'); ?>
 
 <?php
-function generateUniqueString($length = 10) {
-    // start with a unique identifier
-    $uniqueString = uniqid();
+function generateCode() {
+    $code = "";
+    $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    $date = new DateTime();
+    $minutes = str_pad(base_convert($date->format('i'), 10, 36), 2, '0', STR_PAD_LEFT);
+    $seconds = str_pad(base_convert($date->format('s'), 10, 36), 2, '0', STR_PAD_LEFT);
 
-    // add a random string to the unique identifier
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[mt_rand(0, strlen($characters) - 1)];
+    for ($j = 0; $j < 3; $j++) {
+      for ($i = 0; $i < 4; $i++) {
+        $code .= $possible[rand(0, strlen($possible) - 1)];
+      }
+      if ($j === 2) {
+        $code .= '-' . $minutes . $seconds;
+      } else {
+        $code .= '-';
+      }
     }
 
-    // format the string
-    $currentMinuteAndSecond = date('i-s');
-    $uniqueString = substr($uniqueString, -4) . "-" . substr($uniqueString, -6, 2) . "-" . substr($uniqueString, -2) . substr($randomString, 0, 4) . "-" . $currentMinuteAndSecond;
-    return "CN-" . $uniqueString;
-}
-$generatedString = generateUniqueString(10);
+    return $code;
+  }
+
+  // Generate a unique code
+  $generatedString = generateCode();
 
 $name =  mysqli_real_escape_string($mysqli,  ucwords(strtolower($_POST['name'])));
 $type =  mysqli_real_escape_string($mysqli,  ucwords(strtolower($_POST['type'])));
