@@ -14,11 +14,17 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
     </div>
 </section>
 <div class="d-flex justify-content-end mt-4 px-4">
-    <!--
+<div class="row g-0">
+            <div class="col-10">
     <form class='searchbox'>
         <input class="form-control assessment searchbar" type="text" placeholder="Search Assessments" name="search">
-    </form>-->
-
+    </form>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-warning btn-history" type="button">History</button>
+            </div>
+</div>
+<!--
     <form action="javascript:void(0)" class="user-check-assessment" id="user-check-assessment">
         <div class="row g-0">
             <div class="col-10">
@@ -38,7 +44,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
             </div>
         </div>
     </form>
-
+-->
 </div>
 
 
