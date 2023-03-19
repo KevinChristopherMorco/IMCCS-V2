@@ -68,15 +68,40 @@ include_once('query/login-registration-page/login-query.php');
     </script>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clientjs@0.1.11/dist/client.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/clientjs-fingerprinting@0.1.3/dist/clientjs-fingerprinting.min.js"></script>
     <script>
-        var browserFingerprint = localStorage.getItem("browserFingerprint");
+        var browserFingerprint;
         if (!browserFingerprint) {
             var client = new ClientJS();
-            browserFingerprint = client.getFingerprint();
-            localStorage.setItem("browserFingerprint", browserFingerprint);
+
+            // Get browser fingerprint
+            var browserPrint = client.getFingerprint();
+
+            // Get canvas fingerprint
+            var canvasPrint = client.getCanvasPrint();
+
+            // Get screen resolution
+            var resolution = client.getCurrentResolution();
+
+            // Get timezone
+            var timezone = client.getTimeZone();
+
+            // Get plugins
+            var plugins = client.getPlugins();
+            var fonts = client.getFonts(); // Get Fonts
+
+            // Combine fingerprints and other information
+            var combinedPrint = browserPrint + canvasPrint + resolution + timezone + plugins + fonts;
+
+            // Hash the combined fingerprint to make it more secure
+            var hashedPrint = CryptoJS.SHA256(combinedPrint).toString();
+
+            browserFingerprint = hashedPrint;
         }
+        console.log(browserFingerprint)
+
         $("#code-login-form").on("submit", function(event) {
 
             var code = $('#code').val();

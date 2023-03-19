@@ -76,7 +76,7 @@ if ($rowcount > 0) {
         //Date for database
         $returnDateDeadlineDisplay = date('F j Y h:i A', strtotime($dateDeadlineDisplay));
         ?>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="topic-assessment-container mb-4" id="">
                 <div class="topic-assessment-card">
                     <img src="admin/assets/img/<?php echo $row['question_img'] ?>" onerror="this.src='assets/images/card/no-img.png'" />

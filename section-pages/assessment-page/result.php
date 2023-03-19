@@ -162,9 +162,9 @@ if (isset($_SESSION['user_id'])) {
           GROUP BY question_id
         ) AS subquery ON subquery.question_id = question.question_id
         LEFT JOIN assessment_answer_tbl assessment_answer ON question.question_id = assessment_answer.question_id AND answer.question_answer = assessment_answer.assessment_answer
-        WHERE   answer.user_id=? AND answer.institution_id=?
+        WHERE   answer.user_id=? AND answer.institution_id=? AND answer.assessment_code=?
         ORDER BY question.question_id ASC");
-        $selQuestion->bind_param('ss',  $user_id, $institution_id);
+        $selQuestion->bind_param('sss',  $user_id, $institution_id, $assessment_code);
         $selQuestion->execute();
         $selQuestionRow = $selQuestion->get_result();
 
