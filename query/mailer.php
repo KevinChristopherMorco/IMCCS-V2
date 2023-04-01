@@ -45,7 +45,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.hostinger.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'imccs-onlinesupport@imccs.online';
+        $mail->Username   = 'imccs-onlinesupport@imccs.cloud';
         $mail->Password   = 'Kevinisback12345*';                            // SMTP password
         $mail->SMTPSecure = 'tls';
         $mail->Port       = 587;
@@ -60,7 +60,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
         $mail->Password = '20cdbb486b9762';
 */
         //Set email properties
-        $mail->setFrom('imccs-onlinesupport@imccs.online', 'IMCCS');
+        $mail->setFrom('imccs-onlinesupport@imccs.cloud', 'IMCCS');
         $mail->addAddress($email, 'You');
 
         $token = substr(str_shuffle('1234567890QWERTYUIOPASDFGHJKLZXCVBNM'), 0, 10);
@@ -136,7 +136,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
 </table>
 </html>';
 
-        $conn = new mySqli('localhost', 'u351518056_capstoneV2', '*DP=G7@!d3', 'u351518056_capstoneV2');
+        $conn = new mySqli('localhost', 'root', '', 'u351518056_capstone');
         if ($conn->connect_error) {
             die('Could not connect to the database.');
         }
