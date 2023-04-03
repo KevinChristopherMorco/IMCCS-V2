@@ -60,7 +60,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                         <div id="difficulty" class="collapse show">
                             <?php
 
-                            $query = "SELECT DISTINCT (difficulty) FROM assessment_tbl ORDER BY FIELD(difficulty,'Beginner','Intermediate','Expert') ";
+                            $query = "SELECT DISTINCT (difficulty) FROM assessment_tbl WHERE level_type = '" . $_SESSION['type'] . "' ORDER BY FIELD(difficulty,'Beginner','Intermediate','Expert') ";
                             $selDifficultRow = mysqli_query($mysqli, $query);
                             mysqli_fetch_all($selDifficultRow, MYSQLI_ASSOC);
 
@@ -78,7 +78,7 @@ $selQuestionRow = mysqli_query($mysqli, $selQuestion);
                         <div id="time" class="collapse show">
                             <?php
 
-                            $query = "SELECT DISTINCT (unit_time) FROM assessment_tbl ORDER BY FIELD(unit_time,'Hours','Days','Weeks','Months') ";
+                            $query = "SELECT DISTINCT (unit_time) FROM assessment_tbl WHERE level_type = '" . $_SESSION['type'] . "' ORDER BY FIELD(unit_time,'Hours','Days','Weeks','Months') ";
                             $selDifficultRow = mysqli_query($mysqli, $query);
                             mysqli_fetch_all($selDifficultRow, MYSQLI_ASSOC);
 

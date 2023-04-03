@@ -28,10 +28,10 @@ include_once('query/login-registration-page/login-query.php');
     include_once('templates/navbar.php');
     ?>
     <?php
-    include_once('modal/register-student.php');
+    //include_once('modal/register-student.php');
     ?>
     <?php
-    include_once('modal/register-institution.html');
+    //include_once('modal/register-institution.html');
     ?>
     <!-- PHP CODE USED FOR LOADING DYNAMICALLY PAGES WITHOUT RELOADING THE WHOLE ROUTE-->
 
@@ -67,12 +67,16 @@ include_once('query/login-registration-page/login-query.php');
         });
     </script>
 
-
+ <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/clientjs@0.1.11/dist/client.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clientjs-fingerprinting@0.1.3/dist/clientjs-fingerprinting.min.js"></script>
+    -->
+    <script src="assets/js/clientjs-master/dist/client.min.js"></script>
+    <script src="assets/js/crypto-js/crypto-js.js"></script>
+
     <script>
-        var browserFingerprint;
+        var browserFingerprint = localStorage.getItem("browserFingerprint");
         if (!browserFingerprint) {
             var client = new ClientJS();
 
@@ -99,8 +103,9 @@ include_once('query/login-registration-page/login-query.php');
             var hashedPrint = CryptoJS.SHA256(combinedPrint).toString();
 
             browserFingerprint = hashedPrint;
+            localStorage.setItem("browserFingerprint", browserFingerprint);
         }
-        console.log(browserFingerprint)
+        console.log("This is the fingerprint:" + browserFingerprint)
 
         $("#code-login-form").on("submit", function(event) {
 

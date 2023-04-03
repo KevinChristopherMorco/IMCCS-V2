@@ -1,4 +1,11 @@
 <?php
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+   header('Location: index.php');
+   exit();
+}
+?>
+<?php
 include_once('modal/register-user.php');
 ?>
 <div class="imccs-home" id="imccs-home">
