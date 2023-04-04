@@ -179,7 +179,7 @@ if (isset($_GET['assessment_id'])) {
                                 <input type="hidden" name="question_id" id="question-id" value="<?php echo $row['question_id']; ?>">
                                 <input type="hidden" name="institution_id" id="institution-id" value="<?php echo $_SESSION['institution_id']; ?>">
                                 <input type="hidden" name="point" id="point" value="<?php echo $row['point']; ?>">
-                                <input type="hidden" name="assessment-code" id="assessment-code" value="<?php echo $code; ?>">
+                                <input type="text" name="assessment-code" id="assessment-code" value="<?php echo $code; ?>">
 
 
                             </div>
