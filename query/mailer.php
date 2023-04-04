@@ -136,7 +136,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
 </table>
 </html>';
 
-        $conn = new mySqli('localhost', 'root', '', 'u351518056_capstone');
+        $conn = new mySqli('localhost', 'u351518056_capstoneV2', 'b3P^9GtW?I', 'u351518056_capstoneV2');
         if ($conn->connect_error) {
             die('Could not connect to the database.');
         }
