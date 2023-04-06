@@ -214,7 +214,7 @@ $rowcount = $checkAssessmentChosen->num_rows;
 
                     </div>
                     <div class="animated-container mb-5">
-                        <h4>Assessment Average Percentage</h4>
+                        <h4>Score Percentage</h4>
                         <div class="circular-progress">
                             <div class="value-container">0%</div>
                         </div>
