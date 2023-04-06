@@ -179,7 +179,7 @@ if ($returnSummaryAssessmentRow->num_rows != 0) { ?>
             </div>
 
             <div class="animated-container mb-5">
-                <h4>Assessment Average Percentage</h4>
+                <h4>Score Percentage</h4>
                 <div id="institution-progress" class="circular-progress">
                     <div id="institution-value-container" class="value-container">0%</div>
                 </div>
@@ -219,7 +219,7 @@ if ($returnSummaryAssessmentRow->num_rows != 0) { ?>
 
                         ]);
                         var options = {
-                            title: 'Assessment Average Percentage',
+                            title: 'Score Percentage',
                             sliceVisibilityThreshold: 0,
                             //is3D:true,
                             pieHole: 0.3,
@@ -653,7 +653,7 @@ LEFT JOIN ( SELECT COUNT(*) as total_wrong, answer.question_id,assessment_questi
                 </div>
 
                 <div class="animated-container mb-5">
-                    <h4>Assessment Average Percentage</h4>
+                    <h4>Score Percentage</h4>
                     <div id="post-institution-progress" class="circular-progress">
                         <div id="post-institution-value-container" class="value-container">0%</div>
                     </div>
@@ -693,7 +693,7 @@ LEFT JOIN ( SELECT COUNT(*) as total_wrong, answer.question_id,assessment_questi
 
                             ]);
                             var options = {
-                                title: 'Assessment Average Percentage',
+                                title: 'Score Percentage',
                                 sliceVisibilityThreshold: 0,
                                 //is3D:true,
                                 pieHole: 0.3,
