@@ -95,7 +95,7 @@
 
 
             Swal.fire({
-                title: 'This will view the total assessments of ' + name,
+                title: '<span style="font-size: 24px">This will view the total assessments of ' + name + '</span>',
                 text: "Do you want to proceed?",
                 icon: 'warning',
                 showCancelButton: true,
