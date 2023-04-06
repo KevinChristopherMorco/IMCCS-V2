@@ -4,8 +4,8 @@ $result = mysqli_query($mysqli, $query);   ?>
 <?php $gender_query = "SELECT gender, count(*) as gender_number FROM user_profile GROUP BY gender";
 $gender_result = mysqli_query($mysqli, $gender_query);   ?>
 
-<?php $gender_query = "SELECT age, count(*) as age_number FROM user_profile GROUP BY age";
-$age_result = mysqli_query($mysqli, $gender_query);   ?>
+<?php $age_query = "SELECT age FROM user_profile";
+$age_result = mysqli_query($mysqli, $age_query);   ?>
 
 <?php $pass_query = "SELECT verdict, count(*) as pass_rate FROM assessment_score GROUP BY verdict ORDER BY verdict DESC";
 $pass_result = mysqli_query($mysqli, $pass_query);   ?>
@@ -161,7 +161,7 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
           </div>
 
           <div class="row">
-          <div class="col-6 mb-4">
+            <div class="col-6 mb-4">
               <canvas id="piechart_gender" style="width:100%;max-width:600px"></canvas>
             </div>
             <div class="col-6 mb-4">
@@ -270,7 +270,7 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
             } else if ($rows['gender'] === 'Female') {
               $barColors[] = "#F766AE";
             } else {
-              $randomColor = '#'.dechex(mt_rand(0x000000, 0xFFFFFF));
+              $randomColor = '#' . dechex(mt_rand(0x000000, 0xFFFFFF));
               $barColors[] = $randomColor;
             }
           }
@@ -314,44 +314,62 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
                 title: {
                   display: true,
                   text: "Percentage of User Gender"
-                }
+                },
+                legend: {
+                  position: "right"
+                },
               }
             });
           <?php   } ?>
         </script>
 
-<script>
+        <script>
           <?php
-          $chartLabel = [];
-          $chartData = [];
-          $barColors = [];
+          $ageRanges = array(
+            array("name" => "Under 18", "min" => 0, "max" => 17),
+            array("name" => "18-30", "min" => 18, "max" => 30),
+            array("name" => "31-50", "min" => 31, "max" => 50),
+            array("name" => "Over 50", "min" => 51, "max" => 120)
+          );
 
+          $chartData = array();
+          $barColors = array();
+
+          // Initialize counts for each range
+          $counts = array();
+          foreach ($ageRanges as $range) {
+            $counts[$range["name"]] = 0;
+          }
+
+          // Loop through the original data and increment counts for each age range
           while ($rows = mysqli_fetch_array($age_result)) {
+            $age = $rows['age'];
 
-            $chartLabel[] = $rows['age'];
-            $chartData[] = $rows['age_number'];
-            /*
-
-            if ($rows['gender'] === 'Male') {
-              $barColors[] = "#009FCA";
-            } else if ($rows['gender'] === 'Female') {
-              $barColors[] = "#F766AE";
-            } else {
-              $randomColor = '#'.dechex(mt_rand(0x000000, 0xFFFFFF));
-              $barColors[] = $randomColor;
+            foreach ($ageRanges as $range) {
+              if ($age >= $range["min"] && $age <= $range["max"]) {
+                $counts[$range["name"]]++;
+                break;
+              }
             }
-            */
 
-            $randomColor = '#'.dechex(mt_rand(0x000000, 0xFFFFFF));
+            $randomColor = '#' . dechex(mt_rand(0x000000, 0xFFFFFF));
             $barColors[] = $randomColor;
           }
-          $returnChatLabels = json_encode($chartLabel);
+
+          // Create arrays for chart labels and data
+          $chartLabels = array();
+          foreach ($ageRanges as $range) {
+            $chartLabels[] = $range["name"];
+            $chartData[] = $counts[$range["name"]];
+          }
+
+          $returnChatLabels = json_encode($chartLabels);
           $returnChatData = json_encode($chartData);
           $returnBarColors = json_encode($barColors);
 
           ?>
 
-          <?php if (empty($chartLabel) && empty($chartData)) { ?>
+          <?php if (empty($chartLabels) && empty($chartData)) { ?>
             var chartLabel = ["No Data"];
             var chartData = [0];
             new Chart("piechart_age", {
@@ -370,8 +388,7 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
                 }
               }
             });
-          <?php   } else { ?>
-
+          <?php } else { ?>
             new Chart("piechart_age", {
               type: "pie",
               data: {
@@ -385,10 +402,13 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
                 title: {
                   display: true,
                   text: "Percentage of User Age"
-                }
-              }
+                },
+                legend: {
+                  position: "right"
+                },
+              },
             });
-          <?php   } ?>
+          <?php } ?>
         </script>
 
         <script>
@@ -571,26 +591,38 @@ $institution_result = mysqli_query($mysqli, $institution_no); ?>
 
         <script>
           <?php
-          $chartLabel = [];
-          $chartData = [];
+          $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          $barColors = ['#FF6384', '#36A2EB', '#FFCE56', '#6B8E23', '#8A2BE2', '#FF4500', '#32CD32', '#FF1493', '#7B68EE', '#8B0000', '#B0C4DE', '#00FFFF'];
+
+          // Initialize the chart data array with 0 values for all months
+          $chartData = array_fill_keys($months, 0);
+
+          $barColorsMap = array_combine($months, $barColors);
 
           while ($rows = mysqli_fetch_array($count_register)) {
+            $month = $rows['month_name'];
+            $register = $rows['register'];
 
-            $chartLabel[] = $rows['month_name'];
-            $chartData[] =  $rows['register'];
+            // Increment the value for the current month
+            $chartData[$month] += $register;
           }
-          $returnChatLabels = json_encode($chartLabel);
-          $returnChatData = json_encode($chartData);
+
+          $returnChatLabels = json_encode($months);
+          $returnChatData = json_encode(array_values($chartData));
+
+          $backgroundColor = [];
+          foreach ($months as $month) {
+            $backgroundColor[] = $barColorsMap[$month];
+          }
+          $returnBarColors = json_encode($backgroundColor);
           ?>
-          var barColors = ["red", "green", "blue", "orange", "brown"];
 
           new Chart("myChart", {
             type: "bar",
             data: {
               labels: <?php echo $returnChatLabels ?>,
-
               datasets: [{
-                backgroundColor: barColors,
+                backgroundColor: <?php echo $returnBarColors ?>,
                 data: <?php echo $returnChatData ?>,
               }]
             },
