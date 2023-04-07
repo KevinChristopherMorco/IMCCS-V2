@@ -52,7 +52,7 @@
                         <table class="table past-result-table">
                             <thead>
                                 <tr>
-                                    <th class="col-3">Date</th>
+                                    <th class="col-3">Date Taken</th>
                                     <th class="col-4">Assessment Code</th>
                                     <th class="col-2">Result</th>
                                     <th class="text-center col-3">Check Summary</th>
@@ -104,7 +104,7 @@
                                 <table class="table past-result-table">
                                     <thead>
                                         <tr>
-                                            <th class="col-3">Date</th>
+                                            <th class="col-3">Date Taken</th>
                                             <th class="col-4">Assessment Code</th>
                                             <th class="col-2">Result</th>
                                             <th class="text-center col-3">Check Summary</th>

@@ -17,7 +17,7 @@
                             </div>
                             <div class="info-meta">
                                 <h5>Our Location</h5>
-                                <p>Santa Cruz Laguna (Mock Location)</p>
+                                <p>Brgy Bubukal, Santa Cruz, Philippines, 4009</p>
                             </div>
                         </div>
                         <div class="single-info">
@@ -26,8 +26,7 @@
                             </div>
                             <div class="info-meta">
                                 <h5>How Can We Help?</h5>
-                                <p>test@gmail.com (Mock Location)</p>
-                                <p>test@yahoo.com (Mock Location)</p>
+                                <p>For more information visit the link <a href="http://lspu.edu.ph/">here</a></p>
                             </div>
                         </div>
                     </div>

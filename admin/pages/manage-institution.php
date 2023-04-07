@@ -25,10 +25,10 @@
                         <thead>
                             <tr>
 
-                                <th><input type="checkbox" class="checkbox-all" /></th>
+                                <th class="col-1"><input type="checkbox" class="checkbox-all" /></th>
                                 <th>Name<i class="fa fa-sort"></i></th>
                                 <th>Control Code <i class="fa fa-sort"></i></th>
-                                <th>Status <i class="fa fa-sort"></i></th>
+                                <th class="col-2">Status <i class="fa fa-sort"></i></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -41,11 +41,11 @@
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr class="table-institution-data">
-                                    <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
+                                    <td class="col-1"><input type="checkbox" name="name1" class="checkbox-delete" /></td>
                                     <td><a href="javascript:void(0)" class="institution-link" data-id="<?php echo $row['institution_id'] ?>" data-name="<?php echo $row['name'] ?>" data-type="<?php echo $row['type'] ?>"><?php echo $row['name'] ?></a></td>
-                                    <td><?php echo $row['code'] ?></td>
+                                    <td><?php echo $row['code'] ?> <i class="fa-solid fa-clipboard" style="cursor: pointer;"></i></td>
 
-                                    <td> <span class="status"><?php echo $row['status'] ?><span></td>
+                                    <td class="col-2"> <span class="status"><?php echo $row['status'] ?><span></td>
 
                                     <td>
                                         <a href="javascript:void(0)" class="view btn btn-primary" data-id="<?php echo $row['institution_id']; ?>" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i>View</a>
@@ -113,7 +113,7 @@
                         data: {
                             user_id: id,
                             name: name,
-                            type:type
+                            type: type
                         },
 
                         success: function(data) {
@@ -134,5 +134,33 @@
 </script>
 
 <script>
+    // Get all the clipboard icons in the table
+    const clipboardIcons = document.querySelectorAll('.fa-clipboard');
 
+    // Loop through each clipboard icon
+    clipboardIcons.forEach(icon => {
+        // Add a click event listener to the icon
+        icon.addEventListener('click', () => {
+            // Get the parent row of the icon
+            const row = icon.closest('tr');
+
+            // Get the third table data element (institution code) of the row
+            const institutionCodeCell = row.querySelectorAll('td')[2];
+
+            // Get the text content of the element
+            const institutionCode = institutionCodeCell.textContent.trim();
+
+            // Use the Clipboard API to copy the text to the clipboard
+            navigator.clipboard.writeText(institutionCode)
+                .then(() => {
+                    console.log('Copied to clipboard:', institutionCode);
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Text copied to clipboard:</br>' + institutionCode ,
+
+                    })
+                })
+                .catch(error => console.error('Error copying to clipboard:', error));
+        });
+    });
 </script>

@@ -82,7 +82,7 @@
                     <div class="single-team wow fadeInUp" data-wow-delay=".2s">
                         <div class="team-developer-image-wrapper">
                             <div class="team-developer-image">
-                                <img src="assets/images/team/maguyon.png" alt="team" />
+                                <img src="assets/images/team/maguyon2.png" alt="team" />
                             </div>
 
 
