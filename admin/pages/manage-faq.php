@@ -24,7 +24,6 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" class="checkbox-all" /></th>
-                                <th>ID <i class="fa fa-sort"></i></th>
                                 <th>Title <i class="fa fa-sort"></i></th>
                                 <th>Description <i class="fa fa-sort"></i></th>
                                 <th>Actions</th>
@@ -40,7 +39,6 @@
                             ?>
                                 <tr class="table-faq-data">
                                 <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
-                                    <td><?php echo $row['id'] ?></td>
                                     <td><?php echo $row['title'] ?></td>
                                     <td><?php echo $row['description'] ?></td>
 
