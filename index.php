@@ -82,6 +82,37 @@ include_once('query/login-registration-page/login-query.php');
 
             // Get browser fingerprint
             var browserPrint = client.getFingerprint();
+/*
+            // Get canvas fingerprint
+            var canvasPrint = client.getCanvasPrint();
+
+            // Get screen resolution
+            var resolution = client.getCurrentResolution();
+
+            // Get timezone
+            var timezone = client.getTimeZone();
+
+            // Get plugins
+            var plugins = client.getPlugins();
+            var fonts = client.getFonts(); // Get Fonts
+            */
+
+            // Combine fingerprints and other information
+            var combinedPrint = browserPrint;
+
+            // Hash the combined fingerprint to make it more secure
+         //   var hashedPrint = CryptoJS.SHA256(combinedPrint).toString();
+
+            browserFingerprint = combinedPrint;
+            localStorage.setItem("browserFingerprint", browserFingerprint);
+        }
+        /*
+        var browserFingerprint = localStorage.getItem("browserFingerprint");
+        if (!browserFingerprint) {
+            var client = new ClientJS();
+
+            // Get browser fingerprint
+            var browserPrint = client.getFingerprint();
 
             // Get canvas fingerprint
             var canvasPrint = client.getCanvasPrint();
@@ -104,8 +135,7 @@ include_once('query/login-registration-page/login-query.php');
 
             browserFingerprint = hashedPrint;
             localStorage.setItem("browserFingerprint", browserFingerprint);
-        }
-        console.log("This is the fingerprint:" + browserFingerprint)
+        } */
 
         $("#code-login-form").on("submit", function(event) {
 
