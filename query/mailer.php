@@ -104,7 +104,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
                                         You have requested us to send a link to reset your password. To do this, click the
                                         following link and follow the instructions.
                                     </p>
-                                    <a href="https://imccs.online/section-pages/forgot-password/forgot-password-change.php?token=' . $token . '"
+                                    <a href="https://imccs.cloud/section-pages/forgot-password/forgot-password-change.php?token=' . $token . '"
                                         style="background:#800000;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                         Password</a>
                                         <p style="color:#455056; font-size:15px;line-height:24px; margin:10px;">
