@@ -83,7 +83,6 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" class="checkbox-all" /></th>
-                                    <th>ID <i class="fa fa-sort"></i></th>
                                     <th>Title <i class="fa fa-sort"></i></th>
                                     <th>Module <i class="fa fa-sort"></i></th>
                                     <th>Subtopic <i class="fa fa-sort"></i></th>
@@ -99,7 +98,6 @@
                                 ?>
                                     <tr class="table-subtopic-data">
                                         <td><input type="checkbox" class="checkbox-delete" /></td>
-                                        <td><?php echo $row2['subtopic_id'] ?></td>
                                         <td><?php echo $row2['title'] ?></td>
                                         <td><?php echo $row2['module'] ?></td>
                                         <td><?php echo $row2['subtopic'] ?></td>
