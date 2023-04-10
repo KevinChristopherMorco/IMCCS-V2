@@ -28,6 +28,7 @@
        });
 
        // section menu active
+       /*
        function onScroll(event) {
            const sections = document.querySelectorAll(".ud-menu-scroll");
            const scrollPos =
@@ -55,6 +56,7 @@
        }
 
        window.document.addEventListener("scroll", onScroll);
+       */
    </script>
    <!-- FEEDBACK -->
    <script>
