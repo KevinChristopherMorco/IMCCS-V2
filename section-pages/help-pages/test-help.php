@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <video id="myVideo" width="100%" height="100%" controls>
-          <source src="assets/video/IMCCS-1.mp4" type="video/mp4">
+          <source src="assets/video/IMCCS_DEMO.mp4" type="video/mp4">
 
           Your browser does not support the video tag.
         </video>
