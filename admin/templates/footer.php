@@ -29,13 +29,19 @@
                     {
                         extend: 'excelHtml5',
                         text: '<i class="fa-solid fa-file-excel"></i> Excel File',
-                        titleAttr: 'Excel'
+                        titleAttr: 'Excel',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
 
                     {
                         extend: 'pdfHtml5',
                         text: '<i class="fa-solid fa-file-pdf"></i> PDF File',
-                        titleAttr: 'PDF'
+                        titleAttr: 'PDF',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                 ],
                 language: {
