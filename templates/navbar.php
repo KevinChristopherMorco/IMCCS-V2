@@ -67,7 +67,7 @@
                                  </li>
 
                                  <li class="nav-item">
-                                 <a class="ud-menu" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                                     <a class="ud-menu" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                  </li>
 
                                  <!--
@@ -90,26 +90,26 @@
                                  </li>
 
                                  <li class="nav-item">
-                                 <a class="ud-menu" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                                     <a class="ud-menu" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                  </li>
                              </ul>
 
 
                          <?php else : ?>
 
+
+                             <ul id="nav3" class="navbar-nav home-item3 ms-auto">
+                                 <li class="nav-item">
+                                     <a href="index.php?page=login" class="ud-menu">
+                                         <i class="fa-sharp fa-solid fa-right-to-bracket"></i>
+                                         Sign In
+                                     </a>
+                                 </li>
+                             </ul>
+
                      </div>
 
-                     <div class="navbar-btn d-none d-sm-inline-block">
-                         <a href="index.php?page=login" class="btn-custom-secondary login-btn">
-                             <i class="fa-sharp fa-solid fa-right-to-bracket"></i>
-                             Sign In
-                         </a>
-                         <!--
-                         <a href="javscript:void(0)" id="sign-in" class="btn-custom-primary btn-custom-primary-highlight sign-in">
-                             Register
-                         </a>
-                         -->
-                     </div>
+
                  <?php endif; ?>
 
 
