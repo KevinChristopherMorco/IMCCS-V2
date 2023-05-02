@@ -429,7 +429,7 @@ table.dataTable thead {
   top: 60px;
 }
 
-table.dataTable td:nth-child(2) a {
+table.dataTable td:nth-child(3) a {
   color: #800000 !important;
   font-weight: bolder;
 }
@@ -1539,6 +1539,14 @@ button.dt-btn-split-drop-button:hover {
   background-color: white
 }
 
+.hidden-header {
+  visibility: collapse;
+  display: none;
+
+}
+.admin.table{
+  width: 100% !important;
+}
 /* modals */
 
 .pagination {

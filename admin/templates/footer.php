@@ -16,7 +16,7 @@
         $(document).ready(function() {
 
 
-            $('table.admin').DataTable({
+            var table = $('table.admin').DataTable({
                 "columnDefs": [{
                     "orderable": false,
                     "targets": 0
@@ -59,10 +59,43 @@
                 },
 
             });
+            // bind a change event to the date inputs
+            $('.startDate, .endDate').on('change', function() {
+                var startDate = $('.startDate').val();
+                var endDate = $('.endDate').val();
+                table.draw(); // redraw the table
+            });
 
+            // filter the table based on the date range
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    var startDate = $('.startDate').val();
+                    var endDate = $('.endDate').val();
+                    var date = data[1]; // assuming the date column is the first column
+                    if (!startDate && !endDate) {
+                        return true;
+                    }
+                    if (startDate && endDate) {
+                        return (date >= startDate && date <= endDate);
+                    } else if (startDate) {
+                        return (date >= startDate);
+                    } else if (endDate) {
+                        return (date <= endDate);
+                    }
+                    return false;
+                }
+            );
 
         });
     </script>
+    <script>
+  // get the current date in YYYY-MM-DD format
+  var today = new Date().toISOString().split('T')[0];
+
+  // set the max attribute of the date inputs to today's date
+  document.querySelector('.startDate').setAttribute('max', today);
+  document.querySelector('.endDate').setAttribute('max', today);
+</script>
 
     <script>
         $(document).ready(function() {

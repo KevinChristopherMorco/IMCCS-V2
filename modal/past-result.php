@@ -259,6 +259,7 @@
     .dataTables_paginate .paginate_button.next {
         color: gray;
     }
+
     .dataTables_paginate .paginate_button.previous:hover,
     .dataTables_paginate .paginate_button.next:hover {
         cursor: pointer;
@@ -328,8 +329,8 @@
         if (container.style.height === "0px") {
             arrow.classList.remove('fa-chevron-down');
             arrow.classList.add('fa-chevron-up');
-           // container.style.height = container.scrollHeight + "px";
-           container.style.height = '550px'
+            // container.style.height = container.scrollHeight + "px";
+            container.style.height = '550px'
         } else {
             arrow.classList.remove('fa-chevron-up');
             arrow.classList.add('fa-chevron-down');
@@ -625,28 +626,72 @@
             var dateStr = data[1]; // Assumes date is in second column (index 1)
             var hiddenDateStr = data[0]; // Assumes hidden date is in first column (index 0)
 
-            if (!startDate || !endDate) {
+            if (!startDate && !endDate) {
                 // No date range selected, show all rows
                 return true;
             }
 
             var momentDate = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
             var momentHiddenDate = moment(hiddenDateStr, 'YYYY-MM-DD HH:mm:ss');
-            var momentStartDate = moment(startDate, 'YYYY-MM-DD').startOf('day');
-            var momentEndDate = moment(endDate, 'YYYY-MM-DD').endOf('day');
 
-            if (momentDate.isBetween(momentStartDate, momentEndDate, null, '[]') ||
-                momentHiddenDate.isBetween(momentStartDate, momentEndDate, null, '[]')) {
-                // Row date or hidden date is between selected date range
-                return true;
-            } else {
-                // Row date and hidden date are outside selected date range
-                return false;
+            if (startDate && endDate) {
+                // Filter by start and end dates
+                var momentStartDate = moment(startDate, 'YYYY-MM-DD').startOf('day');
+                var momentEndDate = moment(endDate, 'YYYY-MM-DD').endOf('day');
+                if (momentDate.isBetween(momentStartDate, momentEndDate, null, '[]') ||
+                    momentHiddenDate.isBetween(momentStartDate, momentEndDate, null, '[]')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (startDate && !endDate) {
+                // Filter by start date only
+                var momentStartDate = moment(startDate, 'YYYY-MM-DD').startOf('day');
+                if (momentDate.isSameOrAfter(momentStartDate, 'day') ||
+                    momentHiddenDate.isSameOrAfter(momentStartDate, 'day')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (!startDate && endDate) {
+                // Filter by end date only
+                var momentEndDate = moment(endDate, 'YYYY-MM-DD').endOf('day');
+                if (momentDate.isSameOrBefore(momentEndDate, 'day') ||
+                    momentHiddenDate.isSameOrBefore(momentEndDate, 'day')) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         });
 
         // Event handler for date range inputs
-        $('#startDate, #endDate').on('change', function() {
+        $('#startDate').on('change', function() {
+            var startDate = moment($(this).val(), 'YYYY-MM-DD');
+            var minEndDate = startDate.startOf('month').format('YYYY-MM-DD');
+
+            // Check if the selected start date is later than the selected end date
+            if ($('#endDate').val() && $(this).val() > $('#endDate').val()) {
+                $(this).val($('#endDate').val());
+                startDate = moment($(this).val(), 'YYYY-MM-DD');
+                minEndDate = startDate.format('YYYY-MM-DD');
+            }
+
+            $('#endDate').attr('min', minEndDate);
+            $('table.pre-result-table').DataTable().draw();
+        });
+
+        $('#endDate').on('change', function() {
+            var endDate = moment($(this).val(), 'YYYY-MM-DD');
+            var maxStartDate = endDate.endOf('month').format('YYYY-MM-DD');
+            // Check if the selected end date is earlier than the selected start date
+            if ($('#startDate').val() > $(this).val()) {
+                $(this).val($('#startDate').val());
+                endDate = moment($(this).val(), 'YYYY-MM-DD');
+            }
+
+            $('#startDate').attr('max', maxStartDate);
+
             $('table.pre-result-table').DataTable().draw();
         });
     });
@@ -734,28 +779,68 @@
             var dateStr = data[1]; // Assumes date is in second column (index 1)
             var hiddenDateStr = data[0]; // Assumes hidden date is in first column (index 0)
 
-            if (!startDate || !endDate) {
+            if (!startDate && !endDate) {
                 // No date range selected, show all rows
                 return true;
             }
 
             var momentDate = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
             var momentHiddenDate = moment(hiddenDateStr, 'YYYY-MM-DD HH:mm:ss');
-            var momentStartDate = moment(startDate, 'YYYY-MM-DD').startOf('day');
-            var momentEndDate = moment(endDate, 'YYYY-MM-DD').endOf('day');
 
-            if (momentDate.isBetween(momentStartDate, momentEndDate, null, '[]') ||
-                momentHiddenDate.isBetween(momentStartDate, momentEndDate, null, '[]')) {
-                // Row date or hidden date is between selected date range
-                return true;
-            } else {
-                // Row date and hidden date are outside selected date range
-                return false;
+            if (startDate && endDate) {
+                // Filter by start and end dates
+                var momentStartDate = moment(startDate, 'YYYY-MM-DD').startOf('day');
+                var momentEndDate = moment(endDate, 'YYYY-MM-DD').endOf('day');
+                if (momentDate.isBetween(momentStartDate, momentEndDate, null, '[]') ||
+                    momentHiddenDate.isBetween(momentStartDate, momentEndDate, null, '[]')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (startDate && !endDate) {
+                // Filter by start date only
+                var momentStartDate = moment(startDate, 'YYYY-MM-DD').startOf('day');
+                if (momentDate.isSameOrAfter(momentStartDate, 'day') ||
+                    momentHiddenDate.isSameOrAfter(momentStartDate, 'day')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (!startDate && endDate) {
+                // Filter by end date only
+                var momentEndDate = moment(endDate, 'YYYY-MM-DD').endOf('day');
+                if (momentDate.isSameOrBefore(momentEndDate, 'day') ||
+                    momentHiddenDate.isSameOrBefore(momentEndDate, 'day')) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         });
 
         // Event handler for date range inputs
-        $('#postStartDate, #postEndDate').on('change', function() {
+        $('#postStartDate').on('change', function() {
+            var startDate = moment($(this).val(), 'YYYY-MM-DD');
+            var minEndDate = startDate.startOf('month').format('YYYY-MM-DD');
+            if ($('#postEndDate').val() && $(this).val() > $('#postEndDate').val()) {
+                $(this).val($('#postEndDate').val());
+                startDate = moment($(this).val(), 'YYYY-MM-DD');
+                minEndDate = startDate.format('YYYY-MM-DD');
+            }
+            $('#postEndDate').attr('min', minEndDate);
+            $('table.post-result-table').DataTable().draw();
+        });
+
+        $('#postEndDate').on('change', function() {
+            var endDate = moment($(this).val(), 'YYYY-MM-DD');
+            var maxStartDate = endDate.endOf('month').format('YYYY-MM-DD');
+              // Check if the selected end date is earlier than the selected start date
+              if ($('#postStartDate').val() > $(this).val()) {
+                $(this).val($('#postStartDate').val());
+                endDate = moment($(this).val(), 'YYYY-MM-DD');
+            }
+            $('#postStartDate').attr('max', maxStartDate);
+
             $('table.post-result-table').DataTable().draw();
         });
     });
@@ -768,4 +853,15 @@
 
         })
     });
+</script>
+
+<script>
+    // get the current date in YYYY-MM-DD format
+    var today = new Date().toISOString().split('T')[0];
+
+    // set the max attribute of the date inputs to today's date
+    document.querySelector('#startDate').setAttribute('max', today);
+    document.querySelector('#endDate').setAttribute('max', today);
+    document.querySelector('#postStartDate').setAttribute('max', today);
+    document.querySelector('#postEndDate').setAttribute('max', today);
 </script>

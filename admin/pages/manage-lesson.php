@@ -21,7 +21,6 @@
                             <div class="col-sm-8">
                                 <h1>Manage Topics</h1>
                             </div>
-
                         </div>
                     </div>
                     <ul class="nav nav-pills nav-fill pb-4">
@@ -32,15 +31,29 @@
                             <a class="nav-link" data-bs-toggle="pill" href="#sub-topic"><i class="fa-solid fa-child-reaching"></i>Manage Subtopics</a>
                         </li>
                     </ul>
+                    <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control startDate" id="" name="startDate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control endDate" id="" name="endDate">
+                            </div>
+                        </div>
                     <div class="tab-content">
                         <div id="main-topic" class="tab-pane main-topic-section fade in active show">
                             <div class="d-flex justify-content-end">
                                 <a href="javascript:void(0)" class="btn btn-custom flex-end add-lesson" style="width:200px;" title="add" data-toggle="tooltip"><i class="fa-solid fa-circle-plus"></i>Add Topic</a>
                             </div>
+
                             <table class="admin table table-striped table-hover table-bordered" id="myTable">
                                 <thead>
                                     <tr>
+
                                         <th><input type="checkbox" class="checkbox-all" /></th>
+                                        <th class="hidden-header">Date <i class="fa fa-sort"></i></th>
+
                                         <th>Title <i class="fa fa-sort"></i></th>
                                         <th>Topic Level <i class="fa fa-sort"></i></th>
                                         <th>Description <i class="fa fa-sort"></i></th>
@@ -56,7 +69,10 @@
                                     while ($row = mysqli_fetch_assoc($result)) {
                                     ?>
                                         <tr class="table-topic-data">
+
                                             <td><input type="checkbox" class="checkbox-delete" /></td>
+                                            <td class="hidden-header"><?php echo $row['created_at'] ?></td>
+
                                             <td><?php echo $row['title'] ?></td>
                                             <td><?php echo $row['difficulty'] ?></td>
 
@@ -83,6 +99,8 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" class="checkbox-all" /></th>
+                                    <th class="hidden-header">Date <i class="fa fa-sort"></i></th>
+
                                     <th>Title <i class="fa fa-sort"></i></th>
                                     <th>Module <i class="fa fa-sort"></i></th>
                                     <th>Subtopic <i class="fa fa-sort"></i></th>
@@ -98,6 +116,8 @@
                                 ?>
                                     <tr class="table-subtopic-data">
                                         <td><input type="checkbox" class="checkbox-delete" /></td>
+                                        <td class="hidden-header"><?php echo $row2['created_at'] ?></td>
+
                                         <td><?php echo $row2['title'] ?></td>
                                         <td><?php echo $row2['module'] ?></td>
                                         <td><?php echo $row2['subtopic'] ?></td>

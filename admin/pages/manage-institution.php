@@ -20,12 +20,26 @@
                             </div>
 
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control startDate" id="startDate" name="startDate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control endDate" id="endDate" name="endDate">
+                            </div>
+                        </div>
+
                     </div>
                     <table class="admin table table-striped table-hover table-bordered" id="myTable">
                         <thead>
                             <tr>
 
                                 <th class="col-1"><input type="checkbox" class="checkbox-all" /></th>
+                                <th class="hidden-header">Date<i class="fa fa-sort"></i></th>
+
                                 <th>Name<i class="fa fa-sort"></i></th>
                                 <th>Control Code <i class="fa fa-sort"></i></th>
                                 <th class="col-2">Status <i class="fa fa-sort"></i></th>
@@ -41,7 +55,10 @@
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr class="table-institution-data">
+
                                     <td class="col-1"><input type="checkbox" name="name1" class="checkbox-delete" /></td>
+                                    <td class="hidden-header"><?php echo $row['created_at'] ?> <i class="fa-solid fa-clipboard" style="cursor: pointer;"></i></td>
+
                                     <td><a href="javascript:void(0)" class="institution-link" data-id="<?php echo $row['institution_id'] ?>" data-name="<?php echo $row['name'] ?>" data-type="<?php echo $row['type'] ?>"><?php echo $row['name'] ?></a></td>
                                     <td><?php echo $row['code'] ?> <i class="fa-solid fa-clipboard" style="cursor: pointer;"></i></td>
 
@@ -156,7 +173,7 @@
                     console.log('Copied to clipboard:', institutionCode);
                     Toast.fire({
                         icon: 'success',
-                        title: 'Text copied to clipboard:</br>' + institutionCode ,
+                        title: 'Text copied to clipboard:</br>' + institutionCode,
 
                     })
                 })

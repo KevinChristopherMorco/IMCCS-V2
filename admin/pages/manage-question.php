@@ -28,6 +28,16 @@
                             <a class="nav-link" data-bs-toggle="pill" href="#question"><i class="fa-solid fa-clipboard-question"></i>Question Bank</a>
                         </li>
                     </ul>
+                    <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control startDate" id="" name="startDate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control endDate" id="" name="endDate">
+                            </div>
+                        </div>
 
                     <div class="tab-content">
                         <div id="assessment" class="tab-pane assessment-section fade in active show">
@@ -36,10 +46,13 @@
                             <div class="d-flex justify-content-end">
                                 <a href="javascript:void(0)" class="btn btn-custom flex-end add-assessment" style="width:200px;" title="add" data-toggle="tooltip"><i class="fa-solid fa-circle-plus"></i>Add Assessment</a>
                             </div>
+
                             <table class="admin table table-striped table-hover table-bordered" id="assessment-table">
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" class="checkbox-all" /></th>
+                                        <th class="hidden-header">Date <i class="fa fa-sort"></i></th>
+
                                         <th>Assessment Title <i class="fa fa-sort"></i></th>
                                         <th>Difficulty <i class="fa fa-sort"></i></th>
                                         <th>Deadline<i class="fa fa-sort"></i></th>
@@ -55,6 +68,8 @@
                                     ?>
                                         <tr class="table-assessment-data">
                                             <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
+                                            <td class="hidden-header"><?php echo $row['created_at'] ?></td>
+
                                             <td><?php echo $row['title'] ?></td>
                                             <td><?php echo $row['difficulty'] ?></td>
                                             <td><?php echo date("F j, Y g:i a", strtotime($row['deadline'])) ?></td>
@@ -79,6 +94,8 @@
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" class="checkbox-all" /></th>
+                                        <th class="hidden-header">Date <i class="fa fa-sort"></i></th>
+
                                         <th>Title <i class="fa fa-sort"></i></th>
                                         <th>Question <i class="fa fa-sort"></i></th>
                                         <th>Actions</th>
@@ -94,6 +111,8 @@
                                     ?>
                                         <tr class="table-assessment-question-data">
                                             <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
+                                            <td class="hidden-header"><?php echo $row2['created_at'] ?></td>
+
                                             <td><?php echo $row2['assessment_title'] ?></td>
                                             <td><?php echo $row2['assessment_question'] ?></td>
 

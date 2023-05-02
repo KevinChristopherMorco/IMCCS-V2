@@ -12,11 +12,23 @@
                                 <h1>Manage Feedbacks</h1>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control startDate" id="" name="startDate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control endDate" id="" name="endDate">
+                            </div>
+                        </div>
                     </div>
                     <table class="admin table table-striped table-hover table-bordered" id="myTable">
                         <thead>
                             <tr>
                                 <th><input type="checkbox" class="checkbox-all" /></th>
+                                <th class="hidden-header">Date <i class="fa fa-sort"></i></th>
 
                                 <th>Name <i class="fa fa-sort"></i></th>
                                 <th>Feedback <i class="fa fa-sort"></i></th>
@@ -34,6 +46,7 @@
                             ?>
                                 <tr class="table-feedback-data">
                                     <td><input type="checkbox" name="name1" class="checkbox-delete" /></td>
+                                    <td class="hidden-header"><?php echo $row['created_at'] ?></td>
 
                                     <td><?php echo $row['fullname'] ?></td>
                                     <td><?php echo $row['feedback_message'] ?></td>
