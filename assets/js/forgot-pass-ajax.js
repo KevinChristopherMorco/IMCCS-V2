@@ -266,7 +266,7 @@ $(".form-submit-forgotpass").on("submit", function (event) {
                     confirmButtonColor: '#800000',
                     confirmButtonText: 'OK'
                 }).then(function () {
-                    window.location.href = 'https://imccs.cloud'
+                    window.location.href = 'http://localhost/imccs-v2/'
                 });
             },
             error: function (xhr, status, error) {

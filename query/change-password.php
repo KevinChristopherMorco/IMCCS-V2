@@ -2,7 +2,7 @@
 if (isset($_POST['token'])) {
     $token = $_POST['token'];
 
-   $conn = new mySqli('localhost', 'u351518056_capstoneV2', 'b3P^9GtW?I', 'u351518056_capstoneV2');
+   $conn = new mySqli('localhost', 'root', '', 'u351518056_capstone');
     if ($conn->connect_error) {
         die('Could not connect to the database');
     }

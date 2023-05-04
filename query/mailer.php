@@ -41,6 +41,7 @@ if ($data["is_disposable_email"]["value"] === true) {
 }
 if ($data['deliverability'] === "DELIVERABLE") {
     try {
+        /* THIS IS WORKING
 
         $mail->isSMTP();
         $mail->Host       = 'smtp.hostinger.com';                    // Set the SMTP server to send through
@@ -50,6 +51,9 @@ if ($data['deliverability'] === "DELIVERABLE") {
         $mail->SMTPSecure = 'tls';
         $mail->Port       = 587;
 
+        $mail->setFrom('imccs-onlinesupport@imccs.cloud', 'IMCCS');
+        $mail->addAddress($email, 'You');
+*/
 
         /*
         $mail->isSMTP();
@@ -59,8 +63,26 @@ if ($data['deliverability'] === "DELIVERABLE") {
         $mail->Username = '9ccf23b8516359';
         $mail->Password = '20cdbb486b9762';
 */
+
+     //Server settings
+     $mail->isSMTP();                                            // Send using SMTP
+     $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+     $mail->Username   = 'imccsonlinesupp@gmail.com';
+     $mail->Password   = 'tdsgqwyijpmuxiee';                            // SMTP password
+     $mail->SMTPSecure = 'tls';
+     $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+     $mail->SMTPOptions = array(
+         'ssl' => array(
+             'verify_peer' => false,
+             'verify_peer_name' => false,
+             'allow_self_signed' => true
+         )
+     );
+
+
         //Set email properties
-        $mail->setFrom('imccs-onlinesupport@imccs.cloud', 'IMCCS');
+        $mail->setFrom('imccsonlinesupp@gmail.com', 'IMCCS');
         $mail->addAddress($email, 'You');
 
         $token = substr(str_shuffle('1234567890QWERTYUIOPASDFGHJKLZXCVBNM'), 0, 10);
@@ -104,7 +126,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
                                         You have requested us to send a link to reset your password. To do this, click the
                                         following link and follow the instructions.
                                     </p>
-                                    <a href="https://imccs.cloud/section-pages/forgot-password/forgot-password-change.php?token=' . $token . '"
+                                    <a href="http://localhost/imccs-v2/section-pages/forgot-password/forgot-password-change.php?token=' . $token . '"
                                         style="background:#800000;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                         Password</a>
                                         <p style="color:#455056; font-size:15px;line-height:24px; margin:10px;">
@@ -136,7 +158,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
 </table>
 </html>';
 
-        $conn = new mySqli('localhost', 'u351518056_capstoneV2', 'b3P^9GtW?I', 'u351518056_capstoneV2');
+        $conn = new mySqli('localhost', 'root', '', 'u351518056_capstone');
         if ($conn->connect_error) {
             die('Could not connect to the database.');
         }
@@ -150,7 +172,7 @@ if ($data['deliverability'] === "DELIVERABLE") {
         }
         $conn->close();
     } catch (Exception $e) {
-        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         echo "Mailer Error";
     }
 } else {
